@@ -27,4 +27,4 @@ def handler(c):
 {logging: Hello World}
 ```
 
-There is much more to discover. Check out the [Tutorial](/documentation/tutorial) to explore them!
+There is much more to discover. Check out the [Tutorial](/documentation/Tutorial) to explore them!
