@@ -79,6 +79,8 @@ $ curl -s 'https://starflows.com/api/1/setting/occurrences_found' -H "Authorizat
 
 ### Client configuration
 
+#### Setting to tune functionality
+
 The Settings resource is also used to store client configuration settings. All settings are optional and use a system provided default value if unset. Here is a list of possible client configuration settings, with a description and the default value:
 
 Setting name | Default value | Description
@@ -86,6 +88,16 @@ Setting name | Default value | Description
 `client.execution.retention_time.minutes` | 10080 | How long an ended execution is kept before being deleted. 10080 minutes = 1 week. A flow script can override this setting when starting child executions.
 `client.input.timeout.minutes` | 10 | How long to wait for user input. A flow script can override this setting when requesting user input.
 `client.flow.library.fallback` | True | If a flow is not found in the client, look for it in the public Cloudomation [flow script library <i class="fa fa-external-link"></i>](https://github.com/starflows/library). Valid options are `True` and `False`. Disabling this option will reduce the functionality of the user interface if certain flow scripts are not available in the client. See [User Interface](User+Interface#flowscripts) for a list of flow scripts which are used by the user interface.
+
+#### Settings to add functionality
+
+##### `client.webhook.<webhook name>`
+Configure an endpoint `https://cloudomation.io/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. The following configuration will execute the flow named `signup` with the permissions of user `kevin`:
+```yaml
+flow_name: signup
+user_name: kevin
+```
+The flow will receive a dictionary containing the request headers and payload.
 
 ### User configuration
 
