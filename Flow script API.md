@@ -42,12 +42,21 @@ UNEXPECTED_OPTIONS = [
 
 
 class UnexpectedStatusError(Exception):
+    """
+    The UnexpectedStatusError will be thrown when a child execution ends with
+    a status which is not listed as being acceptable and the 'unexpected'
+    parameter is set to 'throw'
+    """
+
     def __init__(self, execution_id, expected_status, actual_status):
         self.execution_id = execution_id
         self.expected_status = expected_status
         self.actual_status = actual_status
 
     def __str__(self):
+        """
+        String representation of the Exception
+        """
         return (
             f'execution ID {self.execution_id}:'
             f' expected "{self.expected_status}",'
@@ -55,11 +64,22 @@ class UnexpectedStatusError(Exception):
 
 
 class Cloudomation(object):
+    """
+    The Cloudomation object is what every flow script handler function
+    gets passed as first argument.
+    The object provides functions to interact with cloudomation, like
+    reading settings or creating child executions.
+    """
+
     def __init__(self, channel, execution_id):
         self._channel = channel
         self.execution_id = execution_id
 
     def _get_loc(self):
+        """
+        Internal function to read the function call which resulted in a
+        call to cloudomation.
+        """
         stack = traceback.extract_stack()
         last_lineno = None
         loc_lineno = None
@@ -73,6 +93,9 @@ class Cloudomation(object):
         return f'line {loc_lineno}: {loc_cmd}'
 
     def _send(self, obj):
+        """
+        Internal function used to call cloudomation
+        """
         obj['loc'] = self._get_loc()
         self._channel.send(obj)
 
@@ -92,6 +115,16 @@ class Cloudomation(object):
         - task           the name of the task
         - inputs         a dictionary containing the input parameters for
                          the task
+        - name           the name of the execution
+        - location       the actor location where to execute the task. can be
+                         a public or private actor location
+        - protect_inputs a list of input keys which should be redacted. to be
+                         used on fields containing sensitive information
+        - protect_outputs a list of output keys which should be redacted.
+        - retention_time how many seconds the execution record should be
+                         retained after ending. when the time passed the
+                         record will be deleted
+        - **kwargs       all additional kwargs will be added to the inputs
         """
         if not inputs:
             inputs = {}
@@ -122,11 +155,19 @@ class Cloudomation(object):
         """
         create a pending flow execution
         params:
-        - flow           the name, optionally with path, of the flow script
+        - flow           the name or ID of the flow script
         - inputs         a dictionary containing the input parameters for
                          the flow
+        - name           the name of the execution
         - pass_token     if a vault_token should be passed to the child
                          execution
+        - protect_inputs a list of input keys which should be redacted. to be
+                         used on fields containing sensitive information
+        - protect_outputs a list of output keys which should be redacted.
+        - retention_time how many seconds the execution record should be
+                         retained after ending. when the time passed the
+                         record will be deleted
+        - **kwargs       all additional kwargs will be added to the inputs
         """
         if not inputs:
             inputs = {}
@@ -160,6 +201,16 @@ class Cloudomation(object):
         - script         the script to be executed
         - inputs         a dictionary containing the input parameters for the
                          script
+        - name           the name of the execution
+        - pass_token     if a vault_token should be passed to the child
+                         execution
+        - protect_inputs a list of input keys which should be redacted. to be
+                         used on fields containing sensitive information
+        - protect_outputs a list of output keys which should be redacted.
+        - retention_time how many seconds the execution record should be
+                         retained after ending. when the time passed the
+                         record will be deleted
+        - **kwargs       all additional kwargs will be added to the inputs
         """
         if not inputs:
             inputs = {}
@@ -272,9 +323,29 @@ class Cloudomation(object):
         return self
 
     def logln(self, out, *args, **kwargs):
+        """
+        Append a line to the 'logging' output
+        Parameters:
+        - out       the string to log. a newline (\n) will be added
+                    at the end, after *args and **kwargs
+        - *args     positional arguments will be appended to the
+                    output string separated by commas
+        - **kwargs  keyword arguments will be appended to the
+                    output string in the form <key>=<value>
+        """
         return self.log(out, *args, _nl='\n', **kwargs)
 
     def log(self, out, *args, _nl=None, **kwargs):
+        """
+        Append a string to the 'logging' output
+        Parameters:
+        - out       the string to log.
+        - _nl       the string used as newline to be appended at the end.
+        - *args     positional arguments will be appended to the
+                    output string separated by commas
+        - **kwargs  keyword arguments will be appended to the
+                    output string in the form <key>=<value>
+        """
         if type(out) == dict:
             out = yaml.safe_dump(
                 out,
@@ -300,6 +371,12 @@ class Cloudomation(object):
         return self
 
     def end(self, status='success', message='end status set by script'):
+        """
+        End the flow script.
+        Parameters:
+        - status        one of 'success' or 'error'
+        - message       an optional status message
+        """
         self._send({
             'cmd': 'end',
             'status': status,
@@ -309,6 +386,13 @@ class Cloudomation(object):
         # self._channel.receive()
 
     def getInputs(self, execution_id=None):
+        """
+        Read the content of the input dictionary
+        Parameters:
+        - execution_id      the ID of the execution of which to read the
+                            input dict. if not specified, the inputs of
+                            the current execution are returned
+        """
         if execution_id is None:
             execution_id = self.execution_id
         self._send({
@@ -318,12 +402,24 @@ class Cloudomation(object):
         return self._channel.receive()
 
     def getVaultToken(self):
+        """
+        Read the vault_token which was passed to the execution by the user
+        or parent execution
+        """
         self._send({
             'cmd': 'get_vault_token'
         })
         return self._channel.receive()
 
     def setOutput(self, key, value, append=False):
+        """
+        Set one key of the output dict
+        Parameters:
+        - key           the key to set
+        - value         the value to store at <key>
+        - append        if the value should replace an existing
+                        value or be appended
+        """
         self._send({
             'cmd': 'set_output',
             'key': key,
@@ -333,6 +429,14 @@ class Cloudomation(object):
         return self
 
     def setOutputs(self, outputs={}, merge=True, **kwargs):
+        """
+        Set the output dict
+        Parameters:
+        - outputs       the output dict to store
+        - merge         if the values should be merges with any
+                        previously set outputs
+        - **kwargs      all other kwargs will be merged to the outputs dict
+        """
         assert type(outputs) == dict
         outputs.update(kwargs)
         self._send({
@@ -344,8 +448,11 @@ class Cloudomation(object):
 
     def setting(self, setting_name, value=None):
         """
-        if value is given, it sets the setting to it and returns it
-        else it reads the value and returns it.
+        Read or write a setting
+        Parameters:
+        - setting_name      the name of the setting to read or write
+        - value             the value to set. if not specified the current
+                            value will be read and returned
         """
         if value is None:
             self._send({
@@ -361,6 +468,17 @@ class Cloudomation(object):
         return self._channel.receive()
 
     def watch(self, resource_name, record_id):
+        """
+        Watch a record for changes
+        Parameters:
+        - resource_name     the resource of the record to watch
+                            one of 'execution', 'flow', 'setting', 'input',
+                            'user', client', 'message'
+        - record_id         the ID of the record to watch for changes
+        Return value:
+        A generator which yields a tuple of (resource_name, record_id, action)
+        every time the watched record changes
+        """
         self._send({
             'cmd': 'watch',
             'resource_name': resource_name,
@@ -373,11 +491,26 @@ class Cloudomation(object):
             yield self._channel.receive()
 
     def getParent(self):
+        """
+        Get the parent execution
+        """
         self._send({
             'cmd': 'get_parent'
         })
         parent_id = self._channel.receive()
         return Execution(self, parent_id)
+
+    def getInstance(self):
+        """
+        Get the name of the cloudomation environment the flow script is
+        executed in
+        This will be one of 'master', 'beta', 'prod', or another string
+        for private instances
+        """
+        self._send({
+            'cmd': 'get_instance'
+        })
+        return self._channel.receive()
 
     # TODO: add more getters (type, flow name, start time, etc)
 
@@ -394,26 +527,52 @@ class Cloudomation(object):
 
 
 class Execution(object):
+    """
+    The Execution class represents an execution (flow, task, or script)
+    It provides functions to set input parameters, run, and get
+    information about the execution
+    """
+
     def __init__(self, cloudomation, execution_id):
         self.cloudomation = cloudomation
-        self._channel = cloudomation._channel  # for convenience
+        self._channel = cloudomation._channel
         self.execution_id = execution_id
 
     def _send(self, obj):
         self.cloudomation._send(obj)
 
     def __str__(self):
+        """
+        Return a string representation of the execution
+        """
         return str(self.__dict__)
 
     def __eq__(self, value):
+        """
+        Compare the execution for equality with another execution
+        object or an execution_id
+        """
         if isinstance(value, Execution):
             return self.execution_id == value.execution_id
         return self.execution_id == value
 
     def __hash__(self):
+        """
+        Return the hashed execution ID. This enables execution objects to be
+        used as dict keys
+        """
         return hash(self.execution_id)
 
     def clone(self, inputs=None, location=None, name=None, **kwargs):
+        """
+        *** Currently not implemented ***
+        Clone the execution. Several parameters of the clone can be set.
+        Parameters:
+        - inputs        the inputs for the cloned execution
+        - location      the actor location where the clone should be executed
+        - name          the name of the cloned execution
+        - **kwargs      all other kwargs will be merged with the inputs
+        """
         if inputs is None:
             inputs = {}
         assert type(inputs) == dict
@@ -429,6 +588,12 @@ class Execution(object):
         return Execution(self.cloudomation, cloned_execution_id)
 
     def setInputs(self, inputs=None, **kwargs):
+        """
+        Set the inputs dict of the execution
+        Parameters:
+        - inputs        the inputs dict to set
+        - **kwargs      all other kwargs will be merged with the inputs
+        """
         if inputs is None:
             inputs = {}
         assert type(inputs) == dict
@@ -443,9 +608,18 @@ class Execution(object):
         return self
 
     def setInput(self, key, val):
+        """
+        Set one input key
+        Parameters:
+        - key       the input key to set
+        - val       the value to store
+        """
         return self.setInputs({key: val})
 
     def getInputs(self):
+        """
+        Return the input dict of the execution
+        """
         return self.cloudomation.getInputs(self.execution_id)
 
     def runAsync(self, inputs=None, location=None, **kwargs):
@@ -500,6 +674,9 @@ class Execution(object):
         return self
 
     def getStatus(self):
+        """
+        Get the current status of the execution
+        """
         self._send({
             'cmd': 'execution_get_status',
             'execution_id': self.execution_id,
@@ -507,6 +684,9 @@ class Execution(object):
         return self._channel.receive()
 
     def getOutputs(self):
+        """
+        Get all outputs of the execution
+        """
         self._send({
             'cmd': 'execution_get_outputs',
             'execution_id': self.execution_id,
