@@ -150,6 +150,12 @@ output_list = {
 
 call a REST service.
 
+#### Parameters
+##### `pass_user_token`
+generate a short-lived token for the user who started the
+execution and pass this token as a header. This works only if the call is
+directed to [cloudomation.io](cloudomation.io)
+
 ```python
 version = 1
 
