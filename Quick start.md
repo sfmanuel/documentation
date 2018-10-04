@@ -24,7 +24,7 @@ def handler(c):
 6. The execution object will be opened automatically. It shows the current state of the execution and will update with any change.
 7. In the output field you'll see the log message:
 ```yaml
-{logging: Hello World}
+logging: Hello World!
 ```
 
 There is much more to discover. Check out the [Tutorial](/documentation/Tutorial) to explore them!
