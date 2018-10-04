@@ -1,3 +1,3 @@
-# Tutorial
+# Signing up
 
 Coming soon
