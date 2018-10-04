@@ -26,4 +26,4 @@ No, Cloudomation is a cloud platform. Just go to cloudomation.io to create your 
 
 ---
 
-Contact info@cloudomation.io for more information
+Contact [info@cloudomation.io](mailto:info@cloudomation.io) for more information

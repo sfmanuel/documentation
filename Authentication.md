@@ -1,7 +1,7 @@
 
 # Authentication
 
-To use Cloudomation you need an account. Please see [Signing up](Signing+up) on how to sign up for an account. When you sign up you create a client with one user. You can later add more users to your client. All users of your client will share the same resources in Cloudomation.
+To use Cloudomation you need an account. Please see [signing up](Signing+up) on how to sign up for an account. When you sign up you create a client with one user. You can later add more users to your client. All users of your client will share the same resources in Cloudomation.
 
 Below are the descriptions on how to authenticate with Cloudomation using different methods.
 
