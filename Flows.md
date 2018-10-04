@@ -1,3 +1,3 @@
-# Flow scripts
+# Flows
 
 Coming soon
