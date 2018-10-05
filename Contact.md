@@ -4,12 +4,12 @@ This website is published by Margot and Stefan Mückstein as private individuals
 
 Contact us at [info@cloudomation.io](mailto:info@cloudomation.io)
 
-Margot Mückstein
-Suchenwirtplatz 10/27
-1100 Vienna
+Margot Mückstein  
+Suchenwirtplatz 10/27  
+1100 Vienna  
 Austria
 
-Stefan Mückstein
-Forsthausstraße 20A
-3012 Wolfsgraben
+Stefan Mückstein  
+Forsthausstraße 20A  
+3012 Wolfsgraben  
 Austria
