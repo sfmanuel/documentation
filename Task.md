@@ -286,7 +286,7 @@ input_list = {
         'type': 'Number',
         'default': 22,
     },
-    'login': {
+    'username': {
         'type': 'String',
     },
     'password': {
@@ -300,9 +300,13 @@ input_list = {
     'script': {
         'type': 'String',
     },
-    'bash-debug-mode': {
-        'type': 'Boolean',
-        'default': True
+    'connect-timeout': {
+        'type': 'Number',
+        'default': 10,
+    },
+    'script-timeout': {
+        'type': int,
+        'default': 60,
     },
 }
 
