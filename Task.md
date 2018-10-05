@@ -151,10 +151,19 @@ output_list = {
 call a REST service.
 
 #### Parameters
+
 ##### `pass_user_token`
 generate a short-lived token for the user who started the
 execution and pass this token as a header. This works only if the call is
 directed to [cloudomation.io](cloudomation.io)
+
+#### Outputs
+
+##### `text`
+The `text` output will contain the response body.
+
+##### `json`
+If the response body can be successfully parsed as json, the `json` output will contain the corresponding object.
 
 ```python
 version = 1
@@ -210,6 +219,9 @@ output_list = {
     },
     'text': {
         'type': str,
+    },
+    'json': {
+        'type': dict,
     },
 }
 ```
