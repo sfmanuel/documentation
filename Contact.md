@@ -1,4 +1,4 @@
-# Publisher
+# Contact
 
 This website is published by Margot and Stefan Mückstein as private individuals. Both are responsible for the content published on this website.
 
