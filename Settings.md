@@ -88,7 +88,7 @@ Setting name | Default value | Description
 `client.execution.retention_time.minutes` | 10080 | How long an ended execution is kept before being deleted. 10080 minutes = 1 week. A flow script can override this setting when starting child executions.
 `client.message.retention_time.minutes` | 720 | How long a message is kept before being deleted. 720 minutes = 12 hours. The maximum value is 10080 = 1 week.
 `client.input.timeout.minutes` | 10 | How long to wait for user input. A flow script can override this setting when requesting user input.
-`client.flow.library.fallback` | True | If a flow is not found in the client, look for it in the public Cloudomation [flow script library <i class="fa fa-external-link"></i>](https://github.com/starflows/library). Valid options are `True` and `False`. Disabling this option will reduce the functionality of the user interface if certain flow scripts are not available in the client. See [User Interface](User+Interface#flowscripts) for a list of flow scripts which are used by the user interface.
+`client.flow.library.fallback` | True | If a flow is not found in the client, look for it in the public Cloudomation [flow script library <i class="fa fa-external-link"></i>](https://github.com/starflows/library). Valid options are `True` and `False`. Disabling this option will reduce the functionality of the user interface if certain flow scripts are not available in the client. See [User Interface](User+Interface) for a list of flow scripts which are used by the user interface.
 `client.locations` | [] | A list of actor locations which are private to the client.
 
 #### Settings to add functionality

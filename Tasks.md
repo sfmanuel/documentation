@@ -1,6 +1,6 @@
-# Task
+# Tasks
 
-to interact with the outside world a flow script must create task executions.
+To interact with the outside world a flow script must create task executions.
 Tasks are configured by a input dictionary object and most tasks also provide outputs as a dictionary.
 
 Two examples on how to create and run a task:

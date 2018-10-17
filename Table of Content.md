@@ -16,6 +16,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;About the menu  
 &nbsp;&nbsp;__App__  
 &nbsp;&nbsp;&nbsp;&nbsp;About the App menu block  
+&nbsp;&nbsp;&nbsp;&nbsp;[Executions](Executions)
 &nbsp;&nbsp;&nbsp;&nbsp;[Flows](Flows)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Settings](Settings)  
 &nbsp;&nbsp;&nbsp;&nbsp;Inputs  
@@ -46,8 +47,8 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;Cloudomation function reference  
 &nbsp;&nbsp;Cloudomation REST API  
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
-&nbsp;&nbsp;[Task](Task)  
-&nbsp;&nbsp;[Manipulating resources](manipulating+resources)  
+&nbsp;&nbsp;[Tasks](Tasks)  
+&nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
 &nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library) (external link)  
 &nbsp;&nbsp;[Examples](Examples)  
 ### Configuring your account  
