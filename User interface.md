@@ -1,5 +1,11 @@
 # User interface
 
+## User interface elements
+This section will describe the elements of the user interface, starting at the top left and moving to the right and down.
+
+<i class="fa fa-fw fa-bars"></i> open or close left hand pane with menu  
+<i class="fa fa-stack-1x fa-star fa-inverse" data-bind="css: { 'fa-spin': brandHover }"></i> go to home screen
+
 ## Content display and editing
 - Any field with a ligh yellow background can be edited through the user interface. Example: Flow names in the Flow section.
 - There are three types of views:
@@ -8,7 +14,7 @@
   - Field view: some fields can be opened individually, intended for fields with potentially large content such as flow scripts and settings. Field views can be opened via the link symbol next to the show/hide button in both the list and the record view. This will open an individual view containing only the field content, e.g. a flow script or a record. Functionally, this is equivalent to both the list and the record view: you can edit, execute and delete flow scripts, or edit and delete settings - but only for the content of the opened individual field.
 - List views feature some fields with a "show" button. These are fields that can potentially contain larger content.
    - Content fields with a white background can be edited directly. Example: content in the Flow view.
-   - Content fields with a grey background cannot be edited. Example: script in the executions view. This show the already executed script which cannot be edited after execution.
+   - Content fields with a grey background cannot be edited. Example: script in the executions view. This shows the  exact version of the script which was executed, which cannot be edited.
 - The list and record views can be customised to show more or less fields. Fields are displayed as columns in the list view, as rows in the record view.
   - The list view (Executions, Flows, Settings, Inputs, Messages) features a button in the bottom right: "x of n columns". Clicking this button opens a field selection view. Here, you can select which fields (columns) should be displayed for this view.
   - The records view features a "show default fields" or "show all fields" toggle button at the bottom left of the display. Clicking this button switches between a display of all fields (rows) or only a selection of default fields.
