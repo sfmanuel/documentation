@@ -4,7 +4,7 @@
 This section will describe the elements of the user interface, starting at the top left and moving to the right and down.
 
 <i class="fa fa-fw fa-bars"></i> open or close left hand pane with menu  
-<i class="fa fa-stack-1x fa-star fa-inverse" data-bind="css: { 'fa-spin': brandHover }"></i> go to home screen
+<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud" style="color: #5e8ebd"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span> go to home screen
 
 ## Content display and editing
 - Any field with a ligh yellow background can be edited through the user interface. Example: Flow names in the Flow section.
