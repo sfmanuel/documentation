@@ -23,14 +23,14 @@
 	- [c.getParent](#cgetparent)
 	- [c.getInstance](#cgetinstance)
 - [Execution class](#execution-class)
-	- [*c.clone*](#cclone)
-	- [c.setInput](#csetinput)
-	- [c.setInputs](#csetinputs)
-	- [c.runAsync](#crunasync)
-	- [c.run](#crun)
-	- [c.wait](#cwait)
-	- [c.getStatus](#cgetstatus)
-	- [c.getOutputs](#cgetoutputs)
+	- [*clone*](#clone)
+	- [setInput](#setinput)
+	- [setInputs](#setinputs)
+	- [runAsync](#runasync)
+	- [run](#run)
+	- [wait](#wait)
+	- [getStatus](#getstatus)
+	- [getOutputs](#getoutputs)
 
 <!-- /TOC -->
 
@@ -77,7 +77,7 @@ c.end('success', message=joke)
 ```  
 
 Returns:  
-The execution object with the execution ID. This means that you can chain any function from the [Execution class](#executionclass) directly after the execution of a task. 
+The execution object with the execution ID. This means that you can chain any function from the [Execution class](#executionclass) directly after the execution of a task.
 
 Find more examples in the [public flow script library](https://github.com/starflows/library):
 - [Example AWS task](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py)
@@ -222,12 +222,14 @@ The Cloudomation object. This means that you can chain any function from the Clo
 ### c.getInstance
 
 ## Execution class
-### *c.clone*
+Functions from the execution class can be applied on execution objects.
+
+### *clone*
 coming soon
-### c.setInput
-### c.setInputs
-### c.runAsync
-### c.run
-### c.wait
-### c.getStatus
-### c.getOutputs
+### setInput
+### setInputs
+### runAsync
+### run
+### wait
+### getStatus
+### getOutputs
