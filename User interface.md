@@ -6,13 +6,13 @@ This section will describe the elements of the user interface, starting at the t
 |element|description|
 |:---:|:---|
 |<i class="fa fa-fw fa-bars"></i>|open or close left hand menu pane|
-|<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud" style="color: #5e8ebd"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span>| go to home screen | 
-<a class="nav-link btn btn-xs btn-transparent ml-3"><i class="fa fa-fw fa-tachometer"></i><span class="ml-1" data-bind="text: capacityPercent">10</span><span class="ml-1">%</span></a> your current token usage - see also [token usage calculation](Token+usage+calculation).  
-<a class="nav-link btn btn-xs btn-transparent ml-3"><i class="fa fa-user"></i><span class="ml-1 d-none d-sm-inline-block">username</span></a> your user name - if you click this button, you will be directed to your user settings.  
-<i class="fa fa-vcard-o"></i> you are logged in as a user  
-<i class="fa fa-vcard"></i> you are logged in as a client administrator  
-<i class="fa fa-fw fa-question-circle"></i> link to the service desk where you can ask questions, report issues, and make suggestions how we can improve Cloudomation  
-<i class="fa fa-fw fa-sign-out"></i> log out  
+|<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud" style="color: #5e8ebd"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span>| go to home screen |
+|<a class="nav-link btn btn-xs btn-transparent ml-3"><i class="fa fa-fw fa-tachometer"></i><span class="ml-1" data-bind="text: capacityPercent">10</span><span class="ml-1">%</span></a>| your current token usage - see also [token usage calculation](Token+usage+calculation)|  
+|<a class="nav-link btn btn-xs btn-transparent ml-3"><i class="fa fa-user"></i><span class="ml-1 d-none d-sm-inline-block">username</span></a>| your user name - if you click this button, you will be directed to your user settings|  
+|<i class="fa fa-vcard-o"></i>| you are logged in as a user |
+|<i class="fa fa-vcard"></i>| you are logged in as a client administrator |
+|<i class="fa fa-fw fa-question-circle"></i>| link to the service desk where you can ask questions, report issues, and make suggestions how we can improve Cloudomation|  
+|<i class="fa fa-fw fa-sign-out"></i>| log out|  
 
 ## Content display and editing
 - Any field with a ligh yellow background can be edited through the user interface. Example: Flow names in the Flow section.
