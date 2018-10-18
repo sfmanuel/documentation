@@ -38,7 +38,7 @@
 This class of functions allows you to interact with Cloudomation. You can read settings, create child executions, write to the log, set outputs for your flow script etc.
 
 ### c.task  
-Creates a pending task execution. Through tasks, you can interact with the outside world. The following tasks are available in Cloudomation:
+Executes a task. Through tasks, you can interact with the outside world. The following tasks are available in Cloudomation:
 - REST  
 - SSH  
 - SMTP  
@@ -62,7 +62,7 @@ See [tasks](Tasks) for details on the individual tasks.
     - retention_time   how many seconds the execution record should be
                        retained after ending. when the time passed the
                        record will be deleted  
-    - \*\*kwargs       all additional kwargs will be added to the inputs  
+    - **kwargs         all additional kwargs will be added to the inputs  
 ```
 
 Example:  
@@ -81,9 +81,59 @@ Find more examples in the [public flow script library](https://github.com/starfl
 - [Example INPUT task](https://github.com/starflows/library/blob/master/Example%20Task%20INPUT.py)
 
 ### c.flow
+Executes a flow script. You can reference any flow script within your Cloudomation accout by ID or name, or reference a flow script in a public github repository. See [using flow scripts from git](Using flow scripts from git) for information on how to dynamically execute flow scripts from a public github repository.
 
+```text
+ Parameters:  
+    - flow             the name or ID of the flow script
+    - inputs           a dictionary containing the input parameters for
+                       the flow
+    - name             the name of the execution
+    - pass_token       if a vault_token should be passed to the child
+                       execution
+    - protect_inputs   a list of input keys which should be redacted. to be
+                       used on fields containing sensitive information
+    - protect_outputs  a list of output keys which should be redacted.
+    - retention_time   how many seconds the execution record should be
+                       retained after ending. when the time passed the
+                       record will be deleted
+    - **kwargs         all additional kwargs will be added to the inputs
+```
+
+Example:  
+```python
+def handler(c):
+    # Query user details
+    questions = {
+        'name': {
+            'label': 'New user name',
+        },
+        'display_name': {
+            'label': 'New user display name',
+        },
+        'email': {
+            'label': 'New user email address',
+        },
+        'password': {
+            'label': 'New user password',
+            'type': 'password',
+        },
+    }
+    execution = c.flow(
+        'Input Form',
+        questions=questions,
+        protect_outputs=['responses']  # protect responses,
+                                       # they contain a password
+    ).run()
+    outputs = execution.getOutputs()
+    user = outputs['responses']  # the responses dict is the user
+```  
+
+This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py) flow script available in the [public flow script library](https://github.com/starflows/library). Note that the referenced flow (in this case 'Input Form') has to exist.  
 
 ### c.script
+
+
 ### c.waitFor
 ### c.waitForAll
 ### c.sleep
