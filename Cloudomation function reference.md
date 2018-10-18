@@ -175,8 +175,8 @@ Wait for the first of the given executions to finish. This is an OR relation. If
 
 Example:
 ```python
-cloudomation.waitFor(A).waitFor(B) #waits until A and B are both ended
-cloudomation.waitFor(A, B) #waits for either A or B, whichever ends first
+cloudomation.waitFor(A).waitFor(B) # waits until A and B are both ended
+cloudomation.waitFor(A, B) # waits for either A or B, whichever ends first
 ```  
 
 Returns:  
@@ -199,7 +199,7 @@ Wait for all of the given executions to finish.
 
 Example:
 ```python
-cloudomation.waitForAll(A, B) #waits until A and B are both ended
+cloudomation.waitForAll(A, B) # waits until A and B are both ended
 cloudomation.waitForAll(A, B).flow('myflow') # waits until A and B ended and then executes myflow
 ```  
 

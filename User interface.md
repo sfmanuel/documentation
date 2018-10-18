@@ -24,7 +24,9 @@ The first table describes the elements of the top hand pane. The sections of the
 ## Content display and editing
 
 **Views**  
-There are three types of views: list, record, and field views. In all views, any field with a ligh yellow background can be edited directly. Example: Flow names in the Flow section.
+There are three types of views: list, record, and field views. In all views, any field with a ligh yellow background can be edited directly. Example: Flow names in the Flow section.  
+The left hand menu pane by default shows all list views: Executions, Flows, Settings, Inputs, and Messages. Once you open a record, the record will also be displayed in the left hand pane until you close it. Which records (flow scripts, settings, executions) you have open is persisted, so if you refresh the page, or log out and log in again, the same records will still be open.  
+**Hint**: The most recently opened record will always be displayed on top of the list of open records in the left hand pane. If you want to customise the order in which open flow scripts and other open records are displayed in the left hand menu pane, you can simply close and reopen a record to have it displayed on top of the list.   
 
 *List views*  
 
@@ -47,7 +49,7 @@ Some fields can be opened individually, intended for fields with potentially lar
 
 The list and record views can be customised to show more or less fields. Fields are displayed as columns in the list view, as rows in the record view.
   - The list view (Executions, Flows, Settings, Inputs, Messages) features a button in the bottom right: "x of n columns". Clicking this button opens a field selection view. Here, you can select which fields (columns) should be displayed for this view.
-  - The records view features a "show default fields" or "show all fields" toggle button at the bottom left of the display. Clicking this button switches between a display of all fields (rows) or only a selection of default fields.
+  - The records view features a "show default fields" or "show all fields" toggle button at the bottom left of the display. Clicking this button switches between a display of all fields (rows) or only a selection of default fields.  
 
 *Quick filter and search*
 
