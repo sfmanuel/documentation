@@ -41,18 +41,20 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;About the blog menu block  
 &nbsp;&nbsp;__About__  
 &nbsp;&nbsp;&nbsp;&nbsp;About the about menu block  
-### Writing flow flow scripts  
+### Writing flow scripts  
 &nbsp;&nbsp;About writing flow scripts  
 &nbsp;&nbsp;Available Python modules  
-&nbsp;&nbsp;Cloudomation function reference  
+&nbsp;&nbsp;[Cloudomation function reference](Cloudomation function reference)  
 &nbsp;&nbsp;Cloudomation REST API  
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
 &nbsp;&nbsp;[Tasks](Tasks)  
 &nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
 &nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library) (external link)  
+&nbsp;&nbsp;[Using flow scripts from git](Using flow scripts from git)  
 &nbsp;&nbsp;[Examples](Examples)  
 ### Configuring your account  
 &nbsp;&nbsp;About configuring your account  
 &nbsp;&nbsp;[Settings](Settings)  
 ### Frequently Asked Questions  
 &nbsp;&nbsp;[Frequently Asked   Questions](Frequently+Asked+Questions)  
+&nbsp;&nbsp;[Token usage calculation](Token+usage+calculation)  
