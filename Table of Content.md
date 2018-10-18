@@ -44,7 +44,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 ### Writing flow scripts  
 &nbsp;&nbsp;About writing flow scripts  
 &nbsp;&nbsp;Available Python modules  
-&nbsp;&nbsp;Cloudomation function reference  
+&nbsp;&nbsp;[Cloudomation function reference](Cloudomation function reference)  
 &nbsp;&nbsp;Cloudomation REST API  
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
 &nbsp;&nbsp;[Tasks](Tasks)  
