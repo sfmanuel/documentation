@@ -23,7 +23,7 @@
 	- [c.getParent](#cgetparent)
 	- [c.getInstance](#cgetinstance)
 - [Execution class](#execution-class)
-	- [*clone*](#clone)
+	- [clone](#clone)
 	- [setInput](#setinput)
 	- [setInputs](#setinputs)
 	- [runAsync](#runasync)
@@ -224,8 +224,7 @@ The Cloudomation object. This means that you can chain any function from the Clo
 ## Execution class
 Functions from the execution class can be applied on execution objects.
 
-### *clone*
-coming soon
+### clone
 ### setInput
 ### setInputs
 ### runAsync
