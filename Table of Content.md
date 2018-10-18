@@ -50,6 +50,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;[Tasks](Tasks)  
 &nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
 &nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library) (external link)  
+&nbsp;&nbsp;[Using flow scripts from git](Using flow scripts from git)  
 &nbsp;&nbsp;[Examples](Examples)  
 ### Configuring your account  
 &nbsp;&nbsp;About configuring your account  
