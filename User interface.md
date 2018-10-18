@@ -1,7 +1,13 @@
 # User interface
 
-## User interface elements
-This section will describe the elements of the user interface, starting at the top left and moving to the right and down.
+The Cloudomation user interface exposes the same functionality as the [Cloudomation REST API](/explorer).  
+This page contains documentation about
+- the [top pane](#toppane) of the user interface
+- general information about [content display and editing](#contentdisplayandediting)
+- [flow scripts used in the user interface](#flowscriptsusedintheuserinterface)
+
+## Top pane
+The first table describes the elements of the top hand pane. The sections of the left hand menu are documented separately in the menu documentation.
 
 |element|description|
 |:---:|:---|
@@ -13,7 +19,7 @@ This section will describe the elements of the user interface, starting at the t
 |<span class="ml-1 text-warning"><i class="fa fa-vcard-o"></i></span>| you are logged in as a client administrator |
 |<span class="ml-1 text-danger"><i class="fa fa-vcard"></i></span>| you are logged in as a system administrator |
 |<i class="fa fa-fw fa-question-circle"></i>| link to the service desk where you can ask questions, report issues, and make suggestions how we can improve Cloudomation|  
-|<i class="fa fa-fw fa-sign-out"></i>| log out|  
+|<i class="fa fa-fw fa-sign-out"></i>| log out|
 
 ## Content display and editing
 - Any field with a ligh yellow background can be edited through the user interface. Example: Flow names in the Flow section.
@@ -29,7 +35,6 @@ This section will describe the elements of the user interface, starting at the t
   - The records view features a "show default fields" or "show all fields" toggle button at the bottom left of the display. Clicking this button switches between a display of all fields (rows) or only a selection of default fields.
 
 
-##  Coming soon:
-  - user interface elements: current token usage, open user record, support, log out, home button, toggle menu, menu
+##  Flow scripts used in the user interface
   - how to connect and disconnect the user interface
   - list of flow scripts which are used in the user interface
