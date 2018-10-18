@@ -308,7 +308,7 @@ class Cloudomation(object):
         but might resume slightly later depending on system load
         same as sleep_until(time.time() + delay_sec)
         """
-        return self.sleep_until(time.time() + delay_sec)
+        return self.sleep_until(time.time() + float(delay_sec))
 
     def sleep_until(self, sleep_until: float):
         """
@@ -318,7 +318,7 @@ class Cloudomation(object):
         """
         self._send({
             'cmd': 'sleep_until',
-            'sleep_until': sleep_until,
+            'sleep_until': float(sleep_until),
         })
         return self
 
@@ -501,6 +501,9 @@ class Cloudomation(object):
         return Execution(self, parent_id)
 
     def getInstance(self):
+        return self.getEnvName()
+
+    def getEnvName(self):
         """
         Get the name of the cloudomation environment the flow script is
         executed in
@@ -508,7 +511,7 @@ class Cloudomation(object):
         for private instances
         """
         self._send({
-            'cmd': 'get_instance'
+            'cmd': 'get_env_name'
         })
         return self._channel.receive()
 
@@ -565,7 +568,6 @@ class Execution(object):
 
     def clone(self, inputs=None, location=None, name=None, **kwargs):
         """
-        *** Currently not implemented ***
         Clone the execution. Several parameters of the clone can be set.
         Parameters:
         - inputs        the inputs for the cloned execution
@@ -622,7 +624,14 @@ class Execution(object):
         """
         return self.cloudomation.getInputs(self.execution_id)
 
-    def runAsync(self, inputs=None, location=None, **kwargs):
+    def runAsync(
+            self,
+            inputs=None,
+            location=None,
+            name=None,
+            wait_for=[],
+            **kwargs,
+    ):
         """
         starts the execution asynchrounously
         does not block
@@ -630,12 +639,29 @@ class Execution(object):
         - inputs: if given, the execution is cloned, the inputs are
                   applied to the clone, and then the execution is started.
                   same as Execution.clone(inputs).runAsync()
+        - location: if given, the execution is cloned, the location is
+                  applied to the clone, and then the execution is started.
+                  same as Execution.clone(location=location).runAsync()
+        - name:   if given, the execution is cloned, the name is
+                  applied to the clone, and then the execution is started.
+                  same as Execution.clone(name=name).runAsync()
+        - wait_for: list of dependency executions. if given, the execution
+                  will wait for all dependencies to finish before running.
         """
-        if inputs or location or kwargs:
-            return self.clone(inputs, location, **kwargs).runAsync()
+        if inputs or location or name or kwargs:
+            return self.clone(inputs, location, name, **kwargs).runAsync(
+                wait_for=wait_for)
+        wait_for_ids = [
+            ex.execution_id
+            if isinstance(ex, Execution)
+            else ex
+            for ex
+            in wait_for
+        ]
         self._send({
             'cmd': 'execution_run_async',
             'execution_id': self.execution_id,
+            'wait_for': wait_for_ids,
         })
         return self
 
@@ -645,13 +671,15 @@ class Execution(object):
             expected=['success'],
             unexpected='error',
             location=None,
+            name=None,
+            wait_for=[],
             **kwargs):
         """
         starts the execution synchrounously
         blocks until the execution reaches an ended status
         same as execution.runAsync().wait()
         """
-        return self.runAsync(inputs, location, **kwargs).wait(
+        return self.runAsync(inputs, location, name, wait_for, **kwargs).wait(
             expected=expected,
             unexpected=unexpected)
 
