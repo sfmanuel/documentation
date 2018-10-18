@@ -76,6 +76,9 @@ def handler(c):
 c.end('success', message=joke)
 ```  
 
+Returns:  
+The execution object with the execution ID. This means that you can chain any function from the [Execution class](#executionclass) directly after the execution of a task. 
+
 Find more examples in the [public flow script library](https://github.com/starflows/library):
 - [Example AWS task](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py)
 - [Example INPUT task](https://github.com/starflows/library/blob/master/Example%20Task%20INPUT.py)
@@ -132,10 +135,77 @@ def handler(c):
 This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py) flow script available in the [public flow script library](https://github.com/starflows/library). Note that the referenced flow (in this case 'Input Form') has to exist.  
 
 ### c.script
+Executes a script.
 
+```text
+ Parameters:  
+    - script           the script to be executed
+    - inputs           a dictionary containing the input parameters for the
+                       script
+    - name             the name of the execution
+    - pass_token       if a vault_token should be passed to the child
+                       execution
+    - protect_inputs   a list of input keys which should be redacted. to be
+                       used on fields containing sensitive information
+    - protect_outputs  a list of output keys which should be redacted.
+    - retention_time   how many seconds the execution record should be
+                       retained after ending. when the time passed the
+                       record will be deleted
+ - **kwargs            all additional kwargs will be added to the inputs
+```
+
+Example:  
+```python
+coming soon
+```  
 
 ### c.waitFor
+Wait for the first of the given executions to finish. This is an OR relation. If you need an AND relation use chained calls to waitFor or [cloudomation.waitForAll()](#cwaitforall).
+
+```text
+ Parameters:  
+    - *args            execution objects or execution IDs to wait for
+    - expected         a list of status codes which are expected
+    - unexpected       what to do if the ending execution does not have an
+                       expected status. Possible values are:
+                           - error: end this execution with error
+                           - raise: raise an UnexpectedStatusError
+                           - ignore: continue normally
+```
+
+Example:
+```python
+cloudomation.waitFor(A).waitFor(B) #waits until A and B are both ended
+cloudomation.waitFor(A, B) #waits for either A or B, whichever ends first
+```  
+
+Returns:  
+    the id of the execution which finished first
+    or None if the list of executions to wait for is empty
+
 ### c.waitForAll
+Wait for all of the given executions to finish.
+
+```text
+ Parameters:  
+    - *args            execution objects or execution IDs to wait for
+    - expected         a list of status codes which are expected
+    - unexpected       what to do if the ending execution does not have an
+                       expected status. Possible values are:
+                           - error: end this execution with error
+                           - raise: raise an UnexpectedStatusError
+                           - ignore: continue normally
+```
+
+Example:
+```python
+cloudomation.waitForAll(A, B) #waits until A and B are both ended
+cloudomation.waitForAll(A, B).flow('myflow') # waits until A and B ended and then executes myflow
+```  
+
+Returns:  
+The Cloudomation object. This means that you can chain any function from the Cloudomation class directly after the c.waitForAll function.
+
 ### c.sleep
 ### c.sleep_until
 ### c.logIn
