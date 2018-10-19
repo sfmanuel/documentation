@@ -16,7 +16,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;About the menu  
 &nbsp;&nbsp;__App__  
 &nbsp;&nbsp;&nbsp;&nbsp;About the App menu block  
-&nbsp;&nbsp;&nbsp;&nbsp;[Executions](Executions)
+&nbsp;&nbsp;&nbsp;&nbsp;[Executions](Executions)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Flows](Flows)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Settings](Settings)  
 &nbsp;&nbsp;&nbsp;&nbsp;Inputs  
