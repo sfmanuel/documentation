@@ -29,7 +29,6 @@ If successful, the reply might look like:
     "client_name": "CorpInc AG",
     "user_name": "kevin",
     "user_id": "1",
-    "user_display_name": "Kevin",
     "is_client_admin": true,
     "is_system_admin": false,
     "token": "eyJ...",
@@ -97,7 +96,6 @@ $ curl -s 'https://starflows.com/api/1/user/kevin' -H "Authorization: $TOKEN" | 
     "last_activity": "1531049907.7785194",
     "status": "active",
     "password": "",
-    "display_name": "Kevin",
     "name": "kevin",
     "id": "1",
     "email": "kevin@example.com"
