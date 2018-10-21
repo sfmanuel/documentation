@@ -12,13 +12,13 @@ handler function:
 ```python
 def handler(c):
     # TODO: write your automation
-    c.end('success', message='all done')
+    c.success(message='all done')
 ```
 4. Replace the comment `# TODO: write your automation` with a statement to print a hello world log message:
 ```python
 def handler(c):
     c.log('Hello World!')
-    c.end('success', message='all done')
+    c.success(message='all done')
 ```
 5. Click on "Run"
 6. The execution object will be opened automatically. It shows the current state of the execution and will update with any change.
