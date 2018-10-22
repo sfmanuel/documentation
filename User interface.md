@@ -10,7 +10,7 @@ This page contains documentation about
 The first table describes the elements of the top hand pane. The sections of the left hand menu are documented separately in the menu documentation.
 
 |element|description|
-|:---:|:---|
+|:-----:|:----------|
 |<i class="fa fa-fw fa-bars"></i>|open or close left hand menu pane|
 |<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud" style="color: #5e8ebd"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span>| go to home screen |
 |<i class="fa fa-fw fa-tachometer"></i><span class="ml-1" data-bind="text: capacityPercent">10</span><span class="ml-1">%</span>| your current token usage - see also [token usage calculation](Token+usage+calculation)|
