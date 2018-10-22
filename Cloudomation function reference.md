@@ -111,9 +111,6 @@ def handler(c):
         'name': {
             'label': 'New user name',
         },
-        'display_name': {
-            'label': 'New user display name',
-        },
         'email': {
             'label': 'New user email address',
         },
@@ -132,7 +129,7 @@ def handler(c):
     user = outputs['responses']  # the responses dict is the user
 ```  
 
-This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py) flow script available in the [public flow script library](https://github.com/starflows/library). Note that the referenced flow (in this case 'Input Form') has to exist.  
+This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py) flow script available in the [public flow script library](https://github.com/starflows/library). If the referenced flow `Input Form` if not found in the current client it will be fetched from the public flow script library.
 
 ### c.script
 Executes a script.
