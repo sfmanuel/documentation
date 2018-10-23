@@ -34,7 +34,7 @@ def handler(c):
 If you choose to change the user-name you only need to update it in one place: the setting value:
 
 ```bash
-$ curl -s -X PATCH 'https://starflows.com/api/1/setting/system_user' -d '{value":"user789"}' -H "Authorization: $TOKEN"
+$ curl -s -X PATCH 'https://starflows.com/api/1/setting/system_user' -d '{"value":"user789"}' -H "Authorization: $TOKEN"
 ```
 
 and with the next execution your flow scripts will read and use the new value.

@@ -44,14 +44,15 @@ The documentation is a work in progress. If you find typos or want to contribute
 ### Writing flow scripts  
 &nbsp;&nbsp;About writing flow scripts  
 &nbsp;&nbsp;Available Python modules  
-&nbsp;&nbsp;[Cloudomation function reference](Cloudomation function reference)  
+&nbsp;&nbsp;[Cloudomation function reference](Cloudomation+function+reference)  
 &nbsp;&nbsp;Cloudomation REST API  
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
 &nbsp;&nbsp;[Tasks](Tasks)  
 &nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
 &nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library) (external link)  
-&nbsp;&nbsp;[Using flow scripts from git](Using flow scripts from git)  
+&nbsp;&nbsp;[Using flow scripts from git](Using+flow+scripts+from+git)  
 &nbsp;&nbsp;[Examples](Examples)  
+&nbsp;&nbsp;[Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts)
 ### Configuring your account  
 &nbsp;&nbsp;About configuring your account  
 &nbsp;&nbsp;[Settings](Settings)  
