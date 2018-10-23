@@ -15,7 +15,7 @@ Once all the required fields are filled out you can click on "Login". If the aut
 
 ## Via the REST API
 
-To authenticate using the REST API you need to POST a JSON string containing your credentials to `https://starflows.com/api/1/auth`. An example JSON might look like:
+To authenticate using the REST API you need to POST a JSON string containing your credentials to `https://cloudomation.io/api/1/auth`. An example JSON might look like:
 ```json
 {
     "client_name": "CorpInc AG",
@@ -43,6 +43,7 @@ Authentication using the command line uses a command line tool like curl to auth
 ```bash
 #!/usr/bin/env bash
 
+echo "Authenticating..."
 read -e -p "Client Name: " -i "CorpInc AG" CLIENT_NAME
 read -e -p "User Name: " -i "kevin" USER_NAME
 stty -echo
@@ -52,7 +53,7 @@ echo ""
 AUTH="{\"client_name\":\"${CLIENT_NAME}\",\"user_name\":\"${USER_NAME}\",\"password\":\"${PASSWORD}\"}"
 
 echo "Sending auth..."
-REPLY=$(curl -m 2 -s -d "${AUTH}" https://starflows.com/api/1/auth)
+REPLY=$(curl -m 2 -s -d "${AUTH}" https://cloudomation.io/api/1/auth)
 if [ "$?" -ne "0" ]; then
   echo "Failed to send auth!" 1>&2
   return 1
@@ -69,28 +70,34 @@ if [ "$?" -ne "0" ]; then
   echo "Failed to extract token!" 1>&2
   return 1
 fi
-export TOKEN
 
-echo "Token was exported. All done!"
+DIR=$(dirname $0)
+TOKEN_FILE="${DIR}/token"
+touch "${TOKEN_FILE}"
+chmod 600 "${TOKEN_FILE}" || exit 1
+echo "${TOKEN}" > "${TOKEN_FILE}"
+chmod 400 "${TOKEN_FILE}"
 
+echo "Token was stored in ${TOKEN_FILE}. All done!"
 ```
 You can download the script here: [auth.bash](https://github.com/starflows/documentation/blob/master/utilities/auth.bash)
 
-The script exports an environment variable TOKEN containing your token. To use the environment variable in your current shell you need to source the script:
+The script saves the obtained token in a file called `token` next to the script itself. To use the token other scripts can read the content of the file:
 ```bash
-$ source auth.bash
+$ ./auth.bash
 Client Name: CorpInc AG
 User Name: kevin
 Password:
 Sending auth...
 Extracting token...
-Token was exported. All done!
+Token was stored in ./token. All done!
+$ TOKEN=$(cat ./token)
 $ echo $TOKEN
 eyJ...
 ```
 You can then use the token to authenticate further requests:
 ```bash
-$ curl -s 'https://starflows.com/api/1/user/kevin' -H "Authorization: $TOKEN" | jq .
+$ curl -s 'https://cloudomation.io/api/1/user/kevin' -H "Authorization: $TOKEN" | jq .
 {
   "updated": {
     "last_activity": "1531049907.7785194",
