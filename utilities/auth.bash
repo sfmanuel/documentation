@@ -18,14 +18,14 @@ fi
 
 if [ "${REPLY}" == "401: Unauthorized" ]; then
   echo "Authentication failed: ${REPLY}" 1>&2
-  return 1
+  exit 1
 fi
 
 echo "Extracting token..."
 TOKEN=$(echo ${REPLY} | jq -r ".token")
 if [ "$?" -ne "0" ]; then
   echo "Failed to extract token!" 1>&2
-  return 1
+  exit 1
 fi
 
 DIR=$(dirname $0)
