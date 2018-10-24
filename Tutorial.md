@@ -14,12 +14,12 @@ The [Cloudomation Flow Script API](Flow+script+API) exploses Cloudomation functi
 
 There are two classes available to you:
 - the Cloudomation class, and
-- the execution class
+- the Execution class
 
 ### The Cloudomation class
 The Cloudomation class allows you to interact with the Cloudomation platform. You can think of it as the "bottom layer" of Cloudomation functionality. There are a number of functions available in the Cloudomation class. We have grouped them for your convenience to give you an overview what the Cloudomation functions encompass.  
 
-One group of functions in the Cloudomation class create execution objects. These are important - all functions of the second class, the execution class, can be applied on execution objects. Cloudomation functions that create execution objects are:
+One group of functions in the Cloudomation class create **execution objects**. These are important - all functions of the second class, the execution class, can be applied on execution objects. Cloudomation functions that create execution objects are:
 - task
 - flow
 - script  
@@ -50,7 +50,7 @@ And the last group of functions allows you to control basic behavior of your exe
 You can look each function up in the [Cloudomation Flow Script API](Flow+script+API) documentation, which lists parameters, what the function returns, and a small example for each of them.
 
 ### The Execution class
-Like the nme suggests, the execution class allows you to interact with executions. We already know that executions are instances of executed flow scripts.  
+Like the nme suggests, the execution class allows you to interact with execution objects. We already know that execution objects (or executions) are instances of executed flow scripts.  
 Due to the implementation of tasks as individual executions, and our general recommendation to modularise automations into small(ish) individual flow scripts, interaction between executions is a core part of automating processes with Cloudomation.  
 Again, we will group the available functions to give you an overview of the available functionality.  
 
