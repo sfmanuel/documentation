@@ -1,7 +1,7 @@
 # Quick start
 
-The automation in cloudomation is done by running flow scripts which are
-defined as python handler functions.
+The automation in Cloudomation is done by running flow scripts which are
+defined as Python handler functions.
 
 To quickly get started:
 
@@ -27,4 +27,4 @@ def handler(c):
 logging: Hello World!
 ```
 
-There is much more to discover. Check out the [Tutorial](/documentation/Tutorial) to explore them!
+There is much more to discover. Check out the [Tutorial](/documentation/Tutorial) to explore further!
