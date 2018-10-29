@@ -23,42 +23,50 @@ The first table describes the elements of the top hand pane. The sections of the
 
 ## Content display and editing
 
-**Views**  
+### Views
 There are three types of views: list, record, and field views. In all views, any field with a ligh yellow background can be edited directly. Example: Flow names in the Flow section.  
+
 The left hand menu pane by default shows all list views: Executions, Flows, Settings, Inputs, and Messages. Once you open a record, the record will also be displayed in the left hand pane until you close it. Which records (flow scripts, settings, executions) you have open is persisted, so if you refresh the page, or log out and log in again, the same records will still be open.  
+
 **Hint**: The most recently opened record will always be displayed on top of the list of open records in the left hand pane. If you want to customise the order in which open flow scripts and other open records are displayed in the left hand menu pane, you can simply close and reopen a record to have it displayed on top of the list.   
 
-*List views*  
+#### List views
 
 Used for Executions, Flows, Settings, Inputs, Messages. Here, you have an overview of all existing resources in that category. All editable fields of a resource can be edited in the list view, for example the name of flow scripts in the Flows view, or the flow script content once unfolded. In list views, you can select several records or resources and perform bulk operations on them, such as deleting or executing a number of flow scripts.  
+
 **Note**: actions are only executed on checked records on the current page, i.e. records that are visible. If a record is checked and then you switch to a different page (or it gets automatically scrolled onto another page because more messages or executions come in), the record will stay checked but no action will be performed on it. The list view follows a table layout.  
 
 List views feature some fields with a "show" button. These are fields that can potentially contain larger content.
   - Content fields with a white background can be edited directly. Example: content in the Flow view.
   - Content fields with a grey background cannot be edited. Example: script in the executions view. This shows the  exact version of the script which was executed, which cannot be edited.
 
-*Record views*  
+#### Record views
 
 Used for individual flow scripts, executions, and messages open in a record view. Here, the information about the record is displayed in rows (correspondent to the columns in the list view). In the records view, you can edit all editable fields as well. The record view offers the same functionality as the list view (edit content, execute, delete) - available for the specific record (and not all records, as in the field view).
 
-*Field views*
+#### Field views
 
 Some fields can be opened individually, intended for fields with potentially large content such as flow scripts and settings. Field views can be opened via the link symbol next to the show/hide button in both the list and the record view. This will open an individual view containing only the field content, e.g. a flow script or a record. Functionally, this is equivalent to both the list and the record view: you can edit, execute and delete flow scripts, or edit and delete settings - but only for the content of the opened individual field.
 
-*Customise views*  
+#### Customise views
 
 The list and record views can be customised to show more or less fields. Fields are displayed as columns in the list view, as rows in the record view.
+
   - The list view (Executions, Flows, Settings, Inputs, Messages) features a button in the bottom right: "x of n columns". Clicking this button opens a field selection view. Here, you can select which fields (columns) should be displayed for this view.
   - The records view features a "show default fields" or "show all fields" toggle button at the bottom left of the display. Clicking this button switches between a display of all fields (rows) or only a selection of default fields.  
 
-*Quick filter and search*
+### Quick filter and search
 
 For each view, there is a quick filter or search bar available at the top of the view. The quick filter is not case sensitive. It searches through visible as well as hidden columns. Search starts with the first entered character. Both field values as well as field names are searched. The quick filter or search can be cleared with the "x" at the  right end of the search/quick filter bar. The "x" is only displayed when the search/quick filter bar is active (i.e. selected, and/or containing a search string).  
+
 List view: the search filters records that contain the string. All records that containt the quick filter string, as well as checked records will be displayed.  
+
 Record view: the quick filter filters all rows that contain the quick filter string.  
+
 Field view: the quick filter highlights all matches in the displayed content.
 
 ##  Flow scripts used in the user interface
 The following flow scripts are used to provide functionality in the user interface:
 - [Create user](https://github.com/starflows/library/blob/master/Create%20User.py) (external link to flow script in public flow script library on github)  
+
 The create user flow script is loaded dynamically from the public flow script library and executed without being saved on the Cloudomation platform. Refer to [using flow scripts from git](Using flow scripts from git) to learn how to use this functionality in your own flow scripts.
