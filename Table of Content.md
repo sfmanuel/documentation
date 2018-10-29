@@ -12,9 +12,11 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;[Tutorial](Tutorial)  
 #### The user Interface  
 &nbsp;&nbsp;[About the user interface](User+interface)  
+
 &nbsp;&nbsp;__The menu__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the menu  
+
 &nbsp;&nbsp;__App__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the App menu block  
@@ -23,6 +25,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;[Settings](Settings)  
 &nbsp;&nbsp;&nbsp;&nbsp;Inputs  
 &nbsp;&nbsp;&nbsp;&nbsp;Messages  
+
 &nbsp;&nbsp;__Links__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the links menu block  
@@ -30,6 +33,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;API Explorer  
 &nbsp;&nbsp;&nbsp;&nbsp;Public Issue Tracker  
 &nbsp;&nbsp;&nbsp;&nbsp;Flow Script Library  
+
 &nbsp;&nbsp;__Admin__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the admin menu block  
@@ -39,12 +43,15 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;&nbsp;&nbsp;Usage  
 &nbsp;&nbsp;&nbsp;&nbsp;Tokens  
 &nbsp;&nbsp;&nbsp;&nbsp;Reports  
+
 &nbsp;&nbsp;__Product__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the product menu block  
+
 &nbsp;&nbsp;__Blog__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the blog menu block  
+
 &nbsp;&nbsp;__About__  
 
 &nbsp;&nbsp;&nbsp;&nbsp;About the about menu block  
