@@ -7,7 +7,7 @@ Below are the descriptions on how to authenticate with Cloudomation using differ
 
 ## Via the user interface
 
-To authenticate via the user interface you need to visit the [login page](/login). You need to enter your client name, user name, and your password. Optionally, you can also enter a vault token which can be used to retrieve secrets from a [Hashicorp Vault <i class="fa fa-external-link"></i>](https://www.vaultproject.io/).
+To authenticate via the user interface you need to visit the [login page](/login). You need to enter your client name, user name, and your password. Optionally, you can also enter a vault token which can be used to retrieve secrets from a [Hashicorp Vault](https://www.vaultproject.io/){ext}.
 
 Additionally there is the option to choose if your login should be remembered between browser sessions.
 
