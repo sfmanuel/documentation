@@ -3,58 +3,80 @@
 Welcome to the Cloudomation documentation!  
 The documentation is a work in progress. If you find typos or want to contribute to the documentation, you can submit a pull request on the [documentation github repository](https://github.com/starflows/documentation){ext}.
 
-#### Getting Started  
-&nbsp;&nbsp;About Cloudomation  
-&nbsp;&nbsp;[Signing up](Signing+up)  
-&nbsp;&nbsp;[Authentication](Authentication)  
-&nbsp;&nbsp;[First Steps](First+steps)  
-&nbsp;&nbsp;[Quick start](Quick+start)  
-&nbsp;&nbsp;[Tutorial](Tutorial)  
+#### Getting Started
+
+<div class="pl-3">
+About Cloudomation  
+[Signing up](Signing+up)  
+[Authentication](Authentication)  
+[First Steps](First+steps)  
+[Quick start](Quick+start)  
+[Tutorial](Tutorial)
+</div>
+
 #### The user Interface  
-&nbsp;&nbsp;[About the user interface](User+interface)  
 
-&nbsp;&nbsp;__The menu__  
+<div class="pl-3">
+[About the user interface](User+interface)  
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the menu  
+__The menu__  
 
-&nbsp;&nbsp;__App__  
+<div class="pl-3">
+About the menu  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the App menu block  
-&nbsp;&nbsp;&nbsp;&nbsp;[Executions](Executions)  
-&nbsp;&nbsp;&nbsp;&nbsp;[Flows](Flows)  
-&nbsp;&nbsp;&nbsp;&nbsp;[Settings](Settings)  
-&nbsp;&nbsp;&nbsp;&nbsp;Inputs  
-&nbsp;&nbsp;&nbsp;&nbsp;Messages  
+__App__  
 
-&nbsp;&nbsp;__Links__  
+<div class="pl-3">
+About the App menu block  
+[Executions](Executions)  
+[Flows](Flows)  
+[Settings](Settings)  
+Inputs  
+Messages  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the links menu block  
-&nbsp;&nbsp;&nbsp;&nbsp;Documentation  
-&nbsp;&nbsp;&nbsp;&nbsp;API Explorer  
-&nbsp;&nbsp;&nbsp;&nbsp;Public Issue Tracker  
-&nbsp;&nbsp;&nbsp;&nbsp;Flow Script Library  
+__Links__  
 
-&nbsp;&nbsp;__Admin__  
+<div class="pl-3">
+About the links menu block  
+Documentation  
+API Explorer  
+Public Issue Tracker  
+Flow Script Library  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the admin menu block  
-&nbsp;&nbsp;&nbsp;&nbsp;Users  
-&nbsp;&nbsp;&nbsp;&nbsp;Clients  
-&nbsp;&nbsp;&nbsp;&nbsp;Processes  
-&nbsp;&nbsp;&nbsp;&nbsp;Usage  
-&nbsp;&nbsp;&nbsp;&nbsp;Tokens  
-&nbsp;&nbsp;&nbsp;&nbsp;Reports  
+__Admin__  
 
-&nbsp;&nbsp;__Product__  
+<div class="pl-3">
+About the admin menu block  
+Users  
+Clients  
+Processes  
+Usage  
+Tokens  
+Reports  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the product menu block  
+__Product__  
 
-&nbsp;&nbsp;__Blog__  
+<div class="pl-3">
+About the product menu block  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the blog menu block  
+__Blog__  
 
-&nbsp;&nbsp;__About__  
+<div class="pl-3">
+About the blog menu block  
+</div>
 
-&nbsp;&nbsp;&nbsp;&nbsp;About the about menu block  
+__About__  
+
+<div class="pl-3">
+About the about menu block
+</div>
+</div>
+
 #### Writing flow scripts  
 &nbsp;&nbsp;About writing flow scripts  
 &nbsp;&nbsp;Available Python modules  
@@ -71,5 +93,5 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;About configuring your account  
 &nbsp;&nbsp;[Settings](Settings)  
 #### Frequently Asked Questions  
-&nbsp;&nbsp;[Frequently Asked   Questions](Frequently+Asked+Questions)  
+&nbsp;&nbsp;[Frequently Asked Questions](Frequently+Asked+Questions)  
 &nbsp;&nbsp;[Token usage calculation](Token+usage+calculation)  
