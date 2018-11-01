@@ -1,9 +1,9 @@
 # Examples
 
-Here, we show some small examples of flow scripts that might help you get started with writing your own. All examples are also available in the [public flow script library](https://github.com/starflows/library).
+Here, we show some small examples of flow scripts that might help you get started with writing your own. All examples are also available in the [public flow script library](https://github.com/starflows/library){ext}.
 
 ## Example using REST and INPUT Tasks
-Find this example in the public flow script library [here](https://github.com/starflows/library/blob/master/Example%20settings%20input%20REST.py).
+Find this example in the public flow script library [here](https://github.com/starflows/library/blob/master/Example%20settings%20input%20REST.py){ext}.
 
 ```python
 '''

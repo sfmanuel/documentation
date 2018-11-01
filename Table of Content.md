@@ -1,7 +1,7 @@
 # Cloudomation documentation table of content
 
 Welcome to the Cloudomation documentation!  
-The documentation is a work in progress. If you find typos or want to contribute to the documentation, you can submit a pull request on the [documentation github repository](https://github.com/starflows/documentation).
+The documentation is a work in progress. If you find typos or want to contribute to the documentation, you can submit a pull request on the [documentation github repository](https://github.com/starflows/documentation){ext}.
 
 #### Getting Started  
 &nbsp;&nbsp;About Cloudomation  
@@ -63,7 +63,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
 &nbsp;&nbsp;[Tasks](Tasks)  
 &nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
-&nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library) (external link)  
+&nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library){ext}
 &nbsp;&nbsp;[Using flow scripts from git](Using+flow+scripts+from+git)  
 &nbsp;&nbsp;[Examples](Examples)  
 &nbsp;&nbsp;[Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts)

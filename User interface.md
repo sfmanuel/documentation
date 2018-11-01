@@ -67,6 +67,6 @@ Field view: the quick filter highlights all matches in the displayed content.
 
 ##  Flow scripts used in the user interface
 The following flow scripts are used to provide functionality in the user interface:
-- [Create user](https://github.com/starflows/library/blob/master/Create%20User.py) (external link to flow script in public flow script library on github)  
+- [Create user](https://github.com/starflows/library/blob/master/Create%20User.py){ext}
 
 The create user flow script is loaded dynamically from the public flow script library and executed without being saved on the Cloudomation platform. Refer to [using flow scripts from git](Using flow scripts from git) to learn how to use this functionality in your own flow scripts.

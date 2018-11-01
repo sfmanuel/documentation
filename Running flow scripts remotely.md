@@ -36,7 +36,7 @@ curl -H "Authorization: $TOKEN" -d "${EXECUTION}" https://cloudomation.io/api/1/
 echo ""
 ```
 
-You can download the script here: [flow-runner.bash](https://github.com/starflows/documentation/blob/master/utilities/flow-runner.bash)
+You can download the script here: [flow-runner.bash](https://github.com/starflows/documentation/blob/master/utilities/flow-runner.bash){ext}
 
 **flow-runner.ps1:**
 ```powershell
@@ -77,14 +77,14 @@ Invoke-RestMethod `
     -Headers @{Authorization = "${TOKEN}"}
 ```
 
-You can download the script here: [flow-runner.ps1](https://github.com/starflows/documentation/blob/master/utilities/flow-runner.ps1)
+You can download the script here: [flow-runner.ps1](https://github.com/starflows/documentation/blob/master/utilities/flow-runner.ps1){ext}
 
 This helper script requires `auth.bash` or `auth.ps1` to be in the same directory. Please
 find more information at [Authentication](Authentication#viatherestapi).
 
-You can download `auth.bash` here: [auth.bash](https://github.com/starflows/documentation/blob/master/utilities/auth.bash)
+You can download `auth.bash` here: [auth.bash](https://github.com/starflows/documentation/blob/master/utilities/auth.bash){ext}
 
-You can download `auth.ps1` here: [auth.ps1](https://github.com/starflows/documentation/blob/master/utilities/auth.ps1)
+You can download `auth.ps1` here: [auth.ps1](https://github.com/starflows/documentation/blob/master/utilities/auth.ps1){ext}
 
 You can execute the helper script and pass the path to a local flow script as first parameter:
 
@@ -108,7 +108,7 @@ Flow: ./hello.py
 1234
 ```
 
-or you can use the helper script as [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) in your script and directly execute it.
+or you can use the helper script as [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29){ext} in your script and directly execute it.
 
 **hello.py:**
 ```python
