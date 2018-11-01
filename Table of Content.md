@@ -5,7 +5,7 @@ The documentation is a work in progress. If you find typos or want to contribute
 
 #### Getting Started
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About Cloudomation  
 [Signing up](Signing+up)  
 [Authentication](Authentication)  
@@ -16,18 +16,18 @@ About Cloudomation
 
 #### The user Interface  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 [About the user interface](User+interface)  
 
 __The menu__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the menu  
 </div>
 
 __App__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the App menu block  
 [Executions](Executions)  
 [Flows](Flows)  
@@ -38,7 +38,7 @@ Messages
 
 __Links__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the links menu block  
 Documentation  
 API Explorer  
@@ -48,7 +48,7 @@ Flow Script Library
 
 __Admin__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the admin menu block  
 Users  
 Clients  
@@ -60,19 +60,19 @@ Reports
 
 __Product__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the product menu block  
 </div>
 
 __Blog__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the blog menu block  
 </div>
 
 __About__  
 
-<div class="pl-3">
+<div class="pl-3" data-markdown="1">
 About the about menu block
 </div>
 </div>
