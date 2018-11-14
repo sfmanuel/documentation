@@ -1,28 +1,30 @@
 pages:
-- name: Table of Content
-- name: Getting started
+- name: Documentation
   pages:
-  - name: Signing up
-  - name: Quick start
-  - name: First steps
-  - name: Tutorial
-  - name: Frequently Asked Questions
-- name: Reference
-  pages:
-  - name: Flow script API
-  - name: Cloudomation function reference
-  - name: Tasks
-- name: Knowledge base
-  pages:
-  - name: Authentication
-  - name: Examples
-  - name: Executions
-  - name: Flows
-  - name: Manipulating resources
-  - name: Running flow scripts remotely
-  - name: Settings
-  - name: Tips and tricks for writing flow scripts
-  - name: Token usage calculation
-  - name: Tokens
-  - name: User interface
-  - name: Using flow scripts from git
+  - name: Table of Content
+  - name: Getting started
+    pages:
+    - name: Signing up
+    - name: Quick start
+    - name: First steps
+    - name: Tutorial
+    - name: Frequently Asked Questions
+  - name: Reference
+    pages:
+    - name: Flow script API
+    - name: Cloudomation function reference
+    - name: Tasks
+  - name: Knowledge base
+    pages:
+    - name: Authentication
+    - name: Examples
+    - name: Executions
+    - name: Flows
+    - name: Manipulating resources
+    - name: Running flow scripts remotely
+    - name: Settings
+    - name: Tips and tricks for writing flow scripts
+    - name: Token usage calculation
+    - name: Tokens
+    - name: User interface
+    - name: Using flow scripts from git
