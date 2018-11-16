@@ -1,4 +1,4 @@
-# Cloudomation function reference
+# Function reference
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
