@@ -43,7 +43,7 @@ currently the following task types are supported:
 
 ### AWS task
 
-Call the AWS API using the Boto3 low-level clients. Consult the Boto3 documentation at [https://boto3.amazonaws.com/v1/documentation/api/latest/index.html <i class="fa fa-external-link"></i>](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) for details on clients/services/waiters and results.
+Call the AWS API using the Boto3 low-level clients. Consult the Boto3 documentation at [https://boto3.amazonaws.com/v1/documentation/api/latest/index.html](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html){ext} for details on clients/services/waiters and results.
 
 ```python
 version = 1
@@ -117,7 +117,7 @@ output_list = {
 
 ### REDIS task
 
-interact with a REDIS instance. Consult the redis commands documentation at [https://redis.io/commands <i class="fa fa-external-link"></i>](https://redis.io/commands) for details on commands, arguments and result schemas.
+interact with a REDIS instance. Consult the redis commands documentation at [https://redis.io/commands](https://redis.io/commands){ext} for details on commands, arguments and result schemas.
 
 ```python
 version = 1

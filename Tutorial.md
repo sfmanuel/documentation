@@ -99,4 +99,4 @@ Review the  [Examples](Examples) to get an idea of how a flow script could look 
 
 We also recommend to review the [Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts) before you get started with your own project.  
 
-It might also be a good idea to take a look at the [public flow script library](https://github.com/starflows/library) to see if there are some snippets or entire flow scripts that you could reuse.
+It might also be a good idea to take a look at the [public flow script library](https://github.com/starflows/library){ext} to see if there are some snippets or entire flow scripts that you could reuse.

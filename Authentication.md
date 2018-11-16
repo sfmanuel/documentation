@@ -7,7 +7,7 @@ Below are the descriptions on how to authenticate with Cloudomation using differ
 
 ## Via the user interface
 
-To authenticate via the user interface you need to visit the [login page](/login). You need to enter your client name, user name, and your password. Optionally, you can also enter a vault token which can be used to retrieve secrets from a [Hashicorp Vault <i class="fa fa-external-link"></i>](https://www.vaultproject.io/).
+To authenticate via the user interface you need to visit the [login page](/login). You need to enter your client name, user name, and your password. Optionally, you can also enter a vault token which can be used to retrieve secrets from a [Hashicorp Vault](https://www.vaultproject.io/){ext}.
 
 Additionally there is the option to choose if your login should be remembered between browser sessions.
 
@@ -84,7 +84,7 @@ chmod 400 "${TOKEN_FILE}"
 echo "Token was stored in ${TOKEN_FILE}. All done!"
 ```
 
-You can download the script here: [auth.bash](https://github.com/starflows/documentation/blob/master/utilities/auth.bash)
+You can download the script here: [auth.bash](https://github.com/starflows/documentation/blob/master/utilities/auth.bash){ext}
 
 **PowerShell:**
 
@@ -148,7 +148,7 @@ if ($IsLinux) {
 Write-Host "Token was stored in ${TOKEN_FILE}. All done!"
 ```
 
-You can download the script here: [auth.ps1](https://github.com/starflows/documentation/blob/master/utilities/auth.ps1)
+You can download the script here: [auth.ps1](https://github.com/starflows/documentation/blob/master/utilities/auth.ps1){ext}
 
 The script saves the obtained token in a file called `token` next to the script itself. To use the token other scripts can read the content of the file:
 ```bash

@@ -79,9 +79,9 @@ c.end('success', message=joke)
 Returns:  
 The execution object with the execution ID. This means that you can chain any function from the [Execution class](#executionclass) directly after the execution of a task.
 
-Find more examples in the [public flow script library](https://github.com/starflows/library):
-- [Example AWS task](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py)
-- [Example INPUT task](https://github.com/starflows/library/blob/master/Example%20Task%20INPUT.py)
+Find more examples in the [public flow script library](https://github.com/starflows/library){ext}:
+- [Example AWS task](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py){ext}
+- [Example INPUT task](https://github.com/starflows/library/blob/master/Example%20Task%20INPUT.py){ext}
 
 ### c.flow
 Executes a flow script. You can reference any flow script within your Cloudomation accout by ID or name, or reference a flow script in a public github repository. See [using flow scripts from git](Using flow scripts from git) for information on how to dynamically execute flow scripts from a public github repository.
@@ -129,7 +129,7 @@ def handler(c):
     user = outputs['responses']  # the responses dict is the user
 ```  
 
-This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py) flow script available in the [public flow script library](https://github.com/starflows/library). If the referenced flow `Input Form` if not found in the current client it will be fetched from the public flow script library.
+This example is part of the [create user](https://github.com/starflows/library/blob/master/Create%20User.py){ext} flow script available in the [public flow script library](https://github.com/starflows/library){ext}. If the referenced flow `Input Form` if not found in the current client it will be fetched from the public flow script library.
 
 ### c.script
 Executes a script.
