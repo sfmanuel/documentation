@@ -41,6 +41,8 @@ If unsuccessful, the API returns with `HTTP 401: Unauthorized`
 
 Authentication using the command line uses a command line tool like curl to authenticate against the REST API. The schema of the request is described in [Via the REST API](#viatherestapi). You can use a script to handle the authentication and extracting the token for further use.
 
+Run the script via the command line. It will promt you to enter your client name, user name, and password. Do not store any of them in plain text within the script. The script will take your input and create an authentication token which you can then use to authenticate with the Cloudomation API. 
+
 **Bash:**
 
 ```bash

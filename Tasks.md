@@ -1,10 +1,10 @@
 # Tasks
 
-To interact with the outside world a flow script must create task executions.
-Tasks are configured by a input dictionary object and most tasks also provide outputs as a dictionary.
+Tasks are the Cloudomation functions that allow your flow scripts to interact with the outside world - anything and everything outside of the Cloudomation platform. Whenever you want to issue a command to a program, run a script on a remote system, or get query a database - all that is performed through tasks.
 
-Two examples on how to create and run a task:
+Tasks are called through the cloudomation function c.task(). Each task creates a separate execution, with its own inputs and outputs.
 
+For example, you could call a REST API using the Cloudomation REST task:
 ```python
 def handler(c):
     inputs = {
@@ -20,6 +20,7 @@ def handler(c):
     c.log(outputs)
 ```
 
+Or you can request input from a user of the Cloudomation platform by using the INPUT task:
 ```python
 def handler(c):
     response = c.task('INPUT', request='enter a number').run().getOutputs()['response']
@@ -30,6 +31,8 @@ def handler(c):
     c.log(f'your number was {number}')
     c.end('success', message='all done')
 ```
+
+The inputs required and outputs supplied by a task depend on the task type. Below your find documentation on each of the currently available task types.
 
 ## Task types
 
@@ -45,277 +48,224 @@ currently the following task types are supported:
 
 Call the AWS API using the Boto3 low-level clients. Consult the Boto3 documentation at [https://boto3.amazonaws.com/v1/documentation/api/latest/index.html](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html){ext} for details on clients/services/waiters and results.
 
+**Inputs:**
+* `aws_access_key_id` - string
+* `aws_secret_access_key` - protected string
+* `region` - string, default: None
+* `client` - string
+* `service` - string, default: None
+* `waiter` - string, default: None
+* `parameters` - dictionary, default: None
+
+**Outputs:**
+* `result` - dictionary
+
+**Example:**
 ```python
-version = 1
-
-input_list = {
-    'aws_access_key_id': {
-        'type': str,
-    },
-    'aws_secret_access_key': {
-        'type': str,
-        'protected': True,
-    },
-    'region': {
-        'type': str,
-        'default': None,
-    },
-    'client': {
-        'type': str,
-    },
-    'service': {
-        'type': str,
-        'default': None,
-    },
-    'waiter': {
-        'type': str,
-        'default': None,
-    },
-    'parameters': {
-        'type': dict,
-        'default': None,
-    },
-}
-
-output_list = {
-    'result': {
-        'type': dict
-    }
-}
+def handler(c):
+    # get AWS credentials from setting
+    creds = c.setting('aws creds')
+    # create a child execution task which talks with AWS
+    task = c.task(
+        'AWS',
+        region='eu-central-1',
+        client='ec2',
+        service='run_instances',
+        parameters={
+            'ImageId': 'ami-0f5dbc86dd9cbf7a8',
+            'InstanceType': 't2.micro',
+            'MaxCount': 1,
+            'MinCount': 1,
+        },
+        **credentials
+    ).run()  # run the task
+    # provide the response back to the caller
+    c.setOutput('task out', task.getOutputs())
+    c.end('success', message='all done')
 ```
 
 ### INPUT task
 
 Interactively query an input from a cloudomation user. Requests will show up in the input section of the cloudomation user interface and any user of the client can submit responses.
 
+**Inputs:**
+* `request` - string
+* `reference` - string, default: ''  
+  The reference can be any string. Its function is to allow you to assign outputs correctly. For example, if you request several values from a user, you can use the reference to know which input they gave to which request.
+* `timeout` - float, default: 0  
+  Timeouts of <=0 mean that there is no timeout: the input query will remain open until a user gives an input. Setting a timeout value means that the input request will disappear from the user interface after the timeout has passed if no user provides input - in that case, the INPUT task will change status to error with the message "input request expired". Timeout values are given in minutes, and it accepts floats (e.g. 1.5).
+
+**Outputs:**
+* `response` - string  
+  The user's response.
+* `reference` - string  
+  The reference you defined (if any) in the task definition.
+
+**Example:**
 ```python
-version = 1
-
-input_list = {
-    'request': {
-        'type': str,
-    },
-    'reference': {
-        'type': str,
-        'default': '',
-    },
-    'timeout': {
-        'type': int,
-        'default': 0,
-    },
-}
-
-output_list = {
-    'response': {
-        'type': str,
-    },
-    'reference': {
-        'type': str,
-    },
-}
+def handler(c):
+    # create a task to request input from a user and run it
+    task = c.task('INPUT', request='please enter a number').run()
+    # access the response
+    response = task.getOutputs()['response']
+    try:
+        # try to convert the string response to a float
+        number = float(response)
+    except ValueError:
+        # if the conversion failed, the response was not a number
+        return c.end('error', f'you did not enter a number, but "{response}"')
+    # if the conversion succeeded, end with success
+    return c.end('success', message=f'thank you! your number was "{number}"')
 ```
 
 ### REDIS task
 
-interact with a REDIS instance. Consult the redis commands documentation at [https://redis.io/commands](https://redis.io/commands){ext} for details on commands, arguments and result schemas.
+Interact with a REDIS ke value store. Consult the redis commands documentation at [https://redis.io/commands](https://redis.io/commands){ext} for details on commands, arguments and result schemas.
 
+**Inputs:**
+* `host` - string
+* `port` - integer, default: 6379
+* `command` - string
+* `args` - list, default: []
+
+**Outputs:**
+* `result` - object
+
+**Example:**
 ```python
-version = 1
-
-input_list = {
-    'host': {
-        'type': str,
-    },
-    'port': {
-        'type': int,
-        'default': 6379,
-    },
-    'command': {
-        'type': str,
-    },
-    'args': {
-        'type': list,
-        'default': [],
-    },
-}
-
-output_list = {
-    'result': {
-        'type': object,
-    },
-}
+# coming soon
 ```
+
 
 ### REST task
 
-call a REST service.
+Call a REST service.
 
-#### Parameters
+**Inputs:**
+* `url` - string
+* `method` - string, default: get
+* `data` - dictionary, default: None
+* `headers` - dictionary, default: None
+* `cookies` - dictionary, default: None
+* `cacert` - string, default: None  
+  To attach self-signed certificates (ca = certificate authority, cert = certificate)
+  To access https:// urls, you need to sign your request. Certificates trusted by default by debian jessie will work.
+* `expected_status_code` - list, default: [200, 201, 202, 204]
+* `pass_user_token` - boolean, default: False  
+  Only for accessing the Cloudomation API. If set to True, a short-lived token is generated for the user who started the execution. This token is passed in the header to the Cloudomation API.
 
-##### `pass_user_token`
-generate a short-lived token for the user who started the
-execution and pass this token as a header. This works only if the call is
-directed to [cloudomation.io](cloudomation.io)
+**Outputs:**
+* `status_code` - integer
+* `headers` - dictionary
+* `cookies` - dictionary
+* `encoding` - string
+* `text` - string  
+  The text output will contain the response body if it could not successfully be parsed as json.
+* `json` - dictionary  
+  The json output will contain the response body if it can be successfully parsed as json. Otherwise, the response body will be delivered in the text output.
 
-#### Outputs
-
-##### `text`
-The `text` output will contain the response body.
-
-##### `json`
-If the response body can be successfully parsed as json, the `json` output will contain the corresponding object.
-
+**Example:**
 ```python
-version = 1
-
-input_list = {
-    'url': {
-        'type': str,
-    },
-    'method': {
-        'type': str,
-        'default': 'get',
-    },
-    'data': {
-        'type': dict,
-        'default': None,
-    },
-    'headers': {
-        'type': dict,
-        'default': None,
-    },
-    'cookies': {
-        'type': dict,
-        'default': None,
-    },
-    'cacert': {
-        'type': str,
-        'default': None,
-    },
-    'expected_status_code': {
-        'type': list,
-        'default': [200, 201, 202, 204],
-        # FIXME: provide a better set of "ok" status codes / maybe
-        # including 3xx status?
-    },
-    'pass_user_token': {
-        'type': bool,
-        'default': False,
-    }
-}
-
-output_list = {
-    'status_code': {
-        'type': int,
-    },
-    'headers': {
-        'type': dict,
-    },
-    'cookies': {
-        'type': dict,
-    },
-    'encoding': {
-        'type': str,
-    },
-    'text': {
-        'type': str,
-    },
-    'json': {
-        'type': dict,
-    },
-}
+def handler(c):
+    # create a REST task and run it
+    task = c.task('REST', url='https://api.icndb.com/jokes/random').run()
+    # access a field of the JSON response
+    joke = task.getOutputs()['json']['value']['joke']
+    # end with a joke
+    c.end('success', message=joke)
 ```
 
 ### SMTP task
 
-send a mail using a SMTP server.
+Send an email using an SMTP server.
 
+**Inputs:**
+* `from` - string
+* `to` - string
+* `subject` - string
+* `body` - string
+* `login` - string
+* `password` - protected string
+* `smtp_host` - string
+* `smtp_port` - number, default: 25
+* `use_tls` - boolean
+
+
+**Outputs:**
+* {} The SMPT task does not return any outputs.
+
+**Example:**
 ```python
-version = 1
-
-input_list = {
-    'from': {
-        'type': 'String',
-    },
-    'to': {
-        'type': 'String',
-    },
-    'subject': {
-        'type': 'String',
-    },
-    'body': {
-        'type': 'String',
-    },
-    'login': {
-        'type': 'String',
-    },
-    'password': {
-        'type': 'String',
-        'protected': True,
-    },
-    'smtp_host': {
-        'type': 'String',
-    },
-    'smtp_port': {
-        'type': 'Number',
-        'default': 25,
-    },
-    'use_tls': {
-        'type': 'Boolean',
-    },
-}
-
-output_list = {}
+# coming soon
 ```
 
 ### SSH task
 
-connect to a host using SSH and execute a script.
+Connect to a remote host using SSH and execute a script.
 
+**Inputs:**
+* `hostname` - string
+* `hostkey` - string
+* `port` - number, default: 22
+* `username` - string
+* `password` - string, default: None
+* `key` - string, default: None
+* `script` - string
+* `connect-timeout` - number, default: 10
+* `script-timeout` - integer, default: 60
+* `remove-cr` - boolean, default: True
+* `remove-ansi-escapes` - boolean, default: True
+
+**Outputs:**
+* `retcode` - integer  
+  The return code
+* `report` - string  
+  The outputs your scripts produce on the remote systems
+
+**Example:**
 ```python
-version = 1
+import re
 
-input_list = {
-    'hostname': {
-        'type': 'String',
-    },
-    'hostkey': {
-        'type': 'String',
-    },
-    'port': {
-        'type': 'Number',
-        'default': 22,
-    },
-    'username': {
-        'type': 'String',
-    },
-    'password': {
-        'type': 'String',
-        'default': None,
-    },
-    'key': {
-        'type': 'String',
-        'default': None,
-    },
-    'script': {
-        'type': 'String',
-    },
-    'connect-timeout': {
-        'type': 'Number',
-        'default': 10,
-    },
-    'script-timeout': {
-        'type': int,
-        'default': 60,
-    },
-}
 
-output_list = {
-    'retcode': {
-        'type': int,
-    },
-    'report': {
-        'type': str,
-    },
-}
+def handler(c):
+    # Authenticate using private key
+    info_task = c.task(
+        'SSH',
+        # public accessible name or IP
+        hostname='my-ssh-server',
+        # key to check host identiy.
+        # can be read with "$ ssh-keyscan -t rsa <my-ssh-server>"
+        hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
+        username='kevin',
+        key='-----BEGIN RSA PRIVATE KEY-----\nMII...',
+        script='''
+               echo "hostname" "'$(hostname)'"
+               echo "username" "'$(id -un)'"
+               echo "cpu" "'$(uname -p)'"
+               '''
+    ).run()
+
+    report = info_task.getOutputs()['report']
+    hostname = re.search("hostname '([^']*)'", report).group(1)
+    username = re.search("username '([^']*)'", report).group(1)
+    cpu = re.search("cpu '([^']*)'", report).group(1)
+
+    c.logln(f'info_task was running on {hostname} using {cpu} as {username}')
+
+    # Authenticate using password
+    uptime_task = c.task(
+        'SSH',
+        hostname='my-ssh-server',
+        hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
+        username='kevin',
+        password='***',
+        script='''
+               echo "up since" "'$(uptime -s)'"
+               '''
+    ).run()
+
+    report = uptime_task.getOutputs()['report']
+    up_since = re.search("up since '([^']*)'", report).group(1)
+
+    c.logln(f'{hostname} is up since {up_since}')
 ```
