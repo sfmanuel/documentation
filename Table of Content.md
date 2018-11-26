@@ -42,7 +42,7 @@ __Links__
 About the links menu block  
 Documentation  
 API Explorer  
-Public Issue Tracker  
+Issue Tracker  
 Flow Script Library  
 </div>
 
