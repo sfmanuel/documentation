@@ -2,7 +2,7 @@
 
 Tasks are the Cloudomation functions that allow your flow scripts to interact with the outside world - anything and everything outside of the Cloudomation platform. Whenever you want to issue a command to a program, run a script on a remote system, or get query a database - all that is performed through tasks.
 
-Tasks are called through the cloudomation function c.task(). Each task creates a separate execution, with its own inputs and outputs.
+Tasks are called through the Cloudomation function c.task(). Each task creates a separate execution, with its own inputs and outputs.
 
 For example, you could call a REST API using the Cloudomation REST task:
 ```python
@@ -86,7 +86,7 @@ def handler(c):
 
 ### INPUT task
 
-Interactively query an input from a cloudomation user. Requests will show up in the input section of the cloudomation user interface and any user of the client can submit responses.
+Interactively query an input from a Cloudomation user. Requests will show up in the input section of the Cloudomation user interface and any user of the client can submit responses.
 
 **Inputs:**
 * `request` - string

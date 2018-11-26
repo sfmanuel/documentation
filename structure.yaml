@@ -18,6 +18,8 @@ pages:
     pages:
     - name: Authentication
     - name: Examples
+      - name: REST and INPUT example
+      - name: Loop example
     - name: Executions
     - name: Flows
     - name: Manipulating resources
