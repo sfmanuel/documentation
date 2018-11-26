@@ -18,6 +18,7 @@ pages:
     pages:
     - name: Authentication
     - name: Examples
+      pages:
       - name: REST and INPUT example
       - name: Loop example
     - name: Executions
