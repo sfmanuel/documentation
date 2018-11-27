@@ -120,7 +120,7 @@ def handler(c):
 
 ### REDIS task
 
-Interact with a REDIS ke value store. Consult the redis commands documentation at [https://redis.io/commands](https://redis.io/commands){ext} for details on commands, arguments and result schemas.
+Interact with a REDIS key value store. Consult the redis commands documentation at [https://redis.io/commands](https://redis.io/commands){ext} for details on commands, arguments and result schemas.
 
 **Inputs:**
 * `host` - string
