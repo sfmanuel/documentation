@@ -85,7 +85,7 @@ About the about menu block
 &nbsp;&nbsp;[Flow script API](Flow+script+API)  
 &nbsp;&nbsp;[Tasks](Tasks)  
 &nbsp;&nbsp;[Manipulating resources](Manipulating+resources)  
-&nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library){ext}
+&nbsp;&nbsp;[Flow Script Library](https://github.com/starflows/library){ext}  
 &nbsp;&nbsp;[Using flow scripts from git](Using+flow+scripts+from+git)  
 &nbsp;&nbsp;[Examples](Examples)  
 &nbsp;&nbsp;[Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts)

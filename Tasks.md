@@ -183,20 +183,44 @@ Send an email using an SMTP server.
 * `from` - string
 * `to` - string
 * `subject` - string
-* `body` - string
+* `text` - string
+  The text will be the body of the email. You can supply it as text or html or
+  both. If you supply both, the recipient can choose to see the email in either
+  html or plain text.
+* `html` - string
+  Html formatted body of the email.
 * `login` - string
 * `password` - protected string
 * `smtp_host` - string
 * `smtp_port` - number, default: 25
 * `use_tls` - boolean
-
+  Whether or not to use a Transport Security Layer (TLS) encrypted connection
 
 **Outputs:**
 * {} The SMPT task does not return any outputs.
 
 **Example:**
 ```python
-# coming soon
+def handler(c):
+    # create an SMPT task and run it
+    c.task(
+        'SMTP',
+        inputs={
+                'from': 'cloudomation@cloudomation.io',
+                'to': 'info@cloudomation.io',
+                'subject': 'Cloudomation email',
+                # the text will be the email body. Alternatively you could add
+                # a html formatted body with the key 'html'.
+                'text': 'This email was sent with Cloudomation',
+                'login': 'cloudomation@cloudomation.io',
+                'password': '****',
+                'smtp_host': 'SMTP.example.com',
+                'smtp_port': 587,
+                'use_tls': True
+        }
+    ).run()
+    # there are no outputs for the SMTP task
+    c.success(message='all done')
 ```
 
 ### SSH task
