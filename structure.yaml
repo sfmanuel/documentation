@@ -12,7 +12,7 @@ pages:
   - name: Reference
     pages:
     - name: Flow script API
-    - name: Cloudomation function reference
+    - name: Function reference
     - name: Tasks
   - name: Knowledge base
     pages:
