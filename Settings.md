@@ -101,8 +101,16 @@ Configure an endpoint `https://cloudomation.io/api/webhook/<client name>/<webhoo
 ```yaml
 flow_name: signup
 user_name: kevin
+key: my-secret-api-key
 ```
 The flow will receive a dictionary containing the request headers and payload.
+The `key` field is optional. If specified, the request must contain the key in
+the query string or JSON payload.
+
+###### Example call
+```bash
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook
+```
 
 ### User configuration
 
