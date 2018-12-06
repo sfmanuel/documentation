@@ -60,7 +60,7 @@ def handler(c):
             from='no-reply@example.com',
             to='kevin@example.com',
             subject='counter alert',
-            body=f'found {count} occurrences'
+            text=f'found {count} occurrences'
         ).run()
 ```
 
