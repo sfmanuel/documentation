@@ -133,7 +133,7 @@ def handler(c):
     ).run()
     # Listing the files I got from git in the repository I specified on the  
     # Cloudomation platform
-    files = c.list_dir('/data/starflows/flows_from_git')
+    files = c.list_dir('flows_from_git')
     # I set the output to the list of files
     c.setOutput('git files', files)
     c.success(message='all done')
