@@ -17,11 +17,11 @@ pages:
     pages:
     - name: Authentication
     - name: Examples
-    - name: File handling with Cloudomation
       pages:
       - name: REST and INPUT example
       - name: Loop example
     - name: Executions
+    - name: File handling with Cloudomation
     - name: Flows
     - name: Manipulating resources
     - name: Running flow scripts remotely
