@@ -87,10 +87,11 @@ def handler(c):
 
 ### GIT task
 
-Run git commands on a repository. Note that the git task allows you to interact with your git repository, but does not automatically synchronise the flow scripts in your git repository with your Cloudomation account. To synchronise flow scripts and settings from git into your Cloudomation account, use this [git sync flow script](https://github.com/starflows/library/blob/master/sync%20flow%20scripts.py) available in the public flow script library. Feel free to make a copy and adapt it to your specific use case - maybe you want to synchronise only specific flow scripts, or not synchronise settings etc.
+Run git commands on a repository.  
+Note that the git task allows you to interact with your git repository, but does not automatically synchronise the flow scripts in your git repository with your Cloudomation account. To synchronise flow scripts and settings from git into your Cloudomation account, use this [git sync flow script](https://github.com/starflows/library/blob/master/sync%20flow%20scripts.py) available in the public flow script library. Feel free to make a copy and adapt it to your specific use case.
 
 **Inputs:**
-* `command` - string
+* `command` - string  
   The git command you want to execute. **Currently only supports get.**  
 * `repository_url` - string, default: None  
   The url of the remote git repository
