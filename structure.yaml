@@ -1,7 +1,6 @@
 pages:
 - name: Documentation
   pages:
-  - name: Table of Content
   - name: Getting started
     pages:
     - name: Signing up
@@ -18,6 +17,7 @@ pages:
     pages:
     - name: Authentication
     - name: Examples
+    - name: File handling with Cloudomation
       pages:
       - name: REST and INPUT example
       - name: Loop example
@@ -30,4 +30,5 @@ pages:
     - name: Token usage calculation
     - name: Tokens
     - name: User interface
+    - name: User roles
     - name: Using flow scripts from git
