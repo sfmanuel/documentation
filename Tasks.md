@@ -38,11 +38,12 @@ The inputs required and outputs supplied by a task depend on the task type. Belo
 
 currently the following task types are supported:
 1. [AWS](#awstask)
-2. [INPUT](#inputtask)
-3. [REDIS](#redistask)
-4. [REST](#resttask)
-5. [SMTP](#smtptask)
-6. [SSH](#sshtask)
+2. [GIT](#gittask)
+3. [INPUT](#inputtask)
+4. [REDIS](#redistask)
+5. [REST](#resttask)
+6. [SMTP](#smtptask)
+7. [SSH](#sshtask)
 
 ### AWS task
 
@@ -82,6 +83,59 @@ def handler(c):
     # provide the response back to the caller
     c.setOutput('task out', task.getOutputs())
     c.end('success', message='all done')
+```
+
+### GIT task
+
+Run git commands on a repository. Note that the git task allows you to interact with your git repository, but does not automatically synchronise the flow scripts in your git repository with your Cloudomation account. To synchronise flow scripts and settings from git into your Cloudomation account, use this [git sync flow script](https://github.com/starflows/library/blob/master/sync%20flow%20scripts.py) available in the public flow script library. Feel free to make a copy and adapt it to your specific use case - maybe you want to synchronise only specific flow scripts, or not synchronise settings etc.
+
+**Inputs:**
+* `command` - string
+  The git command you want to execute. **Currently only supports get.**  
+* `repository_url` - string, default: None  
+  The url of the remote git repository
+* `repository_path` - string, default: None  
+  This is your git path on the Cloudomation system. In the case of a get command, the contents of the remote repository will be stored here.  
+* `ref` - string, default: master  
+  A commit reference, e.g. the commit you want to get. Can be a branch, tag, or git commit Sha.
+* `httpCookie` - string, default: None  
+  Authentication for some private git repositories is possible via http Cookie
+
+**Outputs:**
+* `execution_id` - integer
+* `status_code` - integer
+* `output` - string  
+  The output contains the stdout from the git command, i.e. everything that is printed on the command line after the git command was executed
+* `error` - string  
+  If the task failed, it will return an "ENDED_ERROR" and a message informing you about what went wrong. If the task succeeded, the error contains the stderr from the command line.
+* `message` - string  
+  The ended message for the task. Either "success" or "error".
+* `status` - string  
+  The ended status for the task. Either "success" or "error".
+
+**Example:**
+```python
+def handler(c):
+    # get the contents of a public github repository
+    c.task(
+        'GIT',
+        command='get',
+        # Specify the url of the repository - note that all files from that  
+        # repository will be copied
+        repository_url='https://github.com/starflows/library/',
+        # the repository path is where the files from git are stored in  
+        # Cloudomation
+        repository_path='flows_from_git',
+        # I want to get the master branch - I could also specify a tag or  
+        # commit sha
+        ref='master',
+    ).run()
+    # Listing the files I got from git in the repository I specified on the  
+    # Cloudomation platform
+    files = c.list_dir('/data/starflows/flows_from_git')
+    # I set the output to the list of files
+    c.setOutput('git files', files)
+    c.success(message='all done')
 ```
 
 ### INPUT task
