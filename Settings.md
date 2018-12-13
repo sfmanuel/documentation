@@ -79,7 +79,7 @@ $ curl -s 'https://starflows.com/api/1/setting/occurrences_found' -H "Authorizat
 
 ### Client configuration
 
-#### Setting to tune functionality
+#### Settings to tune functionality
 
 The Settings resource is also used to store client configuration settings. All settings are optional and use a system provided default value if unset. Here is a list of possible client configuration settings, with a description and the default value:
 
@@ -96,18 +96,18 @@ Setting name | Default value | Description
 
 #### Settings to add functionality
 
-##### `client.webhook.<webhook name>`
-Configure an endpoint `https://cloudomation.io/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. The following configuration will execute the flow named `signup` with the permissions of user `kevin`:
+##### Webhooks
+Setting name:  
+`<client name>.webhook.<webhook name>`
+
+Setting content:  
 ```yaml
-flow_name: signup
-user_name: kevin
+flow_name: my-flow-name
+user_name: my-user-name
 key: my-secret-api-key
 ```
-The flow will receive a dictionary containing the request headers and payload.
-The `key` field is optional. If specified, the request must contain the key in
-the query string or JSON payload.
-
-The flow will be executed and the call will return the flow with all inputs and outputs as a json response. If no response is required, adding 'async' as a parameter to the call will only trigger the flow without generating a response.
+This setting configures a webhook at the endpoint `https://cloudomation.io/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. The webhook will return the flow with all inputs and outputs as a json response. If no response is required, adding 'async' as a parameter to the call will only trigger the flow and return as response only the execution id.  
+See the [webhooks](/Webhooks.md) documentation for more detail.
 
 ###### Example calls
 ```bash
