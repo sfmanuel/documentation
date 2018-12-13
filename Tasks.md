@@ -108,9 +108,9 @@ Note that the git task allows you to interact with your git repository, but does
 * `output` - string  
   The output contains the stdout from the git command, i.e. everything that is printed on the command line after the git command was executed
 * `error` - string  
-  If the task failed, it will return an "ENDED_ERROR" and a message informing you about what went wrong. If the task succeeded, the error contains the stderr from the command line.
+  The error contains the stderr from the command line.
 * `message` - string  
-  The ended message for the task. Either "success" or "error".
+  The ended message for the task. If the task ended with an error, the message will contain information about what went wrong
 * `status` - string  
   The ended status for the task. Either "success" or "error".
 

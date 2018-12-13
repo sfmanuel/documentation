@@ -107,9 +107,14 @@ The flow will receive a dictionary containing the request headers and payload.
 The `key` field is optional. If specified, the request must contain the key in
 the query string or JSON payload.
 
-###### Example call
+The flow will be executed and the call will return the flow with all inputs and outputs as a json response. If no response is required, adding 'async' as a parameter to the call will only trigger the flow without generating a response.
+
+###### Example calls
 ```bash
 curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook
+```
+```bash
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook?async
 ```
 
 ### User configuration
