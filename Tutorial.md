@@ -45,6 +45,10 @@ Then there is a group of functions that allow you to write outputs and logs - wh
 - log  
 - logln
 
+The next group of function allows you to handle files on the Cloudomation platform. You can read, write, and update files and list files in a directory on the Cloudomation platform:
+- file
+- list_dir
+
 And the last group of functions allows you to control basic behavior of your execution:
 - sleep
 - sleep_until
@@ -55,7 +59,7 @@ And the last group of functions allows you to control basic behavior of your exe
 You can look each function up in the [Cloudomation Flow Script API](Flow+script+API) documentation, which lists parameters, what the function returns, and a small example for each of them.
 
 ### The Execution class
-Like the nme suggests, the execution class allows you to interact with execution objects. We already know that execution objects (or executions) are instances of executed flow scripts.  
+Like the name suggests, the execution class allows you to interact with execution objects. We already know that execution objects (or executions) are instances of executed flow scripts.  
 
 Due to the implementation of tasks as individual executions, and our general recommendation to modularise automations into small(ish) individual flow scripts, interaction between executions is a core part of automating processes with Cloudomation.  
 
@@ -83,6 +87,7 @@ We have mentioned that functionality to interact with "the outside world", i.e. 
 The following tasks are currently available on the Cloudomation platform:
 - REST - communicate with REST APIs
 - SSH - connect to remote systems with ssh (e.g. to execute a script there)
+- GIT - check out a git repository (e.g. to get flow scripts and settings from git)
 - SMTP - send emails via SMTP
 - INPUT - request input from a user in the Cloudomation platform
 - AWS - communicate with AWS
@@ -93,9 +98,7 @@ Cloudomation tasks are documented in more detail in [Tasks](Tasks).
 ## Writing flow scripts
 Now that you have a rough overview of which functionality is available within the Cloudomation platform, let's get started with some small flow scripts.  
 
-`flow script snippets coming soon`  
-
-Review the  [Examples](Examples) to get an idea of how a flow script could look like.  
+Take a look at the [quick start guide](Quick+start) for a first impression. Review the  [Examples](Examples) to get an idea of how more complex flow scripts could look like.    
 
 We also recommend to review the [Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts) before you get started with your own project.  
 
