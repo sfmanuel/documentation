@@ -13,17 +13,17 @@ def handler(c):
         'data': 'payload',
     }
     task = c.task('REST', inputs)
-    task.runAsync()
+    task.run_async()
     # do other stuff
     task.wait()
-    outputs = task.getOutputs()
+    outputs = task.get_outputs()
     c.log(outputs)
 ```
 
 Or you can request input from a user of the Cloudomation platform by using the INPUT task:
 ```python
 def handler(c):
-    response = c.task('INPUT', request='enter a number').run().getOutputs()['response']
+    response = c.task('INPUT', request='enter a number').run().get_outputs()['response']
     try:
         number = int(response)
     except:
@@ -81,7 +81,7 @@ def handler(c):
         **credentials
     ).run()  # run the task
     # provide the response back to the caller
-    c.setOutput('task out', task.getOutputs())
+    c.set_output('task out', task.get_outputs())
     c.end('success', message='all done')
 ```
 
@@ -135,7 +135,7 @@ def handler(c):
     # Cloudomation platform
     files = c.list_dir('flows_from_git')
     # I set the output to the list of files
-    c.setOutput('git files', files)
+    c.set_output('git files', files)
     c.success(message='all done')
 ```
 
@@ -162,7 +162,7 @@ def handler(c):
     # create a task to request input from a user and run it
     task = c.task('INPUT', request='please enter a number').run()
     # access the response
-    response = task.getOutputs()['response']
+    response = task.get_outputs()['response']
     try:
         # try to convert the string response to a float
         number = float(response)
@@ -225,7 +225,7 @@ def handler(c):
     # create a REST task and run it
     task = c.task('REST', url='https://api.icndb.com/jokes/random').run()
     # access a field of the JSON response
-    joke = task.getOutputs()['json']['value']['joke']
+    joke = task.get_outputs()['json']['value']['joke']
     # end with a joke
     c.end('success', message=joke)
 ```
@@ -290,10 +290,10 @@ Connect to a remote host using SSH and execute a script.
 * `password` - string, default: None
 * `key` - string, default: None
 * `script` - string
-* `connect-timeout` - number, default: 10
-* `script-timeout` - integer, default: 60
-* `remove-cr` - boolean, default: True
-* `remove-ansi-escapes` - boolean, default: True
+* `connect_timeout` - number, default: 10
+* `script_timeout` - integer, default: 60
+* `remove_cr` - boolean, default: True
+* `remove_ansi_escapes` - boolean, default: True
 
 **Outputs:**
 * `retcode` - integer  
@@ -324,7 +324,7 @@ def handler(c):
                '''
     ).run()
 
-    report = info_task.getOutputs()['report']
+    report = info_task.get_outputs()['report']
     hostname = re.search("hostname '([^']*)'", report).group(1)
     username = re.search("username '([^']*)'", report).group(1)
     cpu = re.search("cpu '([^']*)'", report).group(1)
@@ -343,7 +343,7 @@ def handler(c):
                '''
     ).run()
 
-    report = uptime_task.getOutputs()['report']
+    report = uptime_task.get_outputs()['report']
     up_since = re.search("up since '([^']*)'", report).group(1)
 
     c.logln(f'{hostname} is up since {up_since}')

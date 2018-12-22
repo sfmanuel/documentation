@@ -47,13 +47,13 @@ List all files in a directory.
 def handler(c):
     # list the contents of the myfiles directory
     myfiles = c.list_dir('myfiles')
-    c.setOutput('myfiles', myfiles)
+    c.set_output('myfiles', myfiles)
     # use a global pattern to recursively list all files in all folders
     files = c.list_dir('.', glob='**/*')
-    c.setOutput('files', files)
+    c.set_output('files', files)
     # use a global pattern to recursively list all python files in all folders
     python_files = c.list_dir('.', glob='**/*.py')
-    c.setOutput('python_files', python_files)
+    c.set_output('python_files', python_files)
     c.success(message='all done')
  ```  
 

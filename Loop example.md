@@ -89,10 +89,10 @@ def handler(c):
             # inputs parameter. The below line is equivalent to
             # inputs = { 'countryname': countryname }
             countryname = countryname
-        # runAsync() starts the child execution and then immediately returns.
+        # run_async() starts the child execution and then immediately returns.
         # This means that the for loop continues and the next child execution
         # is started right away - the REST calls will be executed in parallel.
-        ).runAsync()
+        ).run_async()
         # All execution objects are appended to the calls list.
         calls.append(call)
 
@@ -100,14 +100,14 @@ def handler(c):
     # Here, I tell the flow script to wait for all elements in the calls list
     # to finish before it continues. Remember that the calls list contains all
     # execution objects that we started in the for loop.
-    c.waitForAll(*calls)
+    c.wait_for_all(*calls)
 
 # (5) Get outputs of child executions, and set outputs of parent execution
     # Now, we take all the execution objects and get their outputs. Depending
     # on whether or not there was an error, we treat the results differently.
     for call in calls:
         # Get all outputs from all child executions
-        result = call.getOutputs()
+        result = call.get_outputs()
         # If there was an error, append the output of the erroneous execution
         # to our list of invalid country names.
         if 'error' in result:
@@ -116,16 +116,16 @@ def handler(c):
         # to the output of the child executions.
         else:
             for k, v in result.items():
-                c.setOutput(k, v)
+                c.set_output(k, v)
 
     # The errors need a bit more processing: here, we set an output that
     # contains the key "warning", information about the number of failed calls,
     # and the country names for which there was an error.
     if len(invalids) > 0:
-        c.setOutput(
+        c.set_output(
             'warning',
             f'no information was found for {len(invalids)} countries')
-        c.setOutput('invalid countries', invalids)
+        c.set_output('invalid countries', invalids)
 
 # (6) Once we're done we end the execution.
     c.success(message='all done')
@@ -176,8 +176,8 @@ def handler(c):
 # (3) get inputs from parent execution
     # The parent execution passed inputs to this execution, therefore we
     # don't need to specify an execution ID from which to get the inputs.
-    # c.getInputs() will capture the inputs given by the parent execution.
-    countryname = c.getInputs()['countryname']
+    # c.get_inputs() will capture the inputs given by the parent execution.
+    countryname = c.get_inputs()['countryname']
 
 # (4) call the geonames API
 
@@ -189,14 +189,14 @@ def handler(c):
              f'&type=JSON'
              f'&username={username}')
     ).run(
-    ).getOutputs(
+    ).get_outputs(
     )['json']['geonames']
 
     # Check if the result contains something
     if not countrycode_response:
         # If it doesn't, we set the output to error and send back the
         # invalid country name
-        c.setOutput('error', countryname)
+        c.set_output('error', countryname)
 
     else:
         # If there is a valid response, we continue with the API calls
@@ -208,7 +208,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).getOutputs(
+        ).get_outputs(
         )['json']['geonames'][0]['capital']
 
         capitalcoordinates_response = c.task(
@@ -219,7 +219,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).getOutputs(
+        ).get_outputs(
         )['json']['geonames'][0]
 
         # The coordinates are two values. To access them by key in the json
@@ -234,7 +234,7 @@ def handler(c):
         }
 
 # (5) Set outputs
-        c.setOutput(capitalname, capitalcoordinates)
+        c.set_output(capitalname, capitalcoordinates)
 
 # (6) Once we're done we end the execution.
     c.success(message='all done')
@@ -262,24 +262,24 @@ def handler(c):
         call = c.flow(
             'loop_child',
             countryname = countryname
-        ).runAsync()
+        ).run_async()
         calls.append(call)
 
-    c.waitForAll(*calls)
+    c.wait_for_all(*calls)
 
     for call in calls:
-        result = call.getOutputs()
+        result = call.get_outputs()
         if 'error' in result:
             invalids.append(result['error'])
         else:
             for k, v in result.items():
-                c.setOutput(k, v)
+                c.set_output(k, v)
 
     if len(invalids) > 0:
-        c.setOutput(
+        c.set_output(
             'warning',
             f'no information was found for {len(invalids)} countries')
-        c.setOutput('invalid countries', invalids)
+        c.set_output('invalid countries', invalids)
 
     c.success(message='all done')
 ```
@@ -293,7 +293,7 @@ def handler(c):
         c.setting('geonames_username', 'demo')
 
     username = c.setting('geonames_username')
-    countryname = c.getInputs()['countryname']
+    countryname = c.get_inputs()['countryname']
 
     countrycode_response = c.task(
         'REST',
@@ -303,11 +303,11 @@ def handler(c):
              f'&type=JSON'
              f'&username={username}')
     ).run(
-    ).getOutputs(
+    ).get_outputs(
     )['json']['geonames']
 
     if not countrycode_response:
-        c.setOutput('error', countryname)
+        c.set_output('error', countryname)
 
     else:
         countrycode = countrycode_response[0]['countryCode']
@@ -318,7 +318,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).getOutputs(
+        ).get_outputs(
         )['json']['geonames'][0]['capital']
 
         capitalcoordinates_response = c.task(
@@ -329,7 +329,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).getOutputs(
+        ).get_outputs(
         )['json']['geonames'][0]
 
         capitalcoordinates = {
@@ -340,7 +340,7 @@ def handler(c):
             in ('lat', 'lng')
         }
 
-        c.setOutput(capitalname, capitalcoordinates)
+        c.set_output(capitalname, capitalcoordinates)
 
     c.success(message='all done')
 ```

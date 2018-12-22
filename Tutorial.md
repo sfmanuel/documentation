@@ -31,17 +31,17 @@ One group of functions in the Cloudomation class create **execution objects**. T
 
 Another group of functions allows you to directly interact with other executions:
 - watch
-- getParent  
-- getEnvName  
+- get_parent  
+- get_env_name  
 
 One group of functions allows you to get information into your flow script - from other executions, or from internal systems:
-- getInputs
+- get_inputs
 - getVaultToken
 - setting
 
 Then there is a group of functions that allow you to write outputs and logs - which can again be picked up and used by other executions, or be used by you, the user, to log your executions behavior and debug your flow scripts:
-- setOutput  
-- setOutputs  
+- set_output  
+- set_outputs  
 - log  
 - logln
 
@@ -52,8 +52,8 @@ The next group of function allows you to handle files on the Cloudomation platfo
 And the last group of functions allows you to control basic behavior of your execution:
 - sleep
 - sleep_until
-- waitFor
-- waitForAll
+- wait_for
+- wait_for_all
 - end
 
 You can look each function up in the [Cloudomation Flow Script API](Flow+script+API) documentation, which lists parameters, what the function returns, and a small example for each of them.
@@ -66,17 +66,17 @@ Due to the implementation of tasks as individual executions, and our general rec
 Again, we will group the available functions to give you an overview of the available functionality.  
 
 You can provide executions with inputs before executing them:
-- setInput
-- setInputs
+- set_input
+- set_inputs
 
 You can control basic execution behavior:
 - run
-- runAsync
+- run_async
 - wait
 
 You can get information from executions:
-- getStatus
-- getOutputs
+- get_status
+- get_outputs
 
 And you can clone executions - this is a handy function which allows you to create "execution templates" which you can reuse with modifications:
 - clone

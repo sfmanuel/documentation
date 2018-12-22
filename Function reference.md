@@ -6,31 +6,31 @@
 	- [c.task](#ctask)
 	- [c.flow](#cflow)
 	- [c.script](#cscript)
-	- [c.waitFor](#cwaitfor)
-	- [c.waitForAll](#cwaitforall)
+	- [c.wait_for](#cwait_for)
+	- [c.wait_for_all](#cwait_for_all)
 	- [c.sleep](#csleep)
 	- [c.sleep_until](#csleepuntil)
 	- [c.logIn](#clogin)
 	- [c.log](#clog)
 	- [c.end](#cend)
-	- [c.getInputs](#cgetinputs)
+	- [c.get_inputs](#cget_inputs)
 	- [c.getVaultToken](#cgetvaulttoken)
-	- [c.setOutput](#csetoutput)
-	- [c.setOutput](#csetoutput)
-	- [c.setOutputs](#csetoutputs)
+	- [c.set_output](#cset_output)
+	- [c.set_output](#cset_output)
+	- [c.set_outputs](#cset_outputs)
 	- [c.setting](#csetting)
 	- [c.watch](#cwatch)
-	- [c.getParent](#cgetparent)
-	- [c.getInstance](#cgetinstance)
+	- [c.get_parent](#cget_parent)
+	- [c.get_env_name](#cget_env_name)
 - [Execution class](#execution-class)
 	- [clone](#clone)
-	- [setInput](#setinput)
-	- [setInputs](#setinputs)
-	- [runAsync](#runasync)
+	- [set_input](#set_input)
+	- [set_inputs](#set_inputs)
+	- [run_async](#run_async)
 	- [run](#run)
 	- [wait](#wait)
-	- [getStatus](#getstatus)
-	- [getOutputs](#getoutputs)
+	- [get_status](#get_status)
+	- [get_outputs](#get_outputs)
 
 <!-- /TOC -->
 
@@ -71,7 +71,7 @@ def handler(c):
   # create a REST task and run it
   task = c.task('REST', url='https://api.icndb.com/jokes/random').run()
   # access a field of the JSON response
-  joke = task.getOutputs()['json']['value']['joke']
+  joke = task.get_outputs()['json']['value']['joke']
   # end with a joke
 c.end('success', message=joke)
 ```  
@@ -125,7 +125,7 @@ def handler(c):
         protect_outputs=['responses']  # protect responses,
                                        # they contain a password
     ).run()
-    outputs = execution.getOutputs()
+    outputs = execution.get_outputs()
     user = outputs['responses']  # the responses dict is the user
 ```  
 
@@ -156,8 +156,8 @@ Example:
 coming soon
 ```  
 
-### c.waitFor
-Wait for the first of the given executions to finish. This is an OR relation. If you need an AND relation use chained calls to waitFor or [cloudomation.waitForAll()](#cwaitforall).
+### c.wait_for
+Wait for the first of the given executions to finish. This is an OR relation. If you need an AND relation use chained calls to wait_for or [cloudomation.wait_for_all()](#cwait_for_all).
 
 ```text
  Parameters:  
@@ -172,15 +172,15 @@ Wait for the first of the given executions to finish. This is an OR relation. If
 
 Example:
 ```python
-cloudomation.waitFor(A).waitFor(B) # waits until A and B are both ended
-cloudomation.waitFor(A, B) # waits for either A or B, whichever ends first
+cloudomation.wait_for(A).wait_for(B) # waits until A and B are both ended
+cloudomation.wait_for(A, B) # waits for either A or B, whichever ends first
 ```  
 
 Returns:  
     the id of the execution which finished first
     or None if the list of executions to wait for is empty
 
-### c.waitForAll
+### c.wait_for_all
 Wait for all of the given executions to finish.
 
 ```text
@@ -196,36 +196,36 @@ Wait for all of the given executions to finish.
 
 Example:
 ```python
-cloudomation.waitForAll(A, B) # waits until A and B are both ended
-cloudomation.waitForAll(A, B).flow('myflow') # waits until A and B ended and then executes myflow
+cloudomation.wait_for_all(A, B) # waits until A and B are both ended
+cloudomation.wait_for_all(A, B).flow('myflow') # waits until A and B ended and then executes myflow
 ```  
 
 Returns:  
-The Cloudomation object. This means that you can chain any function from the Cloudomation class directly after the c.waitForAll function.
+The Cloudomation object. This means that you can chain any function from the Cloudomation class directly after the c.wait_for_all function.
 
 ### c.sleep
 ### c.sleep_until
 ### c.logIn
 ### c.log
 ### c.end
-### c.getInputs
+### c.get_inputs
 ### c.getVaultToken
-### c.setOutput
-### c.setOutput
-### c.setOutputs
+### c.set_output
+### c.set_output
+### c.set_outputs
 ### c.setting
 ### c.watch
-### c.getParent
-### c.getInstance
+### c.get_parent
+### c.get_env_name
 
 ## Execution class
 Functions from the execution class can be applied on execution objects.
 
 ### clone
-### setInput
-### setInputs
-### runAsync
+### set_input
+### set_inputs
+### run_async
 ### run
 ### wait
-### getStatus
-### getOutputs
+### get_status
+### get_outputs
