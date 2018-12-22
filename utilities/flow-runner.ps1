@@ -24,7 +24,7 @@ $BYTES = [System.Text.Encoding]::Ascii.GetBytes($SCRIPT_PLAIN)
 $SCRIPT = [Convert]::ToBase64String($BYTES)
 
 $EXECUTION = @{
-    script_content = "${SCRIPT}"
+    script = "${SCRIPT}"
     name = "${NAME}"
 } | ConvertTo-Json
 
