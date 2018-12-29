@@ -115,8 +115,8 @@ or you can use the helper script as [shebang](https://en.wikipedia.org/wiki/Sheb
 #!/path/to/your/flow-runner.bash
 
 
-def handler(c):
-    c.success('hello world')
+def handler(system, this):
+    this.success('hello world')
 ```
 
 **bash:**

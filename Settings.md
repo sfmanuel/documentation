@@ -21,9 +21,9 @@ $ curl -s 'https://starflows.com/api/1/setting' -d '{"name":"system_user","value
 Your flow scripts can then read the setting value whenever they want to authenticate:
 
 ```python
-def handler(c):
-    user = c.setting('system_user')
-    c.task(
+def handler(system, this):
+    user = system.setting('system_user').get('value')
+    this.task(
         'SSH',
         hostname='test.example.com',
         login=user,
@@ -44,17 +44,17 @@ and with the next execution your flow scripts will read and use the new value.
 Your flow scripts can write the value of a setting to represent the current status of the execution:
 
 ```python
-def handler(c):
-    c.setting('occurrences_found', 42)
+def handler(system, this):
+    system.setting('occurrences_found', value=42)
 ```
 
 Other flow scripts can read the value and adapt their behaviour accordingly:
 
 ```python
-def handler(c):
-    count = c.setting('occurrences_found')
+def handler(system, this):
+    count = system.setting('occurrences_found').get('value')
     if count > 32:
-        c.task(
+        this.task(
             'SMTP',
             smtp_host='mail.example.com',
             from='no-reply@example.com',

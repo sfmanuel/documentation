@@ -34,10 +34,11 @@ crash and not process the rest of the list, unless you handle this properly
 (as showcased in this example).
 '''
 
-# (1) Define handler function for the Cloudomation class (c)
-def handler(c):
+# (1) Define handler function which receives the Cloudomation System
+# object (system) and an Execution object of this execution (this)
+def handler(system, this):
 
-# (2) Create a setting with country names
+    # (2) Create a setting with country names
     '''
     In a real-life application of this functionality, this setting would
     probably be created by another flow script, or be defined manually once.
@@ -46,15 +47,13 @@ def handler(c):
     Note that we create a setting that contains a list. Settings can contain
     any object that can be serialised into a yaml - lists, json etc.
     '''
-    if not c.setting('geonames_countrynames'):
-        c.setting(
-            'geonames_countrynames',
-            ["Austria", "Latvia", "Azerbaijan"]
-        )
+    geonames_countrynames = system.setting('geonames_countrynames')
+    if not geonames_countrynames.exists():
+        geonames_countrynames.save(value=["Austria", "Latvia", "Azerbaijan"])
 
-    countrynames = c.setting('geonames_countrynames')
+    countrynames = geonames_countrynames.get('value')
 
-# (3) Loop through the countries
+    # (3) Loop through the countries
     '''
     In order to get the information we want, we need to do several API calls.
     To speed this up, we parallelise the API calls by executing them in a
@@ -73,7 +72,7 @@ def handler(c):
         # We call the flow script that contains the REST calls with the c.flow
         # function. We store the execution object returned by the c.flow
         # function in the call variable.
-        call = c.flow(
+        call = this.flow(
             'loop_child',
             # I can add any number of parameters here. As long as they are not
             # called the same as the defined parameters for the flow function,
@@ -87,7 +86,7 @@ def handler(c):
             # execution, with the key weather and the value nice.
             # Note that I can also pass the same input as a dictionary with the
             # inputs parameter. The below line is equivalent to
-            # inputs = { 'countryname': countryname }
+            # input_value = { 'countryname': countryname }
             countryname = countryname
         # run_async() starts the child execution and then immediately returns.
         # This means that the for loop continues and the next child execution
@@ -96,18 +95,20 @@ def handler(c):
         # All execution objects are appended to the calls list.
         calls.append(call)
 
-# (4) Wait for all child executions to finish
+    # (4) Wait for all child executions to finish
+
     # Here, I tell the flow script to wait for all elements in the calls list
     # to finish before it continues. Remember that the calls list contains all
     # execution objects that we started in the for loop.
-    c.wait_for_all(*calls)
+    this.wait_for(*calls)
 
-# (5) Get outputs of child executions, and set outputs of parent execution
+    # (5) Get outputs of child executions, and set outputs of parent execution
+
     # Now, we take all the execution objects and get their outputs. Depending
     # on whether or not there was an error, we treat the results differently.
     for call in calls:
         # Get all outputs from all child executions
-        result = call.get_outputs()
+        result = call.get('output_value')
         # If there was an error, append the output of the erroneous execution
         # to our list of invalid country names.
         if 'error' in result:
@@ -115,20 +116,19 @@ def handler(c):
         # If there was no error, we directly set the output of the flow script
         # to the output of the child executions.
         else:
-            for k, v in result.items():
-                c.set_output(k, v)
+            this.log(result)
 
     # The errors need a bit more processing: here, we set an output that
     # contains the key "warning", information about the number of failed calls,
     # and the country names for which there was an error.
     if len(invalids) > 0:
-        c.set_output(
-            'warning',
-            f'no information was found for {len(invalids)} countries')
-        c.set_output('invalid countries', invalids)
+        this.log(
+            f'warning: no information was found for {len(invalids)} countries'
+        )
+        this.log(invalid_countries=invalids)
 
-# (6) Once we're done we end the execution.
-    c.success(message='all done')
+    # (6) Once we're done we end the execution.
+    this.success(message='all done')
 ```
 
 ## Child flow
@@ -164,24 +164,27 @@ runs automatically, the input list is the only thing that will change from
 run to run so it is the most likely source of errors.
 '''
 
-# (1) Define handler function for the Cloudomation class (c)
-def handler(c):
+# (1) Define handler function which receives the Cloudomation System
+# object (system) and an Execution object of this execution (this)
+def handler(system, this):
 
-# (2) Set username for geonames API
-    if not c.setting('geonames_username'):
-        c.setting('geonames_username', 'demo')
+    # (2) Set username for geonames API
+    geonames_username = system.setting('geonames_username')
+    if not geonames_username.exists():
+        geonames_username.save(value='demo')
 
-    username = c.setting('geonames_username')
+    username = geonames_username.get('value')
 
-# (3) get inputs from parent execution
+    # (3) get inputs from parent execution
+
     # The parent execution passed inputs to this execution, therefore we
     # don't need to specify an execution ID from which to get the inputs.
     # c.get_inputs() will capture the inputs given by the parent execution.
-    countryname = c.get_inputs()['countryname']
+    countryname = this.get('input_value')['countryname']
 
-# (4) call the geonames API
+    # (4) call the geonames API
 
-    countrycode_response = c.task(
+    countrycode_response = this.task(
         'REST',
         url=(f'http://api.geonames.org/search?'
              f'name={countryname}&'
@@ -189,29 +192,27 @@ def handler(c):
              f'&type=JSON'
              f'&username={username}')
     ).run(
-    ).get_outputs(
-    )['json']['geonames']
+    ).get('output_value')['json']['geonames']
 
     # Check if the result contains something
     if not countrycode_response:
         # If it doesn't, we set the output to error and send back the
         # invalid country name
-        c.set_output('error', countryname)
+        this.log(error=countryname)
 
     else:
         # If there is a valid response, we continue with the API calls
         countrycode = countrycode_response[0]['countryCode']
-        capitalname = c.task(
+        capitalname = this.task(
             'REST',
             url=(f'http://api.geonames.org/countryInfo?'
                  f'country={countrycode}'
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).get_outputs(
-        )['json']['geonames'][0]['capital']
+        ).get('output_value')['json']['geonames'][0]['capital']
 
-        capitalcoordinates_response = c.task(
+        capitalcoordinates_response = this.task(
             'REST',
             url=(f'http://api.geonames.org/search?'
                  f'name={capitalname}&'
@@ -219,8 +220,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).get_outputs(
-        )['json']['geonames'][0]
+        ).get('output_value')['json']['geonames'][0]
 
         # The coordinates are two values. To access them by key in the json
         # which is returned by the geonames API, we need to loop through
@@ -233,11 +233,11 @@ def handler(c):
             in ('lat', 'lng')
         }
 
-# (5) Set outputs
-        c.set_output(capitalname, capitalcoordinates)
+        # (5) Set outputs
+        this.save(output_value={capitalname: capitalcoordinates})
 
-# (6) Once we're done we end the execution.
-    c.success(message='all done')
+    # (6) Once we're done we end the execution.
+    this.success(message='all done')
 ```
 
 ## Both flows without comments
@@ -245,57 +245,50 @@ def handler(c):
 ### Parent flow
 
 ```python
-def handler(c):
-
-    if not c.setting('geonames_countrynames'):
-        c.setting(
-            'geonames_countrynames',
-            ["Austria", "Latvia", "Azerbaijan"]
-        )
-
-    countrynames = c.setting('geonames_countrynames')
+def handler(system, this):
+    geonames_countrynames = system.setting('geonames_countrynames')
+    if not geonames_countrynames.exists():
+        geonames_countrynames.save(value=["Austria", "Latvia", "Azerbaijan"])
+    countrynames = geonames_countrynames.get('value')
 
     calls = []
     invalids = []
-
     for countryname in countrynames:
-        call = c.flow(
+        call = this.flow(
             'loop_child',
             countryname = countryname
         ).run_async()
         calls.append(call)
 
-    c.wait_for_all(*calls)
+    this.wait_for(*calls)
 
     for call in calls:
-        result = call.get_outputs()
+        result = call.get('output_value')
         if 'error' in result:
             invalids.append(result['error'])
         else:
-            for k, v in result.items():
-                c.set_output(k, v)
+            this.log(result)
 
     if len(invalids) > 0:
-        c.set_output(
-            'warning',
-            f'no information was found for {len(invalids)} countries')
-        c.set_output('invalid countries', invalids)
+        this.log(
+            f'warning: no information was found for {len(invalids)} countries'
+        )
+        this.log(invalid_countries=invalids)
 
-    c.success(message='all done')
+    this.success(message='all done')
 ```
 
 ### Child flow
 
 ```python
-def handler(c):
+def handler(system, this):
+    geonames_username = system.setting('geonames_username')
+    if not geonames_username.exists():
+        geonames_username.save(value='demo')
+    username = geonames_username.get('value')
+    countryname = this.get('input_value')['countryname']
 
-    if not c.setting('geonames_username'):
-        c.setting('geonames_username', 'demo')
-
-    username = c.setting('geonames_username')
-    countryname = c.get_inputs()['countryname']
-
-    countrycode_response = c.task(
+    countrycode_response = this.task(
         'REST',
         url=(f'http://api.geonames.org/search?'
              f'name={countryname}&'
@@ -303,25 +296,22 @@ def handler(c):
              f'&type=JSON'
              f'&username={username}')
     ).run(
-    ).get_outputs(
-    )['json']['geonames']
+    ).get('output_value')['json']['geonames']
 
     if not countrycode_response:
-        c.set_output('error', countryname)
-
+        this.log(error=countryname)
     else:
         countrycode = countrycode_response[0]['countryCode']
-        capitalname = c.task(
+        capitalname = this.task(
             'REST',
             url=(f'http://api.geonames.org/countryInfo?'
                  f'country={countrycode}'
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).get_outputs(
-        )['json']['geonames'][0]['capital']
+        ).get('output_value')['json']['geonames'][0]['capital']
 
-        capitalcoordinates_response = c.task(
+        capitalcoordinates_response = this.task(
             'REST',
             url=(f'http://api.geonames.org/search?'
                  f'name={capitalname}&'
@@ -329,8 +319,7 @@ def handler(c):
                  f'&type=JSON'
                  f'&username={username}')
         ).run(
-        ).get_outputs(
-        )['json']['geonames'][0]
+        ).get('output_value')['json']['geonames'][0]
 
         capitalcoordinates = {
             k: float(v)
@@ -339,8 +328,7 @@ def handler(c):
             if k
             in ('lat', 'lng')
         }
+        this.save(output_value={capitalname: capitalcoordinates})
 
-        c.set_output(capitalname, capitalcoordinates)
-
-    c.success(message='all done')
+    this.success(message='all done')
 ```

@@ -6,30 +6,30 @@ Tasks are called through the Cloudomation function c.task(). Each task creates a
 
 For example, you could call a REST API using the Cloudomation REST task:
 ```python
-def handler(c):
+def handler(system, this):
     inputs = {
         'url': 'https://httpbin.org/post',
         'method': 'post',
         'data': 'payload',
     }
-    task = c.task('REST', inputs)
+    task = this.task('REST', inputs)
     task.run_async()
     # do other stuff
     task.wait()
-    outputs = task.get_outputs()
-    c.log(outputs)
+    outputs = task.get('output_value')
+    this.log(outputs)
 ```
 
 Or you can request input from a user of the Cloudomation platform by using the INPUT task:
 ```python
-def handler(c):
-    response = c.task('INPUT', request='enter a number').run().get_outputs()['response']
+def handler(system, this):
+    response = this.task('INPUT', request='enter a number').run().get('output_value')['response']
     try:
         number = int(response)
     except:
-        c.end('error', 'you did not enter a number')
-    c.log(f'your number was {number}')
-    c.end('success', message='all done')
+        this.error('you did not enter a number')
+    this.log(f'your number was {number}')
+    this.success('all done')
 ```
 
 The inputs required and outputs supplied by a task depend on the task type. Below your find documentation on each of the currently available task types.
@@ -63,11 +63,11 @@ Call the AWS API using the Boto3 low-level clients. Consult the Boto3 documentat
 
 **Example:**
 ```python
-def handler(c):
+def handler(system, this):
     # get AWS credentials from setting
-    creds = c.setting('aws creds')
+    credentials = system.setting('aws credentials').get('value')
     # create a child execution task which talks with AWS
-    task = c.task(
+    task = this.task(
         'AWS',
         region='eu-central-1',
         client='ec2',
@@ -81,8 +81,8 @@ def handler(c):
         **credentials
     ).run()  # run the task
     # provide the response back to the caller
-    c.set_output('task out', task.get_outputs())
-    c.end('success', message='all done')
+    this.log(task.get('output_value'))
+    this.success('all done')
 ```
 
 ### GIT task
@@ -116,9 +116,9 @@ Note that the git task allows you to interact with your git repository, but does
 
 **Example:**
 ```python
-def handler(c):
+def handler(system, this):
     # get the contents of a public github repository
-    c.task(
+    this.task(
         'GIT',
         command='get',
         # Specify the url of the repository - note that all files from that  
@@ -133,10 +133,10 @@ def handler(c):
     ).run()
     # Listing the files I got from git in the repository I specified on the  
     # Cloudomation platform
-    files = c.list_dir('flows_from_git')
+    files = system.files('flows_from_git')
     # I set the output to the list of files
-    c.set_output('git files', files)
-    c.success(message='all done')
+    this.log(files)
+    this.success(message='all done')
 ```
 
 ### INPUT task
@@ -158,19 +158,19 @@ Interactively query an input from a Cloudomation user. Requests will show up in 
 
 **Example:**
 ```python
-def handler(c):
+def handler(system, this):
     # create a task to request input from a user and run it
-    task = c.task('INPUT', request='please enter a number').run()
+    task = this.task('INPUT', request='please enter a number').run()
     # access the response
-    response = task.get_outputs()['response']
+    response = task.get('output_value')['response']
     try:
         # try to convert the string response to a float
         number = float(response)
     except ValueError:
         # if the conversion failed, the response was not a number
-        return c.end('error', f'you did not enter a number, but "{response}"')
+        return this.end('error', f'you did not enter a number, but "{response}"')
     # if the conversion succeeded, end with success
-    return c.end('success', message=f'thank you! your number was "{number}"')
+    return this.end('success', message=f'thank you! your number was "{number}"')
 ```
 
 ### REDIS task
@@ -221,13 +221,13 @@ Call a REST service.
 
 **Example:**
 ```python
-def handler(c):
+def handler(system, this):
     # create a REST task and run it
-    task = c.task('REST', url='https://api.icndb.com/jokes/random').run()
+    task = this.task('REST', url='https://api.icndb.com/jokes/random').run()
     # access a field of the JSON response
-    joke = task.get_outputs()['json']['value']['joke']
+    joke = task.get('output_value')['json']['value']['joke']
     # end with a joke
-    c.end('success', message=joke)
+    this.end('success', message=joke)
 ```
 
 ### SMTP task
@@ -256,9 +256,9 @@ Send an email using an SMTP server.
 
 **Example:**
 ```python
-def handler(c):
+def handler(system, this):
     # create an SMPT task and run it
-    c.task(
+    this.task(
         'SMTP',
         inputs={
                 'from': 'cloudomation@cloudomation.io',
@@ -275,7 +275,7 @@ def handler(c):
         }
     ).run()
     # there are no outputs for the SMTP task
-    c.success(message='all done')
+    this.success(message='all done')
 ```
 
 ### SSH task
@@ -306,13 +306,13 @@ Connect to a remote host using SSH and execute a script.
 import re
 
 
-def handler(c):
+def handler(system, this):
     # Authenticate using private key
-    info_task = c.task(
+    info_task = this.task(
         'SSH',
         # public accessible name or IP
         hostname='my-ssh-server',
-        # key to check host identiy.
+        # key to check host identity.
         # can be read with "$ ssh-keyscan -t rsa <my-ssh-server>"
         hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
         username='kevin',
@@ -324,15 +324,15 @@ def handler(c):
                '''
     ).run()
 
-    report = info_task.get_outputs()['report']
+    report = info_task.get('output_value')['report']
     hostname = re.search("hostname '([^']*)'", report).group(1)
     username = re.search("username '([^']*)'", report).group(1)
     cpu = re.search("cpu '([^']*)'", report).group(1)
 
-    c.logln(f'info_task was running on {hostname} using {cpu} as {username}')
+    this.log(f'info_task was running on {hostname} using {cpu} as {username}')
 
     # Authenticate using password
-    uptime_task = c.task(
+    uptime_task = this.task(
         'SSH',
         hostname='my-ssh-server',
         hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
@@ -343,8 +343,8 @@ def handler(c):
                '''
     ).run()
 
-    report = uptime_task.get_outputs()['report']
+    report = uptime_task.get('output_value')['report']
     up_since = re.search("up since '([^']*)'", report).group(1)
 
-    c.logln(f'{hostname} is up since {up_since}')
+    this.log(f'{hostname} is up since {up_since}')
 ```
