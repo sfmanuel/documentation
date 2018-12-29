@@ -11,7 +11,6 @@ pages:
   - name: Reference
     pages:
     - name: Flow script API
-    - name: Function reference
     - name: Tasks
   - name: Knowledge base
     pages:
