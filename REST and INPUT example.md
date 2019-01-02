@@ -2,47 +2,43 @@
 Find this example in the public flow script library [here](https://github.com/starflows/library/blob/master/Example%20settings%20input%20REST.py){ext}.
 
 ```python
-'''
-This flow script shows how the REST and INPUT tasks can be used together, by
-requesting parameters for a REST API call from a user.
-In this small example, a user is asked for a country name. The flow script then
-queries the REST API of the geonames service, which provides information about
-countries. The information about the country is then returned to the user, and
-the user is asked if they liked the information. Their response is captured in
-the end message of the flow script.
+# This flow script shows how the REST and INPUT tasks can be used together, by
+# requesting parameters for a REST API call from a user.
+# In this small example, a user is asked for a country name. The flow script
+# then queries the REST API of the geonames service, which provides information
+# about countries. The information about the country is then returned to the
+# user, and the user is asked if they liked the information. Their response is
+# captured in the end message of the flow script.
 
-This flow script call the geonames REST API to get information about a country.
-In order to use the geonames REST API, it is necessary to create a geonames
-account and enable it for the use of their webservices. They are free, but
-there are usage limits (very generous ones). If you are interested in using the
-geonames web services, you can register here: http://www.geonames.org/login and
-use your own account to execute this flow script. If not, we will use the demo
-user name provided by geonames for demo purposes only. Since this demo account
-also has usage limits, there is a chance that the flow script will fail due to
-these limits.
-'''
+# This flow script call the geonames REST API to get information about a
+# country. In order to use the geonames REST API, it is necessary to create a
+# geonames account and enable it for the use of their webservices. They are
+# free, but there are usage limits (very generous ones). If you are interested
+# in using the geonames web services, you can register here:
+# http://www.geonames.org/login and use your own account to execute this flow
+# script. If not, we will use the demo user name provided by geonames for demo
+# purposes only. Since this demo account also has usage limits, there is a
+# chance that the flow script will fail due to these limits.
 
 
 # (1) define handler function for the Cloudomation class (c)
 def handler(system, this):
 
-    # (2) use settings
-    '''
-    To use the geonames REST API, it is required to register an application,
-    which is identified via a user name that has to be provided with every
-    REST call. The best way to manage parameters like this is to store them
-    as Cloudomation settings. In this way, usernames can be changed easily in
-    the settings view without having to edit the flow scripts which use it.
-    For this example flow script, we will first check if the setting exists
-    and if it doesn't, we will create it and fill it with a demo user name.
-    This is not recommended best practice - the user name should not be hard
-    coded into the flow script. Another option would be to check if the
-    setting exists and if not, as the user to input a user name. However for
-    the purposes of this example flow script, we will create a setting that
-    contains the user name to demonstate how to use settings.
-    NOTE that settings are not intended for passwords or other sensible
-    information. For passwords, we recommend the use of Hashicorp Vault.
-    '''
+# (2) use settings
+    # To use the geonames REST API, it is required to register an application,
+    # which is identified via a user name that has to be provided with every
+    # REST call. The best way to manage parameters like this is to store them
+    # as Cloudomation settings. In this way, usernames can be changed easily in
+    # the settings view without having to edit the flow scripts which use it.
+    # For this example flow script, we will first check if the setting exists
+    # and if it doesn't, we will create it and fill it with a demo user name.
+    # This is not recommended best practice - the user name should not be hard
+    # coded into the flow script. Another option would be to check if the
+    # setting exists and if not, as the user to input a user name. However for
+    # the purposes of this example flow script, we will create a setting that
+    # contains the user name to demonstate how to use settings.
+    # NOTE that settings are not intended for passwords or other sensible
+    # information. For passwords, we recommend the use of Hashicorp Vault.
 
     # we check if there is a setting with the key geonames_username
     geonames_username = system.setting('geonames_username')
@@ -93,14 +89,12 @@ def handler(system, this):
     countryname = countryname_result['response']
 
     # (4) use REST task
-
-    '''
-    Now, we want to get some information about the country. To request
-    formation about a country, the geonames API requires the ISO-2 country code
-    of that country, so our first request will be to get the ISO-2 country code
-    for the country name. This is also an opportunity for us to see if the user
-    input a valid country name - if they didn't, this request will fail.
-    '''
+    # Now, we want to get some information about the country. To request
+    # information about a country, the geonames API requires the ISO-2 country
+    # code of that country, so our first request will be to get the ISO-2
+    # country code for the country name. This is also an opportunity for us to
+    # see if the user input a valid country name - if they didn't, this request
+    # will fail.
 
     # Here, we use the two previously defined paramenters: the username we read
     # from a setting, and the country name from the user input. Then we execute
@@ -198,55 +192,49 @@ Note that manual logging of task outputs only serves the purpose of collecting a
 If you take a look at the REST tasks, for example, you can see that their input is the URL that is put together in the f-strings in the REST tasks defined in the flow script. For debugging, you can always inspect child executions separately to see if their inputs and outputs are as you expect.  
 
 ```python
-def handler(system, this):
-    geonames_username = system.setting('geonames_username')
-    if not geonames_username.exists():
-        geonames_username.save(value='demo')
-    username = geonames_username.get('value')
+def handler(c):
+    if c.setting('geonames_username') is None:
+        c.setting('geonames_username', 'demo')
 
-    countryname_request = this.task(
+    username = c.setting('geonames_username')
+
+    countryname = c.task(
         'INPUT',
-        request=(
-            'This is a country information service. If you input a country '
-            'name, I will tell you a few things about this country. Please '
-            'only type one country at a time. Which country would you like '
-            'to learn about?'
-        )
-    ).run()
-    countryname_result = countryname_request.get('output_value')
-    this.log('Outputs of the INPUT task:', countryname_result)
-    countryname = countryname_result['response']
+        request=('This is a country information service. If you input a '
+                 'country name, I will tell you a few things about this '
+                 'country. Please only type one country at a time. Which '
+                 'country would you like to learn about?')
+    ).run(
+    ).getOutputs()['response']
 
-    countrycode_request = this.task(
+    countrycode_response = c.task(
         'REST',
-        url=(
-            f'http://api.geonames.org/search?'
-            f'name={countryname}&'
-            f'featureCode=PCLI'
-            f'&type=JSON'
-            f'&username={username}'
+        url=(f'http://api.geonames.org/search?'
+             f'name={countryname}&'
+             f'featureCode=PCLI'
+             f'&type=JSON'
+             f'&username={username}')
+    ).run(
+    ).getOutputs()
+
+    if countrycode_response['json']['totalResultsCount'] < 1:
+        return c.end(
+            'error',
+            message='We could not find the country you named.'
         )
-    ).run()
-    countrycode_response = countrycode_request.get('output_value')
-    this.log('Outputs of the country code REST task:', countrycode_response)
-    response_count = countrycode_response['json']['totalResultsCount']
-    if response_count < 1:
-        return this.error('We could not find the country you named.')
+
     countrycode = countrycode_response['json']['geonames'][0]['countryCode']
 
-    countryinfo_request = this.task(
+    countryinfo_request = c.task(
         'REST',
-        url=(
-            f'http://api.geonames.org/countryInfo?'
-            f'country={countrycode}'
-            f'&type=JSON'
-            f'&username={username}'
-        )
-    ).run()
-    countryinfo_result = countryinfo_request.get('output_value')['json']['geonames'][0]
-    this.log('Outputs of the country information REST task:', countryinfo_result)
+        url=(f'http://api.geonames.org/countryInfo?'
+             f'country={countrycode}'
+             f'&type=JSON'
+             f'&username={username}')
+    ).run(
+    ).getOutputs()['json']['geonames'][0]
 
-    user_feedback = this.task(
+    user_feedback = c.task(
         'INPUT',
         request=(f'Here is some information about  {countryname}. It is '
                  f'located in {countryinfo_result["continentName"]}, '
@@ -255,11 +243,10 @@ def handler(system, this):
                  f'and an area of {countryinfo_result["areaInSqKm"]} '
                  f'square kilometers. Did you like this information?')
         ).run(
-    ).get('output_value')['response']
+    ).getOutputs()['response']
 
-    this.success(
-        message=(
-            f'Country info provided. Did the user like the information? '
-            f'{user_feedback}')
-    )
+    c.end(
+        'success',
+        message=(f'Country info provided. Did the user like the information? '
+                 f'{user_feedback}'))
 ```
