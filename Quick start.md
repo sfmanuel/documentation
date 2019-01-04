@@ -24,9 +24,10 @@ def handler(system, this):
     this.log('Hello World!')
     this.success('all done')
 ```
-5. Click on "Run"
-6. The execution object will be opened automatically. It shows the current state of the execution and will update with any change.
-7. In the output field you'll see the log message:
+5. Click on "Save"
+6. Click on "Run"
+7. The execution object will be opened automatically. It shows the current state of the execution and will update with any change.
+8. In the "Outputs" field you'll see the log message:
 ```yaml
 logging:
   - '2018-12-29 21:20:01':
