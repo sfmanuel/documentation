@@ -98,7 +98,7 @@ Setting name | Default value | Description
 
 ##### Webhooks
 Setting name:  
-`<client name>.webhook.<webhook name>`
+`client.webhook.<webhook name>`
 
 Setting content:  
 ```yaml
