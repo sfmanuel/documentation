@@ -5,7 +5,7 @@ The webhooks setting allows you to configure a webhook with Cloudomation that tr
 To register a webhook, you need to create a setting that follows a specific pattern:
 
 setting name:  
-`<client name>.webhook.<webhook name>`  
+`client.webhook.<webhook name>`  
 
 setting content:  
 ```yaml
@@ -22,7 +22,7 @@ The standard behavior of the webhook is to execute the flow script, wait for the
 
 **Example setting**   
 setting name:  
-`myclient.webhook.signup`
+`client.webhook.signup`
 
 setting content:  
 ```yaml
