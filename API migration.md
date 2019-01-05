@@ -17,8 +17,11 @@ your existing flow scripts to the new version.
 The handler function now receives two parameters: the `system` object and
 `this` - the execution object of the own execution.
 
+**system**
+
 The `system` object is used to access functionality which is not related to a
 running execution. This includes:
+
 - reading system state. Example:
     `env_name = system.get_env_name()`
 - opening resources for read. Example:
@@ -26,6 +29,7 @@ running execution. This includes:
 - opening resources for write. Example:
     `system.setting('my setting').save(value={'key': my value'})`
 - iterating over collections of resources. Example:
+
     ```python
     for file in system.files(dir='logs'):
         content = file.get('content')
@@ -33,11 +37,15 @@ running execution. This includes:
             this.log(content)
     ```
 
+**this**
+
 The `this` object represents the currently running execution. It can be used
 to access functionality related to the execution. This includes:
+
 - reading execution state. Example: `inputs = this.get('input_value')`
 - writing execution state. Example: `this.save(message='my message')`
 - creating child executions. Example:
+
     ```python
     # create a child flow execution
     child_flow = this.flow('my flow')
@@ -109,6 +117,6 @@ API syntax:
     `c.error(m)` | `this.error(m)`
     `c.setting(s)` | `system.setting(s).get('value')` | "value" is just one of several fields you can "get" from a setting.
     `c.setting(s, v)` | `system.setting(s).save(value=v)`
-    `c.waitFor(e)` | `this.wait_for(e)` | return_when defaults to ALL_SUCCEEDED
+    `c.waitFor(e)` | `this.wait_for(e)` | return\_when defaults to ALL\_SUCCEEDED
     `c.waitFor(e1, e2)` | `this.wait_for(e1, e2, return_when=system.return_when.FIRST_ENDED)`
     `c.waitForAll(e1, e2)` | `this.wait_for(e1, e2, return_when=system.return_when.ALL_SUCCEEDED)`
