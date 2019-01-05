@@ -10,7 +10,7 @@ pages:
     - name: Frequently Asked Questions
   - name: Reference
     pages:
-    - name: Flow script API
+    - name: Flow script function reference
     - name: Tasks
   - name: Knowledge base
     pages:

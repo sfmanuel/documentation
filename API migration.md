@@ -2,15 +2,15 @@
 
 This document describes steps that need to be performed to migrate existing
 Flow scripts to the a newer version of the
-[Flow script API](Flow%20script%20API).
+[Flow script function reference](Flow+script+function+reference).
 
 ## Version 0
 
 ### Flow script created before 2019-01-01
 
-On 2019-01-01 some incompatible changes to the Flow script API were published.
-Please read the section below for an overview of the necessary steps to migrate
-your existing flow scripts to the new version.
+On 2019-01-01 some incompatible changes to the Flow script function reference
+were published. Please read the section below for an overview of the necessary
+steps to migrate your existing flow scripts to the new version.
 
 #### Handler function changes
 

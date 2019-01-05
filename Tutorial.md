@@ -14,8 +14,8 @@ So: you write a flow script. When you run it, it creates an execution. Your exec
 
 There are two different types of functionality that Cloudomation provides. Functionality which happens on the Cloudomation platform - for example one flow script starting a child execution, or logging something - is provided in the form of normal Python functions, which are listed below. To interact with systems outside of the Cloudomation platform, Cloudomation provides functionality in the form of **tasks** - for example REST calls, SSH connections, or sending emails via SMTP (and more). For reasons of security and performance, these tasks are always executed as individual child executions with defined inputs and outputs.
 
-## An introduction to the Cloudomation Flow Script API
-The [Cloudomation Flow Script API](Flow+script+API) exploses Cloudomation functionality to the user - you :)  
+## An introduction to the Cloudomation flow script function reference
+The [Cloudomation flow script function reference](Flow+script+function+reference) exploses Cloudomation functionality to the user - you :)  
 
 There are two classes available to you:
 - the Cloudomation class, and
@@ -56,7 +56,7 @@ And the last group of functions allows you to control basic behavior of your exe
 - wait_for_all
 - end
 
-You can look each function up in the [Cloudomation Flow Script API](Flow+script+API) documentation, which lists parameters, what the function returns, and a small example for each of them.
+You can look each function up in the [Cloudomation flow script function reference](Flow+script+function+reference) documentation, which lists parameters, what the function returns, and a small example for each of them.
 
 ### The Execution class
 Like the name suggests, the execution class allows you to interact with execution objects. We already know that execution objects (or executions) are instances of executed flow scripts.  
