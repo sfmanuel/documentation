@@ -10,16 +10,12 @@ To quickly get started:
 3. The flow object will be opened automatically and already contains a
 handler function:
 ```python
-import cloudomation as c
-
 def handler(system, this):
     # TODO: write your automation
     this.success('all done')
 ```
 4. Replace the comment `# TODO: write your automation` with a statement to print a hello world log message:
 ```python
-import cloudomation as c
-
 def handler(system, this):
     this.log('Hello World!')
     this.success('all done')
