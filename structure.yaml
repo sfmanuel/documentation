@@ -23,6 +23,9 @@ pages:
     - name: File handling with Cloudomation
     - name: Flows
     - name: Manipulating resources
+    - name: Migration
+      pages:
+      -  name: API migration
     - name: Running flow scripts remotely
     - name: Settings
     - name: Tips and tricks for writing flow scripts
