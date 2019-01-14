@@ -51,11 +51,9 @@ def handler(system, this):
     countrynames = geonames_countrynames.get('value')
 
 # (3) Loop through the countries
-    '''
-    In order to get the information we want, we need to do several API calls.
-    To speed this up, we parallelise the API calls by executing them in a
-    separate flow script, which we start as child executions.
-    '''
+    # In order to get the information we want, we need to do several API calls.
+    # To speed this up, we parallelise the API calls by executing them in a
+    # separate flow script, which we start as child executions.
 
     # We create an empty list to which we will append our child execution
     # objects in the for loop.
@@ -105,7 +103,7 @@ def handler(system, this):
     # on whether or not there was an error, we treat the results differently.
     for call in calls:
         # Get all outputs from all child executions
-        result = call.get('output_value')
+        result = call.load('output_value')
         # If there was an error, append the output of the erroneous execution
         # to our list of invalid country names.
         if 'error' in result:
@@ -177,7 +175,7 @@ def handler(system, this):
     # c.get_inputs() will capture the inputs given by the parent execution.
     countryname = this.get('input_value')['countryname']
 
-    # (4) call the geonames API
+# (4) call the geonames API
 
     countrycode_response = this.task(
         'REST',
@@ -193,7 +191,7 @@ def handler(system, this):
     if not countrycode_response:
         # If it doesn't, we set the output to error and send back the
         # invalid country name
-        this.log(error=countryname)
+        this.save(output_value={'error': countryname})
 
     else:
         # If there is a valid response, we continue with the API calls
