@@ -234,6 +234,8 @@ There are a few more documentation pages that might help you get started with yo
 
 Take a look at the [quick start guide](Quick+start) for a first impression. Review the  [Examples](Examples) to get an idea of how more complex flow scripts could look like.    
 
+The [Flows](Flows) site provides you with information about writing, editing and deleting flow scripts and helps you find your way around the flow script editor and user interface. 
+
 We also recommend to review the [Tips and tricks for writing flow scripts](Tips+and+tricks+for+writing+flow+scripts) before you get started with your own project.  
 
 It might also be a good idea to take a look at the [public flow script library](https://github.com/starflows/library){ext} to see if there are some snippets or entire flow scripts that you could reuse.
