@@ -12,13 +12,13 @@ handler function:
 ```python
 def handler(system, this):
     # TODO: write your automation
-    this.success('all done')
+    return this.success('all done')
 ```
 4. Replace the comment `# TODO: write your automation` with a statement to print a hello world log message:
 ```python
 def handler(system, this):
     this.log('Hello World!')
-    this.success('all done')
+    return this.success('all done')
 ```
 5. Click on "Save"
 6. Click on "Run"
