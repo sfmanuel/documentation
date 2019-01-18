@@ -137,15 +137,11 @@ Or we can create a setting that contains several key-value pairs:
 Now you can see that this is getting a bit messy: specifying a dictionary by hand can be a bit of a drag. This is where the kwargs come in handy. In the documentation for the settings class, it says that all keyword arguments will be added to the init argument. So what you can do is just add things at the end of your arguments which will be added to the value of your setting:
 
 ```python
-system.setting(select = 'mysetting', value = 'myvalue')
-system.setting(select = 'fruit_salad', value = ['apples', 'bananas', 'oranges'])
-system.setting(select = 'colors', value = {'sun': 'yellow', 'ocean': 'blue', 'grass': 'green'})
+system.setting(select = 'mysetting', value = 'myvalue', save = True)
+system.setting(select = 'fruit_salad', value = ['apples', 'bananas', 'oranges'], save = True)
+system.setting(select = 'colors', value = {'sun': 'yellow', 'ocean': 'blue', 'grass': 'green'}, save = True)
 ```
-Each of the above lines you can use to both create and update an object. You don't always have to specify both name and value. For example, if you want to change the name of an existing setting, you could do it like this:
-
-`system.setting(select='mysetting', name='mynewsetting')`
-
-Here you already see why the select argument is called select, and not like the the actual name of the identifying argument (name in this case) - it has a different fuction. The select argument specifies which object you are selecting, and then you can use the other arguments, including the name argument, to do things with that setting, including changing the name.
+Each of the above lines you can use to both create and update an object.
 
 ##### methods
 By now we know how to use the arguments and constants of a class. Now we will take a look at methods that we can apply on objects of a class.
