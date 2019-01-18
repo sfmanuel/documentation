@@ -1,6 +1,8 @@
 # Example using REST and INPUT Tasks
 Find this example in the public flow script library [here](https://github.com/starflows/library/blob/master/Example%20settings%20input%20REST.py){ext}.
 
+If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
+
 ```python
 # This flow script shows how the REST and INPUT tasks can be used together, by
 # requesting parameters for a REST API call from a user.

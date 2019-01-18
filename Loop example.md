@@ -3,6 +3,8 @@ This example consists of two flow scripts. You can also find them in the public 
 - [Parent flow](https://github.com/starflows/library/blob/master/loop_parent.py)
 - [Child flow](https://github.com/starflows/library/blob/master/loop_child.py)
 
+If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
+
 ## Parent flow
 
 ```python
