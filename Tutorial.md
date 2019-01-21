@@ -110,7 +110,7 @@ This means that if you don't specify any arguments, your setting will have no na
 
 Constants are values. They are called constants because you cannot change them - that is, you cannot change which constants there are and how they are named. But you can change their content.
 
-There are three types of constants that are important for you: the fields. You have fields, create_fields and update_fields. These fields contain information. Some of them are filled by the system, some of them can be filled by you.
+There are three types of constants that are important for you: the fields. You have fields, create\_fields and update\_fields. These fields contain information. Some of them are filled by the system, some of them can be filled by you.
 
 Create fields are ones that you can specify when you first create an object. If we stick to our example of a setting, I can create a setting by specifying its name and value.
 
