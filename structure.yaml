@@ -19,6 +19,7 @@ pages:
       pages:
       - name: REST and INPUT example
       - name: Loop example
+      - name: Interaction with Github
     - name: Executions
     - name: File handling with Cloudomation
     - name: Flows

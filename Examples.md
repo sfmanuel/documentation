@@ -9,3 +9,4 @@ These examples showcase Cloudomation functionality based on very simple use case
 
 - [REST and INPUT example](REST+and+INPUT+example)
 - [Loop example](Loop+example)
+- [Interaction with Github](Interaction+with+Github)

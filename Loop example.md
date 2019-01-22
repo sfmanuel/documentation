@@ -1,5 +1,5 @@
 # Example with parent and child flow scripts and a parallel for-loop
-This example consists of two flow scripts. You can also find them in the public flow script library:
+This example consists of two flow scripts. You can also find them in the [public flow script library](https://github.com/starflows/library){ext}:
 - [Parent flow](https://github.com/starflows/library/blob/master/loop_parent.py)
 - [Child flow](https://github.com/starflows/library/blob/master/loop_child.py)
 
