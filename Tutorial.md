@@ -25,14 +25,14 @@ The third category is what we call **tasks**. Tasks allow you to interact with t
 
 ## How to work with the documentation
 
-Everything that you can use with *this* and *system* is documented in the [Cloudomation flow script method reference](Flow+script+method+reference). Tasks are documented separately: [Tasks](Tasks). I will describe what you can find in both of those pages.
+Everything that you can use with *this* and *system* is documented in the [Cloudomation flow script method reference](Flow+script+function+reference). Tasks are documented separately: [Tasks](Tasks). I will describe what you can find in both of those pages.
 
 Documentation is always alive, and ours will change and grow together with the Cloudomation platform. If you find pages in the documentation that are out of date or are missing something, please let us know. Drop us a line to [info@cloudomation.io](mailto:info@cloudomation.io).
 
 ### An introduction to the Cloudomation flow script method reference
-The [Cloudomation flow script method reference](Flow+script+method+reference) contains documentation about all the functionality that you can use in your flow scripts. However it is intended as a reference, so it only lists arguments and fields and is generally very brief. It is automatically generated, so you can be sure that the flow script method reference is always up to date.
+The [Cloudomation flow script method reference](Flow+script+function+reference) contains documentation about all the functionality that you can use in your flow scripts. However it is intended as a reference, so it only lists arguments and fields and is generally very brief. It is automatically generated, so you can be sure that the flow script method reference is always up to date.
 
-The [Cloudomation flow script method reference](Flow+script+method+reference) starts with a list of classes, and a list of enums. Enums is short for enumerations. I will explain in a bit what they are.
+The [Cloudomation flow script method reference](Flow+script+function+reference) starts with a list of classes, and a list of enums. Enums is short for enumerations. I will explain in a bit what they are.
 
 #### Classes
 
@@ -54,7 +54,7 @@ Methods are operations you can do with an object.
 
 Let's look at an example. Let us take the class setting. I can call an instance of the class setting like so: `system.setting('mysetting')`. Now I have referenced "mysetting", which is an object, and it is of the class setting.
 
-If you look at the [Cloudomation flow script method reference](Flow+script+method+reference) and read up on setting, you will find a list of arguments, constants, and methods for the class setting.
+If you look at the [Cloudomation flow script method reference](Flow+script+function+reference) and read up on setting, you will find a list of arguments, constants, and methods for the class setting.
 
 There is one more thing that is important to know about classes: classes can have base classes from which they inherit properties. If you look at the setting class in the Cloudomation method reference, you will see that it says "base class: record". This tells you that the setting class, together with some other classes like execution, file, flow etc. are all sub-classes of the records class. This is not hugely important to understand the documentation - all the inherited properties are listed again for each of the sub-classes. But later, it might be interesting to know which classes share properties. For example, there are some methods that you can apply on any record: you can save and load and delete and check if it exists, for example. It works exactly the same for every instance of a record class, which means it works exactly the same for all instances of sub-classes of the record class. So you save an execution and a file and a setting in exactly the same way - once you know how to do it for one, you can do it for all.
 
@@ -146,7 +146,7 @@ Each of the above lines you can use to both create and update an object.
 ##### methods
 By now we know how to use the arguments and constants of a class. Now we will take a look at methods that we can apply on objects of a class.
 
-You can think of methods as actions, things that you do with an object. In the [Flow script method reference](Flow+script+method+reference) you will see that all methods have an expand arrow that allows you to see the details of the method. Like classes, methods have arguments which allow you to say how something should be done. And like for classes, you can see the method's defaults in the parenthesis right next to the method name.
+You can think of methods as actions, things that you do with an object. In the [Flow script method reference](Flow+script+function+reference) you will see that all methods have an expand arrow that allows you to see the details of the method. Like classes, methods have arguments which allow you to say how something should be done. And like for classes, you can see the method's defaults in the parenthesis right next to the method name.
 
 Once you expand a method, you will see a short description of what it does, its arguments, and what it returns. Often, a method will return the object on which the method was performed, but sometimes it will return something else.
 
