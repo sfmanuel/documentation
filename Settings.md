@@ -141,14 +141,15 @@ def handler(system, this):
     if not file_path:
         return this.success('no file_path: nothing to do')
     file = system.file(file_path)
-    file_content = file.load('content')
     if file_path.endswith('.py'):
+        file_content = file.load('content')
         system.flow(
             name=file_path[:-len('.py')],
             script=file_content,
         )
         file.delete()
     elif file_path.endswith('.yaml'):
+        file_content = file.load('content')
         system.setting(
             name=file_path[:-len('.yaml')],
             value=file_content,
