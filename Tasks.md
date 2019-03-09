@@ -18,6 +18,7 @@ def handler(system, this):
     task.wait()
     outputs = task.get('output_value')
     this.log(outputs)
+    return this.success('all done')
 ```
 
 Or you can request input from a user of the Cloudomation platform by using the INPUT task:
@@ -29,7 +30,7 @@ def handler(system, this):
     except:
         this.error('you did not enter a number')
     this.log(f'your number was {number}')
-    this.success('all done')
+    return this.success('all done')
 ```
 
 The inputs required and outputs supplied by a task depend on the task type. Below your find documentation on each of the currently available task types.
@@ -67,7 +68,7 @@ def handler(system, this):
     # get AWS credentials from setting
     credentials = system.setting('aws credentials').get('value')
     # create a child execution task which talks with AWS
-    task = this.task(
+    run_instance = this.task(
         'AWS',
         region='eu-central-1',
         client='ec2',
@@ -78,11 +79,35 @@ def handler(system, this):
             'MaxCount': 1,
             'MinCount': 1,
         },
+        init={
+            'protect_inputs': [
+                'aws_access_key_id',
+                'aws_secret_access_key',
+            ],
+        },
         **credentials
     ).run()  # run the task
     # provide the response back to the caller
-    this.log(task.get('output_value'))
-    this.success('all done')
+    run_instance_outputs = run_instance.get('output_value')
+    this.log(run_instance_outputs=run_instance_outputs)
+    # wait until the instance is running
+    instance_id = run_instance_outputs['result']['Instances'][0]['InstanceId']
+    wait_available = this.task(
+        'AWS',
+        region='eu-central-1',
+        client='ec2',
+        waiter='instance_running',
+        parameters={
+            'InstanceIds': [
+                instance_id,
+            ]
+        },
+        **credentials
+    ).run()
+    # provide the response back to the caller
+    wait_available_outputs = wait_available.get('output_value')
+    this.log(wait_available_outputs=wait_available_outputs)
+    return this.success('all done')
 ```
 
 ### GIT task
@@ -136,7 +161,7 @@ def handler(system, this):
     files = system.files('flows_from_git')
     # I set the output to the list of files
     this.log(files)
-    this.success(message='all done')
+    return this.success(message='all done')
 ```
 
 ### INPUT task
@@ -227,7 +252,7 @@ def handler(system, this):
     # access a field of the JSON response
     joke = task.get('output_value')['json']['value']['joke']
     # end with a joke
-    this.end('success', message=joke)
+    return this.end('success', message=joke)
 ```
 
 ### SMTP task
@@ -275,7 +300,7 @@ def handler(system, this):
         }
     ).run()
     # there are no outputs for the SMTP task
-    this.success(message='all done')
+    return this.success(message='all done')
 ```
 
 ### SSH task
@@ -347,4 +372,6 @@ def handler(system, this):
     up_since = re.search("up since '([^']*)'", report).group(1)
 
     this.log(f'{hostname} is up since {up_since}')
+
+    return this.success('all done')
 ```
