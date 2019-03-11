@@ -112,7 +112,7 @@ def handler(system, this):
 
 **Example 2:**
 
-An extended example can be found in the library: [Example Task AWS](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py)
+An extended example can be found in the library: [Example Task AWS](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py){ext}
 
 ### GIT task
 
