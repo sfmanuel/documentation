@@ -110,6 +110,10 @@ def handler(system, this):
     return this.success('all done')
 ```
 
+**Example 2:**
+
+An extended example can be found in the library: [Example Task AWS](https://github.com/starflows/library/blob/master/Example%20Task%20AWS.py)
+
 ### GIT task
 
 Run git commands on a repository.  
