@@ -1,34 +1,30 @@
 # Token
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [Token](#token)
-	- [What are Token?](#what-are-token)
-	- [Why Token?](#why-token)
-	- [Token price list](#token-price-list)
-	- [Quick tips to reduce your Token usage](#quick-tips-to-reduce-your-token-usage)
-	- [Buying and cancelling Token](#buying-and-cancelling-token)
-	- [How many Token do I need for my use case?](#how-many-token-do-i-need-for-my-use-case)
-	- [What happens if I run out of Token?](#what-happens-if-i-run-out-of-token)
-
-<!-- /TOC -->
+**Table of content**
+- [What are Token?](#whatareoken)
+- [Why Token?](#whytoken)
+- [Token price list](#tokenpricelist)
+- [Quick tips to reduce your Token usage](#quicktipstoreduceyourtokenusage)
+- [How many Token do I need for my use case?](#howmanytokendoineedformyusecase)
+- [What happens if I run out of Token?](#whathappensifirunoutoftoken)
+- [Buying and cancelling Token](#buyingandcancellingtoken)
 
 ## What are Token?
 Token are an artificial unit of measurement for computing resources on the Cloudomation platform. We designed the Token measure as a basis for our pricing.  
 
 Most things you do on the Cloudomation platform use some underlying resources, which is measured and displayed to you in Token units. For example, running an automation on the Cloudomation platform uses a specific amount of Token. How many Token one automation uses depends on how complex it is, which functionality is used, and if you are doing many things in parallel in that automation.  
 
-With your Cloudomation account, you buy a certain amount of Token. The amount of Token you have available in your Cloudomation acocunt determines which Cloudomation functionality you can use *at the same time*.  
+With your Cloudomation account, you buy a certain amount of Token. The amount of Token you have available in your Cloudomation account determines which Cloudomation functionality you can use *at the same time*.  
 
 Token are not used up, they are valid for a specific time, usually one month. They define the maximum amount of resources you can use on the Cloudomation platform at any given time.  
 
-You think of Token similar to the coin you use in a shopping cart: as long as you are using the shopping cart, the coin is in the cart and you can't use it for something else. As soon as you return the cart, you get the coin back and can use it for other things. Token are similar: they are blocked, for example, by runninng an automation for as long as the automation runs. Once the automation has run through, your Token is freed up an can be used for something else.  
+You think of Token similar to the coin you use in a shopping cart: as long as you are using the shopping cart, the coin is in the cart and you can't use it for something else. As soon as you return the cart, you get the coin back and can use it for other things. Token are similar: they are blocked, for example, by running an automation for as long as the automation runs. Once the automation has run through, your Token is freed up an can be used for something else.  
 
 This means that the amount of Token in your account essentially determines how many things you can execute in parallel. But running automations is not the only thing that influences your Token usage.  
 
 Most things you do on the Cloudomation platform influence your Token usage in some way. For example, every user you have in your account costs a fraction of a Token. Similarly, while you are logged in, every live view of a page you have open costs a fraction of a Token. You can recognise live views by the green lights next to them in the left hand menu pane - for example, when you have your Executions list open, this list is a live view. It updates live as your executions are running. If you switch to a different view, the Executions list will stay live.
 
-Check the chapter [quick tips to reduce your Token usage](#quick-tips-to-reduce-your-token-usage) to learn how you can avoid unnecessary Token usage. In the chapter [Token price list](#token-price-list) you find a list of everything that requires Token.
+Check the chapter [quick tips to reduce your Token usage](#quicktipstoreduceyourtokenusage) to learn how you can avoid unnecessary Token usage. In the chapter [Token price list](#tokenpricelist) you find a list of everything that requires Token.
 
 You can see how many Token you are currently using by looking at the "Token usage counter" at the top left of the Cloudomation user interface while you are logged in. If you hover over the counter, you will see the percentage of Token currently in use.
 
@@ -54,8 +50,8 @@ The table below lists everything that counts towards your Token usage, how much 
 
 |Name in usage report|Explanation|Token price|Token price explanation|Life time|
 |---|---|---|
-|record_user|The system record of a user. This contains the user name, e-mail-address, password, user role etc. You can see your user records in the [User](/user) section while logged in.|0.01|Every user in your account costs 0.01 Token. When you invite a new user, this will block 0.01 Token in your account for as long a this user exists. When you delete a user, this will free up 0.01 Token in your account. Since you need at least one user for each account, you will always have a minimum Token usage of 0.01 Token in your account.|Forever / long term: user records exist, and block Token, for as long as the user exists.|
-|record_execution|The system record of an execution, i.e. a past run of a flow script. This is what you see in the [Executions](/executions) view. An execution record contains all the information of an individual run of a flow script: when it ran, how long it took, which inputs and outputs were used etc.|0.01|Every entry in your [Executions](/executions) list costs 0.01 Token. The execution records are created automatically every time you run a flow script. Running one flow script can generate several execution records: each task within a flow script creates a separate execution record.|7 days: by default, execution records are set to expire after 7 days, meaning that they are automatically deleted and their Token are freed up after 7 days. You can change this default for all execution records using the client.execution.retention_time.minutes setting - refer to the [settings documentation](/documentation/settings) to find out more. You can also change the expiry time for an individual execution manually in the executions view, or in a flow script when starting a child execution.|
+|record_user|The system record of a user. This contains the user name, e-mail-address, password, user role etc. You can see your user records in the [Users](/users) section while logged in.|0.01|Every user in your account costs 0.01 Token. When you invite a new user, this will block 0.01 Token in your account for as long a this user exists. When you delete a user, this will free up 0.01 Token in your account. Since you need at least one user for each account, you will always have a minimum Token usage of 0.01 Token in your account.|Forever / long term: user records exist, and block Token, for as long as the user exists.|
+|record_execution|The system record of an execution, i.e. a past run of a flow script. This is what you see in the [Executions](/executions) view. An execution record contains all the information of an individual run of a flow script: when it ran, how long it took, which inputs and outputs were used etc.|0.01|Every entry in your [Executions](/executions) list costs 0.01 Token. The execution records are created automatically every time you run a flow script. Running one flow script can generate several execution records: each task within a flow script creates a separate execution record.|7 days: by default, execution records are set to expire after 7 days, meaning that they are automatically deleted and their Token are freed up after 7 days. You can change this default for all execution records using the client.execution.retention_time.minutes setting - refer to the [settings documentation](/documentation/Settings) to find out more. You can also change the expiry time for an individual execution manually in the executions view, or in a flow script when starting a child execution.|
 |record_flow|Your flow scripts, i.e. all flow scripts that you have stored in the [Flows](/flows) section of your account.|0.01|Every flow script in the [Flows](/flows) list costs 0.01 Token for as long as it exists. You can delete flow scripts to free up Token.|Intermediate to long term: until you actively delete them. Flow scripts do not have an expiration date. This means that they stay in your account (and block Token) from the time you create them until the time you actively delete them.|
 |record_setting|your settings, i.e. everything you see in the [Settings](/settings) view.|0.01|Every entry in the [Settings](/settings) view costs 0.01 Token.|Intermediate to long term: until you actively delete them. Settings do not have an expiration date. This means that they stay in your account (and block Token) from the time you create them until the time you actively delete them.|
 |execution_flow|Execution of a flow script.|1|Running a flow script (any flow script) blocks 1 Token for the duration of its execution. The Token is freed up again as soon as the flow script finishes successfully, aborts with an error, is waiting for a dependency (a child execution), is waiting for Token, or is paused.|Short term: only during running execution of a flow script. Note that child executions started for tasks are priced separately and do not block the 1 Token which is required for running flow scripts.|
@@ -87,23 +83,23 @@ Please note that the Token prices block the mentioned amount of Tokens only **wh
 ## How many Token do I need for my use case?
 
 A rough estimation of the **minimum amount of Token** you need for a use case can be done in two simple steps:  
-(1) Think about the most expensive Cloudomation functionality you want to use  
-(2) Check the Token usage in your account while you are not running any executions  
-(3) Add one Token for good measure.  
+1. Think about the most expensive Cloudomation functionality you want to use  
+2. Check the Token usage in your account while you are not running any executions  
+3. Add one Token for good measure.  
 And you're done.
 
 In a small example, it could look like this:  
-(1) I want to run a flow script (cost: 1 Token) which does two REST calls (cost: 1 Token each) and one git task (cost: 3 Token). The git task is the most expensive, so for this step I estimate: 3 Token.  
-(2) I only have my own user and a few flow scripts, so currently my Token usage while not executing anything is under 1 Token, so for this step I estimate: 1 Token
-(3) Add 1 Token    
+1. I want to run a flow script (cost: 1 Token) which does two REST calls (cost: 1 Token each) and one git task (cost: 3 Token). The git task is the most expensive, so for this step I estimate: 3 Token.  
+2. I only have my own user and a few flow scripts, so currently my Token usage while not executing anything is under 1 Token, so for this step I estimate: 1 Token  
+3. Add 1 Token    
 Total: 5 Token. I can be quite sure that my use case will run through without issue if I have at least 5 Token in my account.  
 
 I can also skip step 2 and only look at the free Token: most expensive feature + 1 Token: that's how many free Token I need before I start my flow script.
 
 Let us look at the logic behind each of these estimation steps:  
-(1) Starting any flow script will cost 1 Token. Any other (potentially more expensive) functionality I use in my flow script will start a child execution, which will block its own Token. A flow script only blocks Token while it is running - when it is waiting for a dependency (i.e. a task or child execution), it doesn't block any Token. It is therefore enough to look at the most expensive function to estimate the minimum required Token amount - it will be enough to execute one step after the next, serially.  
-(2) It is important to remember that the first Token in your account will never be fully available. Every account comes with a user, which already blocks 0.01 Token. To run a flow script, you will usually have that flow script stored in your Cloudomation account - which again blocks 0.01 Token. So the Token usage in your account will never be 0. This means that you need at least 4 Token in your account to use any functionality that requires 3 Token to run - it will need 3 *available* Token to run.  
-(3) Running an execution creates at least 1 execution record, which blocks 0.01 Token. If you use tasks or start child executions, these will create their own execution records. It is therefore necessary to keep in mind that you need at least a little bit more Token than what you would need purely for running a task or flow script. Adding one Token is a very rough approximation - depending on your flow script, it can be that you will need a lot less, or more. But for simple flow scripts it's a sufficient rule of thumb.  
+1. Starting any flow script will cost 1 Token. Any other (potentially more expensive) functionality I use in my flow script will start a child execution, which will block its own Token. A flow script only blocks Token while it is running - when it is waiting for a dependency (i.e. a task or child execution), it doesn't block any Token. It is therefore enough to look at the most expensive function to estimate the minimum required Token amount - it will be enough to execute one step after the next, serially.  
+2. It is important to remember that the first Token in your account will never be fully available. Every account comes with a user, which already blocks 0.01 Token. To run a flow script, you will usually have that flow script stored in your Cloudomation account - which again blocks 0.01 Token. So the Token usage in your account will never be 0. This means that you need at least 4 Token in your account to use any functionality that requires 3 Token to run - it will need 3 *available* Token to run.  
+3. Running an execution creates at least 1 execution record, which blocks 0.01 Token. If you use tasks or start child executions, these will create their own execution records. It is therefore necessary to keep in mind that you need at least a little bit more Token than what you would need purely for running a task or flow script. Adding one Token is a very rough approximation - depending on your flow script, it can be that you will need a lot less, or more. But for simple flow scripts it's a sufficient rule of thumb.  
 
 So this is how you can estimate the minimum amount of Token you need. However this estimates only what you need to execute your flow script one step after the next, serially. If you want to parallelize executions - and we recommend that you do - you might need a lot more to reach optimal performance.
 
