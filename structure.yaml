@@ -30,7 +30,6 @@ pages:
     - name: Running flow scripts remotely
     - name: Settings
     - name: Tips and tricks for writing flow scripts
-    - name: Token usage calculation
     - name: Token
     - name: User interface
     - name: User roles
