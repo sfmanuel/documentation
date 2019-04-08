@@ -206,7 +206,7 @@ Return\_when lists all possible values that the system can return for running ex
 * all\_succeeded - means that all of them ended successfully.
 * first\_ended - means that the first execution of a list of executions has ended, again could be with an error or successfully.
 
-The documentation tells you when you can use these enumerations. The other enumeration, status, lists all possible statuses in which an execution can be. You can use this to trigger certain events, e.g. deleting old execution records when there is an execution that is waiting for tokens.
+The documentation tells you when you can use these enumerations. The other enumeration, status, lists all possible statuses in which an execution can be. You can use this to trigger certain events, e.g. deleting old execution records when there is an execution that is waiting for token.
 
 ### An introduction to the Tasks documentation
 Tasks are documented separately. One thing that is important to understand is that tasks are also executions. This means that you can interact with them like with any other execution. Starting a task creates an execution object that you can interact with like you can interact with any other execution object.
