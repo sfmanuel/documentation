@@ -31,6 +31,7 @@ pages:
     - name: Settings
     - name: Tips and tricks for writing flow scripts
     - name: Token
+    - name: Trial
     - name: User interface
     - name: User roles
     - name: Using flow scripts from git
