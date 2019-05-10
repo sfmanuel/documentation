@@ -311,6 +311,8 @@ def handler(system, this):
 
 Connect to a remote host using SSH and execute a script.
 
+#### General use
+
 **Inputs:**
 * `hostname` - string
 * `hostkey` - string
@@ -325,16 +327,15 @@ Connect to a remote host using SSH and execute a script.
 * `remove_ansi_escapes` - boolean, default: True
 
 **Outputs:**
-* `retcode` - integer  
+* `retcode` - integer
   The return code
-* `report` - string  
+* `report` - string
   The outputs your scripts produce on the remote systems
+* `var` - dictionary
+  The content of all variables which were registered using `#OUTPUT_VAR(variable)`
 
 **Example:**
 ```python
-import re
-
-
 def handler(system, this):
     # Authenticate using private key
     info_task = this.task(
@@ -346,17 +347,22 @@ def handler(system, this):
         hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
         username='kevin',
         key='-----BEGIN RSA PRIVATE KEY-----\nMII...',
-        script='''
-               echo "hostname" "'$(hostname)'"
-               echo "username" "'$(id -un)'"
-               echo "cpu" "'$(uname -p)'"
-               '''
+        script=(
+            '''
+            HOSTNAME=$(hostname)
+            USERNAME=$(id -un)
+            CPU=$(uname -p)
+            #OUTPUT_VAR(HOSTNAME)
+            #OUTPUT_VAR(USERNAME)
+            #OUTPUT_VAR(CPU)
+            '''
+        ),
     ).run()
 
-    report = info_task.get('output_value')['report']
-    hostname = re.search("hostname '([^']*)'", report).group(1)
-    username = re.search("username '([^']*)'", report).group(1)
-    cpu = re.search("cpu '([^']*)'", report).group(1)
+    outputs = info_task.get('output_value')
+    hostname = outputs['var']['HOSTNAME']
+    username = outputs['var']['USERNAME']
+    cpu = outputs['var']['CPU']
 
     this.log(f'info_task was running on {hostname} using {cpu} as {username}')
 
@@ -367,15 +373,117 @@ def handler(system, this):
         hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
         username='kevin',
         password='***',
-        script='''
-               echo "up since" "'$(uptime -s)'"
-               '''
+        script=(
+            '''
+            UPTIME=$(uptime -s)
+            #OUTPUT_VAR(UPTIME)
+            '''
+        ),
     ).run()
 
-    report = uptime_task.get('output_value')['report']
-    up_since = re.search("up since '([^']*)'", report).group(1)
+    outputs = uptime_task.get('output_value')
+    uptime = outputs['var']['UPTIME']
 
-    this.log(f'{hostname} is up since {up_since}')
+    this.log(f'{hostname} is up since {uptime}')
 
     return this.success('all done')
+```
+
+#### Output variables
+
+There are two ways how to define "output variables":
+* from the flow starting the task, in the `output_vars` field of the input dictionary
+* from inside the task, in the `script` field of the input dictionary
+
+##### Output variables in `output_vars`
+
+You can register shell variables as "output variables" in the `output_vars`
+field of the input dictionary, e.g.:
+
+```python
+task = this.task(
+    'SSH',
+    hostname='my-ssh-server',
+    hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
+    username='kevin',
+    key='-----BEGIN RSA PRIVATE KEY-----\nMII...',
+    script='''
+        VALUE=foo
+        ''',
+    name='output_var',
+    run=True,
+    output_vars={'VALUE'},
+)
+assert task.get('output_value')['var']['VALUE'] == 'foo'
+```
+
+##### Output variables in `script`
+
+You can register shell variables as "output variables" using
+`#OUTPUT_VAR(variable_name)`:
+
+```bash
+VARIABLE="some content"
+#OUTPUT_VAR(VARIABLE)
+```
+
+The value of registered variables is available to the calling flow script
+in the `var` dictionary of the task outputs:
+
+```python
+outputs = task(...).get('output_value')
+variable = outputs['var']['VARIABLE']
+# `variable` contains "some content"
+```
+
+#### Output files
+
+There are two ways how to define "output files":
+* from the flow starting the task, in the `output_files` field of the input dictionary
+* from inside the task, in the `script` field of the input dictionary
+
+##### Output files in `output_files`
+
+You can register files as "output files" in the `output_files`
+field of the input dictionary, e.g.:
+
+```python
+task = this.task(
+    'SSH',
+    hostname='my-ssh-server',
+    hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
+    username='kevin',
+    key='-----BEGIN RSA PRIVATE KEY-----\nMII...',
+    script='''
+        echo -n "spam" > file.txt
+        ''',
+    name='output_var',
+    run=True,
+    output_files={'file.txt'},
+)
+assert 'file.txt' in task.get('output_value')['file']
+assert system.file('file.txt').get('content') == 'spam'
+```
+
+##### Output files in `script`
+
+You can register files as "output files" using
+`#OUTPUT_FILE(filename)`:
+
+```python
+task = this.task(
+    'SSH',
+    hostname='my-ssh-server',
+    hostkey='ssh-rsa AAAAB3NzaC1yc2E...',
+    username='kevin',
+    key='-----BEGIN RSA PRIVATE KEY-----\nMII...',
+    script='''
+        echo -n "egg" > file2.txt
+        #OUTPUT_FILE(file2.txt)
+        ''',
+    name='output_var',
+    run=True,
+)
+assert 'file2.txt' in task.get('output_value')['file']
+assert system.file('file2.txt').get('content') == 'egg'
 ```

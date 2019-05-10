@@ -23,7 +23,7 @@ If you are not looking for code, but for example use cases, please take a look a
 # cases etc.
 
 # A note on the limitations of for loops: they only comfortably allow to loop
-# through a list of one single parameter. The cloudomation clone execution
+# through a list of one single parameter. The Cloudomation clone execution
 # function enables the handling of more advanced situations in which several
 # parameters have to be changed, and/or different parameters are kept and
 # changed for different runs of an execution. The clone function allows for

@@ -3,7 +3,7 @@
 To sign up for the Cloudomation platform, navigate to the <i class="fa fa-fw fa-user-plus"></i> Sign Up button in the left hand pane menu. You will be directed to the sign up form. To create your Cloudomation account, you need to fill in the following details:
 
 **Client name**  
-The client name can be any name that you choose. It is the top level name of your Cloudomation account. There can be several users under the same client name in Cloudomation. Users within the same client share resources: they use the same tokens that are assigned to one client, and they can see and edit each other's flow scripts, settings, and executions.  
+The client name can be any name that you choose. It is the top level name of your Cloudomation account. There can be several users under the same client name in Cloudomation. Users within the same client share resources: they use the same token that are assigned to one client, and they can see and edit each other's flow scripts, settings, and executions.  
 In a professional setting, the client name would be your company's, association's, school's or organisation's name. Note that there is no requirement from Cloudomation's side that the client name must be real or representative of your organisation - you can choose any name you like.  
 You and all other users in your client will need the client name to sign in.  
 Note that it is not possible to change the client name after sign up.
