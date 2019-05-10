@@ -25,7 +25,7 @@ Choose any password. You can change the password after the sign up at any time.
 Repeat the password.  
 
 **Invitation code**  
-As Cloudomation is currently only available in Beta release, you need an invitation code to create an account. Get in touch at info@cloudomation.io if you are interested about receiving an invitation code.  
+As Cloudomation is currently only available in Beta release, you need an invitation code to create an account. Get in touch at info@cloudomation.com if you are interested about receiving an invitation code.  
 
 **Logging in after sign up**
 Once you have completed the sign up process, you can log in to the Cloudomation platform. If you choose the "remember me" option at login, a login cookie will be set for your account which will automatically log you in whenever you visit the Cloudomation page with the same browser. The login cookie is valid for 90 days.  

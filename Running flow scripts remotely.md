@@ -32,7 +32,7 @@ SCRIPT=$(cat "${FLOW}" | base64 -w0)
 
 EXECUTION="{\"script\":\"${SCRIPT}\",\"name\":\"${NAME}\"}"
 
-curl -H "Authorization: $TOKEN" -d "${EXECUTION}" https://cloudomation.io/api/1/execution
+curl -H "Authorization: $TOKEN" -d "${EXECUTION}" https://cloudomation.com/api/1/execution
 echo ""
 ```
 
@@ -71,7 +71,7 @@ $EXECUTION = @{
 } | ConvertTo-Json
 
 Invoke-RestMethod `
-    -Uri "https://cloudomation.io/api/1/execution" `
+    -Uri "https://cloudomation.com/api/1/execution" `
     -Method Post `
     -Body "${EXECUTION}" `
     -Headers @{Authorization = "${TOKEN}"}

@@ -1,6 +1,6 @@
 # Webhooks
 
-The webhooks setting allows you to configure a webhook with Cloudomation that triggers a specific flow script. Creating this setting configures an endpoint at `https://cloudomation.io/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. Optionally, the webhook will return a response.
+The webhooks setting allows you to configure a webhook with Cloudomation that triggers a specific flow script. Creating this setting configures an endpoint at `https://cloudomation.com/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. Optionally, the webhook will return a response.
 
 To register a webhook, you need to create a setting that follows a specific pattern:
 
@@ -31,14 +31,14 @@ user_name: kevin
 key: my-secret-api-key
 ```
 
-Creating this setting configures an endpoint at `https://cloudomation.io/api/webhook/myclient/signup`. A `GET` or `POST` request to that URL will execute the flow named `signup` with the permissions of user `kevin`.
+Creating this setting configures an endpoint at `https://cloudomation.com/api/webhook/myclient/signup`. A `GET` or `POST` request to that URL will execute the flow named `signup` with the permissions of user `kevin`.
 
 **Example calls**   
 ```bash
-curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/webhook/test-client/my-webhook
 ```
 The above call will trigger the flow script, wait for it to finish and return the flow script itself as well as its inputs and outputs as a json response.
 ```bash
-curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook?async
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/webhook/test-client/my-webhook?async
 ```
 The above call will trigger the flow script and return immediately without waiting for the flow to finish. The json response will contain the execution id.

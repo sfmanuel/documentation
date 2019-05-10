@@ -25,5 +25,5 @@ SCRIPT=$(cat "${FLOW}" | base64 -w0)
 
 EXECUTION="{\"script\":\"${SCRIPT}\",\"name\":\"${NAME}\"}"
 
-curl -H "Authorization: $TOKEN" -d "${EXECUTION}" https://cloudomation.io/api/1/execution
+curl -H "Authorization: $TOKEN" -d "${EXECUTION}" https://cloudomation.com/api/1/execution
 echo ""

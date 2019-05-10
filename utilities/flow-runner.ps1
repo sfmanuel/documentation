@@ -29,7 +29,7 @@ $EXECUTION = @{
 } | ConvertTo-Json
 
 Invoke-RestMethod `
-    -Uri "https://cloudomation.io/api/1/execution" `
+    -Uri "https://cloudomation.com/api/1/execution" `
     -Method Post `
     -Body "${EXECUTION}" `
     -Headers @{Authorization = "${TOKEN}"}

@@ -22,8 +22,8 @@ No, though it a good metaphor. Cloudomation functionality is exposed through a n
 Yes, but you are limited in what you can do. You cannot install modules and you can only use a limited amount of resources on the platform. You also do not have local storage space available. Cloudomation is not intended as a Python IDE. You can execute complex Python scripts on other systems through Cloudomation. You can use Cloudomation to deyploy and environment where you can run your Python scripts, or use Cloudomation to execute scripts on already existing environments.
 
 #### Do I have to install Cloudomation to use it?
-No, Cloudomation is a cloud platform. Just go to cloudomation.io to create your account and try it out for up to six weeks for free.
+No, Cloudomation is a cloud platform. Just go to cloudomation.com to create your account and try it out for up to six weeks for free.
 
 ---
 
-Contact [info@cloudomation.io](mailto:info@cloudomation.io) for more information
+Contact [info@cloudomation.com](mailto:info@cloudomation.com) for more information
