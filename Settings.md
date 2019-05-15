@@ -106,15 +106,15 @@ flow_name: my-flow-name
 user_name: my-user-name
 key: my-secret-api-key
 ```
-This setting configures a webhook at the endpoint `https://cloudomation.io/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. The webhook will return the flow with all inputs and outputs as a json response. If no response is required, adding 'async' as a parameter to the call will only trigger the flow and return as response only the execution id.  
+This setting configures a webhook at the endpoint `https://cloudomation.com/api/webhook/<client name>/<webhook name>`. A `GET` or `POST` request to that URL will execute a flow script. The webhook will return the flow with all inputs and outputs as a json response. If no response is required, adding 'async' as a parameter to the call will only trigger the flow and return as response only the execution id.  
 See the [webhooks](/Webhooks.md) documentation for more detail.
 
 ###### Example calls
 ```bash
-curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/webhook/test-client/my-webhook
 ```
 ```bash
-curl -d '{"key": "my-secret-api-key"}' https://cloudomation.io/api/webhook/test-client/my-webhook?async
+curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/webhook/test-client/my-webhook?async
 ```
 
 ##### File uploads

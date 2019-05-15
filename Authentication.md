@@ -15,7 +15,7 @@ Once all the required fields are filled out you can click on "Login". If the aut
 
 ## Via the REST API
 
-To authenticate using the REST API you need to POST a JSON string containing your credentials to `https://cloudomation.io/api/1/auth`. An example JSON might look like:
+To authenticate using the REST API you need to POST a JSON string containing your credentials to `https://cloudomation.com/api/1/auth`. An example JSON might look like:
 ```json
 {
     "client_name": "CorpInc AG",
@@ -58,7 +58,7 @@ echo ""
 AUTH="{\"client_name\":\"${CLIENT_NAME}\",\"user_name\":\"${USER_NAME}\",\"password\":\"${PASSWORD}\"}"
 
 echo "Sending auth..."
-REPLY=$(curl -m 2 -s -d "${AUTH}" https://cloudomation.io/api/1/auth)
+REPLY=$(curl -m 2 -s -d "${AUTH}" https://cloudomation.com/api/1/auth)
 if [ "$?" -ne "0" ]; then
   echo "Failed to send auth!" 1>&2
   return 1
@@ -113,7 +113,7 @@ $AUTH = @{
 
 Write-Host "Sending auth..."
 try {
-    $REPLY = Invoke-RestMethod -Uri "https://cloudomation.io/api/1/auth" -Method Post -Body "${AUTH}"
+    $REPLY = Invoke-RestMethod -Uri "https://cloudomation.com/api/1/auth" -Method Post -Body "${AUTH}"
 }
 catch {
     $STATUS_CODE = $_.Exception.Response.StatusCode.value__
@@ -167,7 +167,7 @@ eyJ...
 ```
 You can then use the token to authenticate further requests:
 ```bash
-$ curl -s 'https://cloudomation.io/api/1/user/kevin' -H "Authorization: $TOKEN" | jq .
+$ curl -s 'https://cloudomation.com/api/1/user/kevin' -H "Authorization: $TOKEN" | jq .
 {
   "updated": {
     "last_activity": "1531049907.7785194",

@@ -27,7 +27,7 @@ The third category is what we call **tasks**. Tasks allow you to interact with t
 
 Everything that you can use with *this* and *system* is documented in the [Cloudomation flow script method reference](Flow+script+function+reference). Tasks are documented separately: [Tasks](Tasks). I will describe what you can find in both of those pages.
 
-Documentation is always alive, and ours will change and grow together with the Cloudomation platform. If you find pages in the documentation that are out of date or are missing something, please let us know. Drop us a line to [info@cloudomation.io](mailto:info@cloudomation.io).
+Documentation is always alive, and ours will change and grow together with the Cloudomation platform. If you find pages in the documentation that are out of date or are missing something, please let us know. Drop us a line to [info@cloudomation.com](mailto:info@cloudomation.com).
 
 ### An introduction to the Cloudomation flow script method reference
 The [Cloudomation flow script method reference](Flow+script+function+reference) contains documentation about all the functionality that you can use in your flow scripts. However it is intended as a reference, so it only lists arguments and fields and is generally very brief. It is automatically generated, so you can be sure that the flow script method reference is always up to date.

@@ -24,7 +24,7 @@ button in the action-bar. This will run the flow script immediately and once.
 ### Creating executions using the REST API
 
 To create a new execution using the Cloudomation REST API send a HTTP POST
-request to `https://cloudomation.io/api/1/execution`. The request and response
+request to `https://cloudomation.com/api/1/execution`. The request and response
 schemas are documented in the [API explorer](/explorer).
 
 > <i class="fa fa-info-circle fa-2x text-info"></i> To create an execution using the REST API
