@@ -74,7 +74,7 @@ def handler(system, this):
                 'Please specify an authorization key for the Cloudomation '
                 'webhook. Can be any alphanumeric string.'
             )
-        ).run()
+        )
         c_webhook_key = c_webhook_key_request.get('output_value')['response']
 
         cloudomation_username = this.get('user_name')
@@ -97,7 +97,7 @@ def handler(system, this):
     # check if github info setting exists
     # if it doesn't, start the flow script to request the info from the user
     if not system.setting('github_info').exists():
-        this.flow('request_github_info').run()
+        this.flow('request_github_info')
 
     github_info = system.setting('github_info').load('value')
     github_username = github_info['github_username']
@@ -119,7 +119,7 @@ def handler(system, this):
         headers={
             'Authorization': f'token {github_token}'
         },
-    ).run()
+    )
 
     # we get the response
     github_list_webhook = list_github_webhooks.get('output_value')['json']
@@ -160,7 +160,7 @@ def handler(system, this):
             headers={
                 'Authorization': f'token {github_token}'
             },
-        ).run()
+        )
         this.set_output('webhook_created', 'true')
 
     return this.success('All done - Cloudomation and github webhooks set up.')
@@ -197,7 +197,7 @@ def handler(system, this):
         request=(
             'Do you have a github account? Please answer y for yes or n for no'
         )
-    ).run()
+    )
 
     if github_account_exists.get('output_value')['response'] == 'n':
         this.task(
@@ -205,13 +205,13 @@ def handler(system, this):
             request=(
                 'Please go to https://github.com/join and create an account.'
             )
-        ).run()
+        )
 
     elif github_account_exists.get('output_value')['response'] == 'y':
         github_un_request = this.task(
             'INPUT',
             request=('What is your github username?')
-        ).run()
+        )
         github_username = github_un_request.get('output_value')['response']
 
         github_token_request = this.task(
@@ -224,7 +224,7 @@ def handler(system, this):
                 'admin:repo_hook. Paste the token here after you have created '
                 'it.'
             )
-        ).run()
+        )
         github_token = github_token_request.get('output_value')['response']
 
         github_repo_exists = this.task(
@@ -234,14 +234,14 @@ def handler(system, this):
                 'your flow scripts? Please answer y for yes or n for no. If '
                 'you answer n, we will set up a new repository for you.'
             )
-        ).run()
+        )
         this.log(github_repo_exists.get('output_value')['response'])
 
         if github_repo_exists.get('output_value')['response'] == 'y':
             github_repo_name_request = this.task(
                 'INPUT',
                 request=('What is the name of your github repository?')
-            ).run()
+            )
             github_repo_name = (
                 github_repo_name_request.get('output_value')['response']
             )
@@ -253,7 +253,7 @@ def handler(system, this):
                     'We will now set up a github repository for you. '
                     'What should be the name of the repository?'
                 )
-            ).run()
+            )
             github_repo_name = (
                 github_repo_name_request.get('output_value')['response']
             )
@@ -266,7 +266,7 @@ def handler(system, this):
                     'github repository page, where you can change '
                     'it later.'
                 )
-            ).run()
+            )
             github_repo_description = (
                 github_desc_request.get('output_value')['response']
             )
@@ -281,7 +281,7 @@ def handler(system, this):
                     'this execution to see if the repository was created '
                     'successfully.'
                 )
-            ).run()
+            )
             private_repo = private_repo_request.get('output_value')['response']
 
             homepage = (
@@ -305,7 +305,7 @@ def handler(system, this):
                 headers={
                     'Authorization': f'token {github_token}'
                 },
-            ).run()
+            )
             this.log(
                 f'Github repository created successfully. '
                 f'Check it out here: {homepage}'
@@ -319,7 +319,7 @@ def handler(system, this):
                     'Please restart the flow script and try again.'
                 ),
                 timeout=0.2
-            ).run()
+            )
 
         github_info = {
             'github_username': github_username,
@@ -338,7 +338,7 @@ def handler(system, this):
                 'Please restart the flow script and try again.'
             ),
             timeout=0.2
-        ).run()
+        )
 
     return this.success('All done.')
 ```
@@ -407,7 +407,7 @@ def handler(system, this):
         repository_url=repo_url,
         repository_path='synced_from_git',
         ref=commit_sha,
-    ).run()
+    )
     # the git 'get' command ensures the content of the repository in a local
     # folder. it will clone or fetch and merge.
 

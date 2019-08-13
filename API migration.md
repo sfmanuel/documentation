@@ -48,12 +48,12 @@ to access functionality related to the execution. This includes:
 
     ```python
     # create a child flow execution
-    child_flow = this.flow('my flow')
+    child_flow = this.flow('my flow', run=False)
     # run the child flow execution in the background
     flow.run_async()
 
     # create a child task execution and run it
-    child_task = this.task('REST').run()
+    child_task = this.task('REST')
 
     # create and run a child script in one call
     script = '''
@@ -61,7 +61,7 @@ to access functionality related to the execution. This includes:
             this.log('Hello World!')
             this.success('all done')
         '''
-    child_script = this.script(script, run=True)
+    child_script = this.script(script)
     ```
 
 The object returned by `this.flow`, `this.task`, or `this.script` is also

@@ -28,7 +28,7 @@ def handler(system, this):
         hostname='test.example.com',
         login=user,
         script='systemctl restart httpd'
-    ).run()
+    )
 ```
 
 If you choose to change the user-name you only need to update it in one place: the setting value:
@@ -61,7 +61,7 @@ def handler(system, this):
             to='kevin@example.com',
             subject='counter alert',
             text=f'found {count} occurrences'
-        ).run()
+        )
 ```
 
 The value can also retrieved using the REST API:
