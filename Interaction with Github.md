@@ -2,9 +2,9 @@
 If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
 
 This example consists of three flow scripts. You can find all of them in the [public flow script library](https://github.com/starflows/library){ext} as well:
-- [Configure Github and Cloudomation webhooks](https://github.com/starflows/library/blob/master/configure_webhooks_github_cloudomation.py){ext}
-- [Request Github information](https://github.com/starflows/library/blob/master/request_github_info.py){ext}
-- [Synchronise flow script and settings from Github](https://github.com/starflows/library/blob/master/sync_from_github.py){ext}
+- [Configure Github and Cloudomation webhooks](https://github.com/starflows/library/blob/live/configure_webhooks_github_cloudomation.py){ext}
+- [Request Github information](https://github.com/starflows/library/blob/live/request_github_info.py){ext}
+- [Synchronise flow script and settings from Github](https://github.com/starflows/library/blob/live/sync_from_github.py){ext}
 
 To run the full process, make sure that you have all three flow scripts in your Cloudomation account, and that the flow scripts are named the same as they are in Github (without the .py extension). Start with the "Configure Github and Cloudomation" flow script and see what happens. Enjoy!
 

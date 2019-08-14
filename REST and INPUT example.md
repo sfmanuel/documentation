@@ -1,5 +1,5 @@
 # Example using REST and INPUT Tasks
-Find this example in the public flow script library [here](https://github.com/starflows/library/blob/master/Example%20settings%20input%20REST.py){ext}.
+Find this example in the public flow script library [here](https://github.com/starflows/library/blob/live/Example%20settings%20input%20REST.py){ext}.
 
 If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
 

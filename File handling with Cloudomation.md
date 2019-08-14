@@ -59,4 +59,4 @@ def handler(system, this):
     this.success(message='all done')
 ```
 
-Take a look at the [GIT file sync flow script](https://github.com/starflows/library/blob/master/sync%20flow%20scripts.py) in the public flow script library for an example of how to use the list_dir function to perform operations on several files.
+Take a look at the [GIT file sync flow script](https://github.com/starflows/library/blob/live/sync%20flow%20scripts.py) in the public flow script library for an example of how to use the list_dir function to perform operations on several files.

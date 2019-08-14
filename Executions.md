@@ -52,7 +52,7 @@ button and select
 You will be redirected to the input request list to configure the delayed execution run.
 
 > <i class="fa fa-info-circle fa-2x text-info"></i> The "Run delayed" functionality is
-implemented in [Delayed.py](https://github.com/starflows/library/blob/master/Delayed.py){ext}
+implemented in [Delayed.py](https://github.com/starflows/library/blob/live/Delayed.py){ext}
 from the [public flow library](https://github.com/starflows/library){ext}.
 The implementation is meant to be a boilerplate and you are encouraged to
 customise it to your needs.
@@ -67,7 +67,7 @@ button and select
 You will be redirected to the input request list to configure the recurring execution run.
 
 > <i class="fa fa-info-circle fa-2x text-info"></i> The "Run recurring" functionality is
-implemented in [Recurring.py](https://github.com/starflows/library/blob/master/Recurring.py){ext}
+implemented in [Recurring.py](https://github.com/starflows/library/blob/live/Recurring.py){ext}
 from the [public flow library](https://github.com/starflows/library){ext}.
 The implementation is meant to be a boilerplate and you are encouraged to
 customise it to your needs.
@@ -82,7 +82,7 @@ button and select
 You will be redirected to the input request list to configure the scheduled execution run.
 
 > <i class="fa fa-info-circle fa-2x text-info"></i> The "Run scheduled" functionality is
-implemented in [Scheduled.py](https://github.com/starflows/library/blob/master/Scheduled.py){ext}
+implemented in [Scheduled.py](https://github.com/starflows/library/blob/live/Scheduled.py){ext}
 from the [public flow library](https://github.com/starflows/library){ext}.
 The implementation is meant to be a boilerplate and you are encouraged to
 customise it to your needs.
