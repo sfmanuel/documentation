@@ -13,7 +13,7 @@ The first table describes the elements of the top hand pane. The sections of the
 |:-----:|:----------|
 |<i class="fa fa-fw fa-bars"></i>|open left hand menu pane|
 |<i class="fa fa-fw fa-times"></i>|close left hand menu pane|
-|<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud" style="color: #5e8ebd"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span>| go to home screen |
+|<span class="fa-stack"><i class="fa fa-stack-2x fa-cloud text-blue"></i><i class="fa fa-stack-1x fa-star fa-inverse"></i></span>| go to home screen |
 |<i class="fa fa-fw fa-tachometer"></i><span class="ml-1">10</span><span class="ml-1">%</span>| your current token usage - see also [token documentation](/documentation/Token)|
 |<i class="fa fa-fw fa-terminal"></i><span class="ml-1 badge badge-pill badge-info">2</span>|unanswered input requests - clicking this button will direct you to the list of unanswered input requests, where you can provide responses to the requests.|  
 |<i class="fa fa-fw fa-envelope-o"></i><span class="ml-1 badge badge-pill badge-danger">3</span>|new error messages - clicking this button will direct you to your messages, where you can acknowledge new message. Note that you are only notified of new error messages here, any other type of message (information or success) does not lead to a notification in the top pane.|  
