@@ -23,7 +23,7 @@ If you are not looking for code, but for example use cases, please take a look a
 # chance that the flow script will fail due to these limits.
 
 
-# (1) define handler function for the Cloudomation class (c)
+# (1) define handler function
 def handler(system, this):
 
 # (2) use settings
@@ -193,49 +193,66 @@ Note that manual logging of task outputs only serves the purpose of collecting a
 If you take a look at the REST tasks, for example, you can see that their input is the URL that is put together in the f-strings in the REST tasks defined in the flow script. For debugging, you can always inspect child executions separately to see if their inputs and outputs are as you expect.  
 
 ```python
-def handler(c):
-    if c.setting('geonames_username') is None:
-        c.setting('geonames_username', 'demo')
+def handler(system, this):
 
-    username = c.setting('geonames_username')
+    geonames_username = system.setting('geonames_username')
+    if not geonames_username.exists():
+        geonames_username.save(value='demo')
 
-    countryname = c.task(
+    username = geonames_username.get('value')
+
+    countryname_request = this.task(
         'INPUT',
-        request=('This is a country information service. If you input a '
-                 'country name, I will tell you a few things about this '
-                 'country. Please only type one country at a time. Which '
-                 'country would you like to learn about?')
-    ).run(
-    ).getOutputs()['response']
-
-    countrycode_response = c.task(
-        'REST',
-        url=(f'http://api.geonames.org/search?'
-             f'name={countryname}&'
-             f'featureCode=PCLI'
-             f'&type=JSON'
-             f'&username={username}')
-    ).run(
-    ).getOutputs()
-
-    if countrycode_response['json']['totalResultsCount'] < 1:
-        return c.end(
-            'error',
-            message='We could not find the country you named.'
+        request=(
+            'This is a country information service. If you input a country '
+            'name, I will tell you a few things about this country. Please '
+            'only type one country at a time. Which country would you like '
+            'to learn about?'
         )
+    )
+    countryname_result = countryname_request.get('output_value')
+
+    this.log('Outputs of the INPUT task:', countryname_result)
+
+    countryname = countryname_result['response']
+
+    countrycode_request = this.task(
+        'REST',
+        url=(
+            f'http://api.geonames.org/search?'
+            f'name={countryname}&'
+            f'featureCode=PCLI'
+            f'&type=JSON'
+            f'&username={username}'
+        )
+    )
+
+    countrycode_response = countrycode_request.get('output_value')
+
+    this.log('Outputs of the country code REST task:', countrycode_response)
+
+    response_count = countrycode_response['json']['totalResultsCount']
+
+    if response_count < 1:
+        return this.error('We could not find the country you named.')
 
     countrycode = countrycode_response['json']['geonames'][0]['countryCode']
 
-    countryinfo_request = c.task(
+    countryinfo_request = this.task(
         'REST',
-        url=(f'http://api.geonames.org/countryInfo?'
-             f'country={countrycode}'
-             f'&type=JSON'
-             f'&username={username}')
-    ).run(
-    ).getOutputs()['json']['geonames'][0]
+        url=(
+            f'http://api.geonames.org/countryInfo?'
+            f'country={countrycode}'
+            f'&type=JSON'
+            f'&username={username}'
+        )
+    )
 
-    user_feedback = c.task(
+    countryinfo_result = countryinfo_request.get('output_value')['json']['geonames'][0]
+
+    this.log('Outputs of the country information REST task:', countryinfo_result)
+
+    user_feedback = this.task(
         'INPUT',
         request=(f'Here is some information about  {countryname}. It is '
                  f'located in {countryinfo_result["continentName"]}, '
@@ -244,10 +261,11 @@ def handler(c):
                  f'and an area of {countryinfo_result["areaInSqKm"]} '
                  f'square kilometers. Did you like this information?')
         ).run(
-    ).getOutputs()['response']
+    ).get('output_value')['response']
 
-    c.end(
-        'success',
-        message=(f'Country info provided. Did the user like the information? '
-                 f'{user_feedback}'))
+    this.success(
+        message=(
+            f'Country info provided. Did the user like the information? '
+            f'{user_feedback}')
+    )
 ```
