@@ -188,7 +188,7 @@ def handler(system, this):
     )
 ```
 
-The above example flow script contains two INPUT tasks, two REST tasks, and a bit of logging - it is a fairly small and simple flow script. For the purposes of clarity, comments and intermediate steps are introduced that stretch the script to some length. Below is the same flow script with fewer intermediate steps, without manually logging all outputs, and without comments - shrinking the script from 190 lines to just 57 lines without sacrificing readability.  
+The above example flow script contains two INPUT tasks, two REST tasks, and a bit of logging - it is a fairly small and simple flow script. For the purposes of clarity, comments and intermediate steps are introduced that stretch the script to some length. Below is the same flow script with fewer intermediate steps, without manually logging all outputs, and without comments.  
 Note that manual logging of task outputs only serves the purpose of collecting all outputs into the parent execution object. The outputs are still all logged in the individual execution objects of the tasks. Go to the execution view and look at the child executions started by the flow script - each task (both INPUT and both REST tasks) are separate executions with separate execution objects. There, their inputs and outputs are logged.  
 If you take a look at the REST tasks, for example, you can see that their input is the URL that is put together in the f-strings in the REST tasks defined in the flow script. For debugging, you can always inspect child executions separately to see if their inputs and outputs are as you expect.  
 
