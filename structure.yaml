@@ -12,6 +12,8 @@ pages:
     pages:
     - name: Flow script function reference
     - name: Tasks
+    - name: API explorer
+      link: /explorer
   - name: Knowledge base
     pages:
     - name: Authentication
