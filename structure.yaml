@@ -13,7 +13,7 @@ pages:
     - name: Flow script function reference
     - name: Tasks
     - name: API explorer
-      link: /explorer
+      link: /api/2/swagger/index.html?url=/api/2/openapi.json
       page: explorer
   - name: Knowledge base
     pages:
