@@ -20,7 +20,7 @@ $AUTH = @{
 
 Write-Host "Sending auth..."
 try {
-    $REPLY = Invoke-RestMethod -Uri "https://cloudomation.com/api/1/auth" -Method Post -Body "${AUTH}"
+    $REPLY = Invoke-RestMethod -Uri "https://app.cloudomation.com/api/latest/auth" -Method Post -Body "${AUTH}"
 }
 catch {
     $STATUS_CODE = $_.Exception.Response.StatusCode.value__

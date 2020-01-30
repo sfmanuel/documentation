@@ -10,7 +10,7 @@ echo ""
 AUTH="{\"client_name\":\"${CLIENT_NAME}\",\"user_name\":\"${USER_NAME}\",\"password\":\"${PASSWORD}\"}"
 
 echo "Sending auth..."
-REPLY=$(curl -m 2 -s -d "${AUTH}" https://cloudomation.com/api/1/auth)
+REPLY=$(curl -m 2 -s -d "${AUTH}" https://app.cloudomation.com/api/latest/auth)
 if [ "$?" -ne "0" ]; then
   echo "Failed to send auth!" 1>&2
   return 1
