@@ -3,7 +3,7 @@ This example consists of two flow scripts. You can also find them in the [public
 - [Parent flow](https://github.com/starflows/library/blob/live/loop_parent.py){ext}
 - [Child flow](https://github.com/starflows/library/blob/live/loop_child.py){ext}
 
-If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
+If you are not looking for code, but for example use cases, please take a look at these [example use cases](https://cloudomation.com/examples/){ext}.
 
 ## Parent flow
 

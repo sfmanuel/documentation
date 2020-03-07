@@ -1,5 +1,5 @@
 # Example interaction with Github: GIT task, webhook configuration, INPUT and REST task
-If you are not looking for code, but for example use cases, please take a look at these [example use cases](/site/Example+use+cases).
+If you are not looking for code, but for example use cases, please take a look at these [example use cases](https://cloudomation.com/examples/){ext}.
 
 This example consists of three flow scripts. You can find all of them in the [public flow script library](https://github.com/starflows/library){ext} as well:
 - [Configure Github and Cloudomation webhooks](https://github.com/starflows/library/blob/live/configure_webhooks_github_cloudomation.py){ext}
