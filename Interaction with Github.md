@@ -387,7 +387,7 @@ def handler(system, this):
     inputs = this.get('input_value')
     try:
         commit_sha = inputs['data_json']['commit_sha']
-    except Exception:
+    except KeyError:
         commit_sha = 'master'
 
     # read the connection information of the private repository
@@ -428,5 +428,5 @@ def handler(system, this):
             # create or update Setting object
             system.setting(name).save(value=value)
 
-    this.success('Github sync complete')
+    return this.success('Github sync complete')
 ```
