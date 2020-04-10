@@ -117,47 +117,6 @@ curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/1/webhook/te
 curl -d '{"key": "my-secret-api-key"}' https://cloudomation.com/api/1/webhook/test-client/my-webhook?async
 ```
 
-##### File uploads
-
-When a file is [uploaded](/upload) to Cloudomation a specific webhook `client.webhook.file.added` is being called.
-The flow script will receive three parameters:
-- user_name: the name of the user who uploaded the file
-- file_path: the path of the file in the files resource
-- size: the size of the uploaded file, in bytes.
-
-The flow script has the possibility to further process the uploaded file. Possibilities include:
-- creating a flow script
-- creating/updating a setting
-- sending an email with the file as attachment
-
-The following flow script is an example implementation:
-
-```python
-def handler(system, this):
-    inputs = this.get('input_value').get('data_json')
-    if not inputs:
-        return this.success('no inputs: nothing to do')
-    file_path = inputs.get('file_path')
-    if not file_path:
-        return this.success('no file_path: nothing to do')
-    file = system.file(file_path)
-    if file_path.endswith('.py'):
-        file_content = file.load('content')
-        system.flow(
-            name=file_path[:-len('.py')],
-            script=file_content,
-        )
-        file.delete()
-    elif file_path.endswith('.yaml'):
-        file_content = file.load('content')
-        system.setting(
-            name=file_path[:-len('.yaml')],
-            value=file_content,
-        )
-        file.delete()
-    return this.success('all done')
-```
-
 
 ### User configuration
 
